@@ -1,9 +1,12 @@
-import Banner from "../Shared/Banner";
+import CallToAction from "./home sections/CallToAction";
+import OurEvents from "./home sections/OurEvents";
 
 const Home = () => {
     return (
         <div>
-            <Banner/>
+            Hello From Home
+            <OurEvents></OurEvents>
+            <CallToAction></CallToAction>
         </div>
     );
 };
