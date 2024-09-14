@@ -7,3 +7,24 @@
 .font-lancelot {
   font-family: "Lancelot", serif;
 }
+
+.bg-cta{
+  background-image: linear-gradient(rgba(58, 134, 255, 0.4), rgba(58, 134, 255, 0.4)), url('./assets/cta-bg.png');
+
+  background-repeat: no-repeat;
+
+  background-size: cover;
+}
+
+.cta1{
+  background-image: url(./assets//cta1.jfif);
+  background-size: cover;
+}
+.cta2{
+  background-image: url(./assets//cta2.jfif);
+  background-size: cover;
+}
+.cta3{
+  background-image: url(./assets//cta3.jfif);
+  background-size: cover;
+}
