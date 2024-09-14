@@ -1,63 +1,59 @@
-import { useState } from 'react';
-import { HiMenu } from 'react-icons/hi';
-import logoimage from '../assets/Logo/Logo.png'
+import  { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
-    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-    const toggleDrawer = () => {
-        setIsDrawerOpen(!isDrawerOpen);
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      if (offset > 200) {  // Adjust this value based on your banner height
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
     };
-    const nav = <>
-        <li><a>Home</a></li>
-        <li><a>About</a></li>
-    </>
 
-    return (
-        <div className="relative">
-            {/* Overlay */}
-            {isDrawerOpen && (
-                <div
-                    className="fixed inset-0 bg-black bg-opacity-50 z-40"
-                    onClick={toggleDrawer}
-                ></div>
-            )}
+    window.addEventListener('scroll', handleScroll);
 
-            {/* Side Drawer */}
-            <div
-                className={`fixed top-0 left-0 h-full w-64 bg-base-100 z-50 transform ${isDrawerOpen ? 'translate-x-0' : '-translate-x-full'
-                    } transition-transform duration-300 ease-in-out`}
-            >
-                <div className="p-4">
-                    <a className="btn btn-ghost text-xl mb-4">Eventify</a>
-                    <ul className="menu menu-vertical">
-                        {nav}
-                    </ul>
-                </div>
-            </div>
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
-            {/* Navbar */}
-            <div className="navbar bg-base-100">
-                <div className="navbar-start">
-                    <button className="btn btn-ghost lg:hidden" onClick={toggleDrawer}>
-                        <HiMenu className="h-5 w-5" />
-                    </button>
-                    <div className='flex items-center gap-2'>
-                        <img className='w-10' src={logoimage} alt="" />
-                        <p className=" text-4xl font-bold hidden lg:flex">Eventify</p>
-                    </div>
-                </div>
-                <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
-                       {nav}
-                    </ul>
-                </div>
-                <div className="navbar-end">
-                    <a className="btn">Button</a>
-                </div>
-            </div>
+  return (
+    <nav className={`w-full sticky top-0 z-30 transition-all duration-300 ${scrolled ? 'bg-white' : 'bg-transparent'}`}>
+      <div className={`relative px-5 lg:px-14 xl:px-44 py-3 transition-all duration-500 ease-in-out flex justify-between items-center ${scrolled ? 'text-black' : 'text-white'}`}>
+        <div>
+          <Link to="/" className={`text-xl font-serif italic sm:text-2xl font-semibold ${scrolled ? 'text-pink-400' : 'text-white'}`}>
+            <h1>Eventify</h1>
+          </Link>
         </div>
-    );
+        <div>
+          <ul className="md:flex sm:gap-5 xl:gap-10 text-[17px] font-normal hidden">
+            {['Home', 'Events', 'Reels', 'Gallery', 'Profile'].map((item) => (
+              <li key={item} className={`cursor-pointer font-semibold ${scrolled ? 'text-black hover:text-pink-400' : 'text-white hover:text-pink-400'}`}>
+                <Link >{item}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className={`md:hidden hover:cursor-pointer text-2xl z-20 ${scrolled ? 'text-black' : 'text-pink-400'}`}>
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth="0"
+            viewBox="0 0 1024 1024"
+            height="1em"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M904 160H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zm0 624H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zm0-312H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8z"></path>
+          </svg>
+        </div>
+      </div>
+    </nav>
+  );
 };
 
 export default Navbar;
