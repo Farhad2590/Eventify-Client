@@ -1,14 +1,14 @@
-import bg from '../assets/Banner/Banner.jpeg'
+import bg from '../../assets/Banner/Banner.jpeg'
 
 
 const Banner = () => {
     return (
         <div
-            id="home"
-            className="w-full h-screen bg-cover bg-center bg-no-repeat flex justify-center items-center -translate-y-[5rem] relative"
-            style={{
-                backgroundImage: `url(${bg})`
-            }}
+        id="home"
+        className="w-full h-screen bg-cover bg-center bg-no-repeat flex justify-center items-center -translate-y-[5rem] relative"
+        style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(${bg})`,
+        }}
 
         >
             <div className="text-center text-white">
