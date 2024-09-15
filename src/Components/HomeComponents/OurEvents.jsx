@@ -1,14 +1,16 @@
-import concert from '../../assets/Images/concerts.png'
-import birthday from '../../assets/Images/birthday.png'
-import conference from '../../assets/Images/conference.png';
-import wedding from '../../assets/Images/wedding.png'
-import festival from '../../assets/Images/festivals.png'
-import newYear from '../../assets//Images/new-year.png'
+import concert from '../../assets/HomeImages/concerts.png'
+import birthday from '../../assets/HomeImages/birthday.png'
+import conference from '../../assets/HomeImages/conference.png';
+import wedding from '../../assets/HomeImages/wedding.png'
+import festival from '../../assets/HomeImages/festivals.png'
+import newYear from '../../assets//HomeImages/new-year.png'
+import TitleAndSubheading from '../../Shared/TitleAndSubheading';
 
 const OurEvents = () => {
     return (
         <div className='container mx-auto'>
-            <h3 className="text-center text-5xl font-semibold mb-10">Our Events</h3>
+            {/* <h3 className="text-center text-5xl font-semibold mb-10">Our Events</h3> */}
+            <TitleAndSubheading title="Our Events"></TitleAndSubheading>
             <div  className='grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
             <div>
                 <div className=" rounded-md shadow-md">
