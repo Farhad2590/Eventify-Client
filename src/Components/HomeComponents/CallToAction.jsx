@@ -1,4 +1,6 @@
-
+import cta1 from '../../assets/Images/cta1.png'
+import cta2 from '../../assets/Images/cta2.png'
+import cta3 from '../../assets/Images/cta3.png'
 const CallToAction = () => {
     return (
         <div className="bg-cta my-10 rounded-lg p-10 gap-5 flex flex-col lg:flex-row items-center justify-between">
@@ -8,9 +10,9 @@ const CallToAction = () => {
                 <button className="btn bg-pink-400 flex-nowrap px-7 py-5 text-white border-none text-lg">Book Now</button>
             </div>
             <div className="flex  justify-between gap-10">
-                <img className="h-60 w-60 rounded-full border shadow-pink-400 shadow-md  cta1" alt="" />
-                <img className="h-60 w-60 rounded-full border shadow-pink-400 shadow-md  cta2" alt="" />
-                <img className="h-60 w-60 rounded-full border shadow-pink-400 shadow-md  cta3" alt="" />
+                <img className="h-60 w-60 rounded-full border shadow-pink-400 shadow-md cta1"src={cta1} alt="" />
+                <img className="h-60 w-60 rounded-full border shadow-pink-400 shadow-md  cta2" src={cta2} alt="" />
+                <img className="h-60 w-60 rounded-full border shadow-pink-400 shadow-md  cta3" src={cta3} alt="" />
 
             </div>
         </div>

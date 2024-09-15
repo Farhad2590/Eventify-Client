@@ -1,12 +1,12 @@
-import React from 'react';
-import palki from '../assets/palki.png'
-import band from '../assets/band.jpg'
-import photo from '../assets/photography.png'
-import led from '../assets/led.png'
-import sound from '../assets/sound.png'
-import light from '../assets/lighting.jpg'
-import bday from '../assets/birthday.png'
-import ghora from '../assets/ghora.png'
+// import React from 'react';
+import palki from '../../assets/palki.png'
+import band from '../../assets/band.jpg'
+import photo from '../../assets/photography.png'
+import led from '../../assets/led.png'
+import sound from '../../assets/sound.png'
+import light from '../../assets/lighting.jpg'
+import bday from '../../assets/birthday.png'
+import ghora from '../../assets/ghora.png'
 const EventItems = () => {
     return (
         <div className='mb-10'>

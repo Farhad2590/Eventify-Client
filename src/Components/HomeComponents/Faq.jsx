@@ -1,5 +1,5 @@
-import React from 'react';
-import image from '../assets/faq.jpg'
+
+import image from '../../assets/faq.jpg'
 const Faq = () => {
     return (
        
