@@ -1,0 +1,352 @@
+{
+    "events": [
+      {
+        "category": "Concert",
+        "packages": [
+          {
+            "package_name": "Basic Concert Package",
+            "price": 1000,
+            "features": [
+              "Stage Setup",
+              "Basic Sound System",
+              "Standard Lighting",
+              "Event Staff"
+            ],
+            "images": [
+              "basic_concert_image1.jpg",
+              "basic_concert_image2.jpg"
+            ],
+            "photography_team_size": 1,
+            "videography": false
+          },
+          {
+            "package_name": "Premium Concert Package",
+            "price": 3000,
+            "features": [
+              "Advanced Stage Setup",
+              "High-End Sound System",
+              "Advanced Lighting",
+              "Event Staff",
+              "VIP Area Setup",
+              "Backstage Support"
+            ],
+            "images": [
+              "premium_concert_image1.jpg",
+              "premium_concert_image2.jpg",
+              "premium_concert_image3.jpg"
+            ],
+            "photography_team_size": 2,
+            "videography": true
+          },
+          {
+            "package_name": "Ultimate Concert Package",
+            "price": 5000,
+            "features": [
+              "Custom Stage Setup",
+              "Top-Tier Sound System",
+              "Professional Lighting Show",
+              "Full Event Management",
+              "VIP Area & Hospitality",
+              "Backstage Support & Security"
+            ],
+            "images": [
+              "ultimate_concert_image1.jpg",
+              "ultimate_concert_image2.jpg",
+              "ultimate_concert_image3.jpg"
+            ],
+            "photography_team_size": 3,
+            "videography": true
+          }
+        ]
+      },
+      {
+        "category": "Birthday",
+        "packages": [
+          {
+            "package_name": "Basic Birthday Package",
+            "price": 500,
+            "features": [
+              "Venue Decoration",
+              "Birthday Cake",
+              "Balloon Setup",
+              "1 Event Host"
+            ],
+            "images": [
+              "basic_birthday_image1.jpg",
+              "basic_birthday_image2.jpg"
+            ],
+            "photography_team_size": 1,
+            "videography": false
+          },
+          {
+            "package_name": "Premium Birthday Package",
+            "price": 1500,
+            "features": [
+              "Custom Venue Decoration",
+              "Theme-Based Cake",
+              "Games & Activities",
+              "2 Event Hosts",
+              "Photo Booth Setup"
+            ],
+            "images": [
+              "premium_birthday_image1.jpg",
+              "premium_birthday_image2.jpg",
+              "premium_birthday_image3.jpg"
+            ],
+            "photography_team_size": 2,
+            "videography": true
+          },
+          {
+            "package_name": "Ultimate Birthday Package",
+            "price": 2500,
+            "features": [
+              "Themed Party Setup",
+              "Personalized Cake",
+              "Entertainment (Magician/Clown)",
+              "Photo Booth with Photographer",
+              "3 Event Hosts",
+              "Catering Service"
+            ],
+            "images": [
+              "ultimate_birthday_image1.jpg",
+              "ultimate_birthday_image2.jpg",
+              "ultimate_birthday_image3.jpg"
+            ],
+            "photography_team_size": 3,
+            "videography": true
+          }
+        ]
+      },
+      {
+        "category": "Festival",
+        "packages": [
+          {
+            "package_name": "Basic Festival Package",
+            "price": 2000,
+            "features": [
+              "Stage Setup",
+              "Basic Sound System",
+              "Security Personnel",
+              "Event Coordination"
+            ],
+            "images": [
+              "basic_festival_image1.jpg",
+              "basic_festival_image2.jpg"
+            ],
+            "photography_team_size": 2,
+            "videography": false
+          },
+          {
+            "package_name": "Premium Festival Package",
+            "price": 5000,
+            "features": [
+              "Advanced Stage Setup",
+              "Professional Sound System",
+              "Security & VIP Area",
+              "Event Coordination",
+              "Festival Promotion"
+            ],
+            "images": [
+              "premium_festival_image1.jpg",
+              "premium_festival_image2.jpg",
+              "premium_festival_image3.jpg"
+            ],
+            "photography_team_size": 3,
+            "videography": true
+          },
+          {
+            "package_name": "Ultimate Festival Package",
+            "price": 10000,
+            "features": [
+              "Custom Stage Setup",
+              "High-End Sound & Lighting",
+              "Full Security Team",
+              "VIP Area Setup",
+              "Festival Promotion & Marketing",
+              "Full Event Management"
+            ],
+            "images": [
+              "ultimate_festival_image1.jpg",
+              "ultimate_festival_image2.jpg",
+              "ultimate_festival_image3.jpg"
+            ],
+            "photography_team_size": 5,
+            "videography": true
+          }
+        ]
+      },
+      {
+        "category": "Wedding",
+        "packages": [
+          {
+            "package_name": "Basic Wedding Package",
+            "price": 3000,
+            "features": [
+              "Venue Decoration",
+              "Basic Catering (100 guests)",
+              "Sound System",
+              "Event Photography"
+            ],
+            "images": [
+              "basic_wedding_image1.jpg",
+              "basic_wedding_image2.jpg"
+            ],
+            "photography_team_size": 2,
+            "videography": false
+          },
+          {
+            "package_name": "Premium Wedding Package",
+            "price": 7000,
+            "features": [
+              "Luxury Venue Decoration",
+              "Premium Catering (200 guests)",
+              "Sound & Lighting",
+              "Event Photography & Videography",
+              "Live Band/DJ"
+            ],
+            "images": [
+              "premium_wedding_image1.jpg",
+              "premium_wedding_image2.jpg",
+              "premium_wedding_image3.jpg"
+            ],
+            "photography_team_size": 3,
+            "videography": true
+          },
+          {
+            "package_name": "Ultimate Wedding Package",
+            "price": 15000,
+            "features": [
+              "Custom Venue Decoration",
+              "Gourmet Catering (300 guests)",
+              "Full Sound, Lighting & Effects",
+              "Professional Photography & Videography",
+              "Entertainment (Live Band, DJ)",
+              "Wedding Planner"
+            ],
+            "images": [
+              "ultimate_wedding_image1.jpg",
+              "ultimate_wedding_image2.jpg",
+              "ultimate_wedding_image3.jpg"
+            ],
+            "photography_team_size": 5,
+            "videography": true
+          }
+        ]
+      },
+      {
+        "category": "New Year Party",
+        "packages": [
+          {
+            "package_name": "Basic New Year Package",
+            "price": 1000,
+            "features": [
+              "Basic Venue Decoration",
+              "Sound System",
+              "Countdown Timer",
+              "Fireworks"
+            ],
+            "images": [
+              "basic_new_year_image1.jpg",
+              "basic_new_year_image2.jpg"
+            ],
+            "photography_team_size": 1,
+            "videography": false
+          },
+          {
+            "package_name": "Premium New Year Package",
+            "price": 3000,
+            "features": [
+              "Themed Venue Decoration",
+              "Premium Sound System",
+              "Live Entertainment",
+              "Fireworks Show",
+              "Food & Beverage"
+            ],
+            "images": [
+              "premium_new_year_image1.jpg",
+              "premium_new_year_image2.jpg",
+              "premium_new_year_image3.jpg"
+            ],
+            "photography_team_size": 2,
+            "videography": true
+          },
+          {
+            "package_name": "Ultimate New Year Package",
+            "price": 6000,
+            "features": [
+              "Luxury Venue Decoration",
+              "Top-Tier Sound & Lighting",
+              "Live Entertainment & DJ",
+              "Fireworks Display",
+              "VIP Area with Catering"
+            ],
+            "images": [
+              "ultimate_new_year_image1.jpg",
+              "ultimate_new_year_image2.jpg",
+              "ultimate_new_year_image3.jpg"
+            ],
+            "photography_team_size": 3,
+            "videography": true
+          }
+        ]
+      },
+      {
+        "category": "Conference",
+        "packages": [
+          {
+            "package_name": "Basic Conference Package",
+            "price": 2000,
+            "features": [
+              "Venue Booking",
+              "Basic AV Setup",
+              "Event Coordination",
+              "Seating for 100"
+            ],
+            "images": [
+              "basic_conference_image1.jpg",
+              "basic_conference_image2.jpg"
+            ],
+            "photography_team_size": 1,
+            "videography": false
+          },
+          {
+            "package_name": "Premium Conference Package",
+            "price": 5000,
+            "features": [
+              "Venue & AV Setup",
+              "Full Event Management",
+              "Catering for 150",
+              "Photography & Videography",
+              "Guest Speaker Setup"
+            ],
+            "images": [
+              "premium_conference_image1.jpg",
+              "premium_conference_image2.jpg",
+              "premium_conference_image3.jpg"
+            ],
+            "photography_team_size": 2,
+            "videography": true
+          },
+          {
+            "package_name": "Ultimate Conference Package",
+            "price": 10000,
+            "features": [
+              "Premium Venue & AV Setup",
+              "Full Event Coordination",
+              "Catering for 300",
+              "Photography, Videography & Live Streaming",
+              "Guest Speaker & VIP Area"
+            ],
+            "images": [
+              "ultimate_conference_image1.jpg",
+              "ultimate_conference_image2.jpg",
+              "ultimate_conference_image3.jpg"
+            ],
+            "photography_team_size": 3,
+            "videography": true
+          }
+        ]
+      }
+    ]
+  }
+  
