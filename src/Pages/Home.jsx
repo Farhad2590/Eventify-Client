@@ -1,12 +1,19 @@
-import Banner from "../Shared/Banner";
+
 import EventItems from "./EventItems";
 import Faq from "./Faq";
 import Testimonial from "./Testimonial";
+import Banner from "../Components/HomeComponents/Banner";
+import CallToAction from "../Components/HomeComponents/CallToAction";
+import OurEvents from "../Components/HomeComponents/OurEvents";
 
 const Home = () => {
     return (
         <div>
-            <Banner />
+
+
+            <Banner></Banner>
+            <OurEvents></OurEvents>
+            <CallToAction></CallToAction>
             <Faq></Faq>
             <Testimonial></Testimonial>
             <EventItems></EventItems>
