@@ -5,7 +5,6 @@ const Main = () => {
     return (
         <div className="font-lancelot ">
             <Navbar/>
-            Hello From Main
             <Outlet></Outlet>
         </div>
     );
