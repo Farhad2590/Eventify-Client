@@ -1,0 +1,54 @@
+/* Overall App container */
+/* .App {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    color: #fff;
+} */
+
+/* Video container for scrollable gallery */
+.video-container {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+    background-color: white;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+}
+
+/* Hide scrollbar in Chrome and Opera */
+.video-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* New Grid Layout for the Gallery */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    gap: 16px;
+    padding: 20px;
+    width: 100%; 
+    height: auto; 
+    overflow: hidden; 
+}
+
+/* Video grid item */
+.video-grid-item {
+    position: relative;
+    width: 100%;
+    height: 80%; 
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.video-grid-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+

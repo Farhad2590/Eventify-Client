@@ -23,19 +23,18 @@ export function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   useEffect(() => {
-    // Fetch images from API
     const fetchImages = async () => {
       try {
-        const response = await fetch('/pic.json'); // Replace with your API URL
+        const response = await fetch('/pic.json');
         const data = await response.json();
-        setImages(data.imagesByCategory); // Adjust based on JSON structure
+        setImages(data.imagesByCategory);
       } catch (error) {
         console.error('Error fetching images:', error);
       }
     };
 
     fetchImages();
-  }, []); // Empty array to run once when the component mounts
+  }, []);
 
   const onInit = () => {
     console.log('lightGallery has been initialized');
@@ -50,71 +49,64 @@ export function Gallery() {
     <div className="App">
       <div className="flex flex-wrap justify-center space-x-2 space-y-2 sm:space-x-4 mb-6">
         <button
-          className={`px-3 py-1 sm:px-4 sm:py-2 rounded-lg ${
-            selectedCategory === 'All'
+          className={`px-3 py-1 sm:px-4 sm:py-2 rounded-lg ${selectedCategory === 'All'
               ? 'bg-pink-500 text-white'
               : 'bg-gray-200 hover:bg-pink-400 text-gray-700'
-          }`}
+            }`}
           onClick={() => setSelectedCategory('All')}
         >
           All
         </button>
         <button
-          className={`px-3 py-1 sm:px-4 sm:py-2 rounded-lg ${
-            selectedCategory === 'Wedding'
+          className={`px-3 py-1 sm:px-4 sm:py-2 rounded-lg ${selectedCategory === 'Wedding'
               ? 'bg-pink-500 text-white'
               : 'bg-gray-200 hover:bg-pink-400 text-gray-700'
-          }`}
+            }`}
           onClick={() => setSelectedCategory('Wedding')}
         >
           Wedding
         </button>
         <button
-          className={`px-3 py-1 sm:px-4 sm:py-2 rounded-lg ${
-            selectedCategory === 'Concert'
+          className={`px-3 py-1 sm:px-4 sm:py-2 rounded-lg ${selectedCategory === 'Concert'
               ? 'bg-pink-500 text-white'
               : 'bg-gray-200 hover:bg-pink-400 text-gray-700'
-          }`}
+            }`}
           onClick={() => setSelectedCategory('Concert')}
         >
           Concert
         </button>
         <button
-          className={`px-3 py-1 sm:px-4 sm:py-2 rounded-lg ${
-            selectedCategory === 'Birthdays'
+          className={`px-3 py-1 sm:px-4 sm:py-2 rounded-lg ${selectedCategory === 'Birthdays'
               ? 'bg-pink-500 text-white'
               : 'bg-gray-200 hover:bg-pink-400 text-gray-700'
-          }`}
+            }`}
           onClick={() => setSelectedCategory('Birthdays')}
         >
           Birthdays
         </button>
         <button
-          className={`px-3 py-1 sm:px-4 sm:py-2 rounded-lg ${
-            selectedCategory === 'Festival'
+          className={`px-3 py-1 sm:px-4 sm:py-2 rounded-lg ${selectedCategory === 'Festival'
               ? 'bg-pink-500 text-white'
               : 'bg-gray-200 hover:bg-pink-400 text-gray-700'
-          }`}
+            }`}
           onClick={() => setSelectedCategory('Festival')}
         >
           Festival
         </button>
         <button
-          className={`px-3 py-1 sm:px-4 sm:py-2 rounded-lg ${
-            selectedCategory === 'Newyear'
+          className={`px-3 py-1 sm:px-4 sm:py-2 rounded-lg ${selectedCategory === 'Newyear'
               ? 'bg-pink-500 text-white'
               : 'bg-gray-200 hover:bg-pink-400 text-gray-700'
-          }`}
+            }`}
           onClick={() => setSelectedCategory('Newyear')}
         >
           Newyear
         </button>
         <button
-          className={`px-3 py-1 sm:px-4 sm:py-2 rounded-lg ${
-            selectedCategory === 'Conference'
+          className={`px-3 py-1 sm:px-4 sm:py-2 rounded-lg ${selectedCategory === 'Conference'
               ? 'bg-pink-500 text-white'
               : 'bg-gray-200 hover:bg-pink-400 text-gray-700'
-          }`}
+            }`}
           onClick={() => setSelectedCategory('Conference')}
         >
           Conference
