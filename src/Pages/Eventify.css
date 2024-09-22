@@ -1,12 +1,4 @@
-/* Overall App container */
-/* .App {
-    display: grid;
-    place-items: center;
-    height: 100vh;
-    color: #fff;
-} */
 
-/* Video container for scrollable gallery */
 .video-container {
     position: relative;
     height: 100vh;

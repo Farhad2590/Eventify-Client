@@ -6,6 +6,7 @@ import ErrorPage from "../Pages/ErrorPage";
 import Home from "../Pages/Home";
 import Gallerys from "../Pages/Gallerys";
 import EventifyReels from "../Pages/EventifyReels";
+import AddEvent from "../Pages/AdminPages/AddEvent"
 
 export const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
             {
                 path: "/reels",
                 element: <EventifyReels/>,
+            },
+            {
+                path:'/add-event',
+                element: <AddEvent></AddEvent>
             }
         ]
     },
