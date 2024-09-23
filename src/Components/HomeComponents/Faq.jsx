@@ -1,19 +1,19 @@
 
 import image from '../../assets/HomeImages/faq.png'
+import TitleAndSubheading from '../../Shared/TitleAndSubheading';
 
 const Faq = () => {
 	return (
-
-		<div className="hero mt-10 mb-10 ">
-			
-			<div className="hero-content flex-col lg:flex-row">
+		<div>
+			<TitleAndSubheading title="Frequently Asked Questions"></TitleAndSubheading>
+			<div className=" flex flex-col lg:items-center lg:justify-center lg:gap-10 lg:flex-row">
 				<img
 					src={image}
 					className="rounded-lg " />
 				<div>
-					<section className="bg-[#8338EC]  text-white">
+					<section className="bg-blue-600 text-white">
 						<div className="container flex flex-col justify-center px-4 py-8 mx-auto md:p-8">
-							<h2 className="text-2xl font-semibold sm:text-4xl">Frequently Asked Questions</h2>
+							{/* <h2 className="text-2xl font-semibold sm:text-4xl"></h2> */}
 							<p className="mt-4 mb-8 text-white">Sagittis tempor donec id vestibulum viverra. Neque condimentum primis orci at lacus amet bibendum.</p>
 							<div className="space-y-4">
 								<details className="w-full border rounded-lg">

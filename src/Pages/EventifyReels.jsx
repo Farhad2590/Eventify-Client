@@ -13,6 +13,7 @@ import Vid10 from "../assets/videos/vid10.mp4";
 
 import "./Eventify.css"; // Assuming custom styles here
 import { useState } from "react";
+import TitleAndSubheading from "../Shared/TitleAndSubheading";
 
 export default function EventifyReels() {
   const [currentPlaying, setCurrentPlaying] = useState(null);
@@ -32,7 +33,7 @@ export default function EventifyReels() {
   return (
     <div className="w-full h-screen bg-white overflow-y-scroll snap-y snap-mandatory">
       <center>
-        <h3 className="text-black text-2xl ">Reel Gallery</h3>
+      <TitleAndSubheading title="Reel Gallery"></TitleAndSubheading>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 p-5 mb-5">
           {data.map((list, i) => (
             <div key={i} className="relative w-full h-[100%] overflow-hidden rounded-lg cursor-pointer">

@@ -17,6 +17,7 @@ import lgAutoplay from 'lightgallery/plugins/autoplay';
 import lgFullscreen from 'lightgallery/plugins/fullscreen';
 import lgShare from 'lightgallery/plugins/share';
 import lgRotate from 'lightgallery/plugins/rotate';
+import TitleAndSubheading from '../../Shared/TitleAndSubheading';
 
 export function Gallery() {
   const [images, setImages] = useState([]);
@@ -47,11 +48,12 @@ export function Gallery() {
 
   return (
     <div className="App">
+      <TitleAndSubheading title="Image Gallery"></TitleAndSubheading>
       <div className="flex flex-wrap justify-center space-x-2 space-y-2 sm:space-x-4 mb-6">
         <button
           className={`px-3 py-1 sm:px-4 sm:py-2 rounded-lg ${selectedCategory === 'All'
-              ? 'bg-pink-500 text-white'
-              : 'bg-gray-200 hover:bg-pink-400 text-gray-700'
+            ? 'bg-blue-600 text-white hover:text-white'
+            : 'bg-gray-200 hover:bg-blue-600 hover:text-white text-gray-700'
             }`}
           onClick={() => setSelectedCategory('All')}
         >
@@ -59,8 +61,8 @@ export function Gallery() {
         </button>
         <button
           className={`px-3 py-1 sm:px-4 sm:py-2 rounded-lg ${selectedCategory === 'Wedding'
-              ? 'bg-pink-500 text-white'
-              : 'bg-gray-200 hover:bg-pink-400 text-gray-700'
+            ? 'bg-blue-600 text-white hover:text-white'
+            : 'bg-gray-200 hover:bg-blue-600 hover:text-white text-gray-700'
             }`}
           onClick={() => setSelectedCategory('Wedding')}
         >
@@ -68,8 +70,8 @@ export function Gallery() {
         </button>
         <button
           className={`px-3 py-1 sm:px-4 sm:py-2 rounded-lg ${selectedCategory === 'Concert'
-              ? 'bg-pink-500 text-white'
-              : 'bg-gray-200 hover:bg-pink-400 text-gray-700'
+            ? 'bg-blue-600 text-white hover:text-white'
+            : 'bg-gray-200 hover:bg-blue-600 hover:text-white text-gray-700'
             }`}
           onClick={() => setSelectedCategory('Concert')}
         >
@@ -77,8 +79,8 @@ export function Gallery() {
         </button>
         <button
           className={`px-3 py-1 sm:px-4 sm:py-2 rounded-lg ${selectedCategory === 'Birthdays'
-              ? 'bg-pink-500 text-white'
-              : 'bg-gray-200 hover:bg-pink-400 text-gray-700'
+            ? 'bg-blue-600 text-white hover:text-white'
+            : 'bg-gray-200 hover:bg-blue-600 hover:text-white text-gray-700'
             }`}
           onClick={() => setSelectedCategory('Birthdays')}
         >
@@ -86,8 +88,8 @@ export function Gallery() {
         </button>
         <button
           className={`px-3 py-1 sm:px-4 sm:py-2 rounded-lg ${selectedCategory === 'Festival'
-              ? 'bg-pink-500 text-white'
-              : 'bg-gray-200 hover:bg-pink-400 text-gray-700'
+            ? 'bg-blue-600 text-white hover:text-white'
+            : 'bg-gray-200 hover:bg-blue-600 hover:text-white text-gray-700'
             }`}
           onClick={() => setSelectedCategory('Festival')}
         >
@@ -95,8 +97,8 @@ export function Gallery() {
         </button>
         <button
           className={`px-3 py-1 sm:px-4 sm:py-2 rounded-lg ${selectedCategory === 'Newyear'
-              ? 'bg-pink-500 text-white'
-              : 'bg-gray-200 hover:bg-pink-400 text-gray-700'
+            ? 'bg-blue-600 text-white hover:text-white'
+            : 'bg-gray-200 hover:bg-blue-600 hover:text-white text-gray-700'
             }`}
           onClick={() => setSelectedCategory('Newyear')}
         >
@@ -104,8 +106,8 @@ export function Gallery() {
         </button>
         <button
           className={`px-3 py-1 sm:px-4 sm:py-2 rounded-lg ${selectedCategory === 'Conference'
-              ? 'bg-pink-500 text-white'
-              : 'bg-gray-200 hover:bg-pink-400 text-gray-700'
+            ? 'bg-blue-600 text-white hover:text-white'
+            : 'bg-gray-200 hover:bg-blue-600 hover:text-white text-gray-700'
             }`}
           onClick={() => setSelectedCategory('Conference')}
         >
