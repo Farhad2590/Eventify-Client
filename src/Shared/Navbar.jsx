@@ -5,25 +5,25 @@ const Navbar = () => {
     <nav className="w-full sticky top-0 z-30 bg-white transition-all duration-300">
       <div className="relative px-5 lg:px-14 xl:px-44 py-3 transition-all duration-500 ease-in-out flex justify-between items-center text-black">
         <div>
-          <Link to="/" className="text-xl font-serif italic sm:text-2xl font-semibold text-pink-400">
+          <Link to="/" className="text-xl font-serif italic sm:text-2xl font-semibold text-blue-600">
             <h1>Eventify</h1>
           </Link>
         </div>
         <div>
           <ul className="md:flex sm:gap-5 xl:gap-10 text-[17px] font-normal hidden">
-            <li className="cursor-pointer font-semibold text-black hover:text-pink-400">
+            <li className="cursor-pointer font-semibold text-black hover:text-blue-600">
               <Link to="/">Home</Link>
             </li>
-            <li className="cursor-pointer font-semibold text-black hover:text-pink-400">
+            <li className="cursor-pointer font-semibold text-black hover:text-blue-600">
               <Link to="/add-event">Events</Link>
             </li>
-            <li className="cursor-pointer font-semibold text-black hover:text-pink-400">
+            <li className="cursor-pointer font-semibold text-black hover:text-blue-600">
               <Link to="/reels">Reels</Link>
             </li>
-            <li className="cursor-pointer font-semibold text-black hover:text-pink-400">
+            <li className="cursor-pointer font-semibold text-black hover:text-blue-600">
               <Link to="/gallery">Gallery</Link>
             </li>
-            <li className="cursor-pointer font-semibold text-black hover:text-pink-400">
+            <li className="cursor-pointer font-semibold text-black hover:text-blue-600">
               <Link to="/profile">Profile</Link>
             </li>
           </ul>
