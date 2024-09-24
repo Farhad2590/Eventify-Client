@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import { Tooltip } from 'react-tooltip';
 const Navbar = () => {
+  const { logout, user } = useContext(AuthContext);
   return (
     <nav className="w-full sticky top-0 z-30 bg-white transition-all duration-300">
       <div className="relative px-5 lg:px-14 xl:px-44 py-3 transition-all duration-500 ease-in-out flex justify-between items-center text-black">
@@ -26,6 +29,26 @@ const Navbar = () => {
             <li className="cursor-pointer font-semibold text-black hover:text-blue-600">
               <Link to="/profile">Profile</Link>
             </li>
+            <Tooltip id="my-tooltip" />
+            {
+              user ? <div data-tooltip-id="my-tooltip" data-tooltip-place="right" data-tooltip-content={user?.displayName || 'name not found'} className="dropdown dropdown-end  z-[4]" >
+                <label tabIndex={0} className="btn btn-ghost btn-circle avatar " >
+                  <div className="w-10 rounded-full "  >
+                    <img src={user?.photoURL || 'https://avatars.githubusercontent.com/u/86664820?v=4'} alt="" />
+
+                  </div>
+                </label>
+                <ul tabIndex={0} className="dropdown-content z-[4] menu p-2 shadow bg-base-100 rounded-box w-52">
+                  <li><button onClick={logout} className="btn btn-sm btn-ghost">Logout</button></li>
+                </ul>
+              </div> :
+                <li className="cursor-pointer font-semibold text-black hover:text-pink-400">
+                  <Link to="/login">Login</Link>
+                </li>
+            }
+
+
+
           </ul>
         </div>
         <div className="md:hidden hover:cursor-pointer text-2xl z-20 text-black">

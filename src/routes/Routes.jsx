@@ -7,29 +7,39 @@ import Home from "../Pages/Home";
 import Gallerys from "../Pages/Gallerys";
 import EventifyReels from "../Pages/EventifyReels";
 import AddEvent from "../Pages/AdminPages/AddEvent"
+import Login from "../Components/HomeComponents/Login";
+import Register from "../Components/HomeComponents/Register";
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <Main/>,
+        element: <Main />,
         errorElement: <ErrorPage />,
         children: [
             {
                 path: "/",
-                element: <Home/>,
+                element: <Home />,
             },
             {
                 path: "/gallery",
-                element: <Gallerys/>,
+                element: <Gallerys />,
             },
             {
                 path: "/reels",
-                element: <EventifyReels/>,
+                element: <EventifyReels />,
             },
             {
-                path:'/add-event',
+                path: '/add-event',
                 element: <AddEvent></AddEvent>
-            }
+            },
+            {
+                path: '/login',
+                element: <Login></Login>
+            },
+            {
+                path: '/register',
+                element: <Register></Register>
+            },
         ]
     },
 ]);
