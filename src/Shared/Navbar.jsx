@@ -2,10 +2,12 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { Tooltip } from 'react-tooltip';
+import Button from "../Shared/Button";
 const Navbar = () => {
   const { logout, user } = useContext(AuthContext);
   return (
-    <nav className="w-full sticky top-0 z-30 bg-white transition-all duration-300 relative overflow-hidden">
+    <nav className="w-full sticky top-0 z-30 bg-white transition-all duration-300 relative ">
+      <div>
       <div className="relative px-5 lg:px-14 xl:px-44 py-3 transition-all duration-500 ease-in-out flex justify-between items-center text-black z-10">
         <div>
           <Link to="/" className="text-xl font-serif italic sm:text-2xl font-semibold text-blue-600">
@@ -31,21 +33,26 @@ const Navbar = () => {
             </li>
             <Tooltip id="my-tooltip" />
             {
-              user ? <div data-tooltip-id="my-tooltip" data-tooltip-place="right" data-tooltip-content={user?.displayName || 'name not found'} className="dropdown dropdown-end  z-[4]" >
-                <label tabIndex={0} className="btn btn-ghost btn-circle avatar " >
-                  <div className="w-10 rounded-full "  >
-                    <img src={user?.photoURL || 'https://avatars.githubusercontent.com/u/86664820?v=4'} alt="" />
-
-                  </div>
-                </label>
-                <ul tabIndex={0} className="dropdown-content z-[4] menu p-2 shadow bg-base-100 rounded-box w-52">
-                  <li><button onClick={logout} className="btn btn-sm btn-ghost">Logout</button></li>
-                </ul>
-              </div> :
+              user ? (
+                <div data-tooltip-id="my-tooltip" data-tooltip-place="right" data-tooltip-content={user?.displayName || 'name not found'} className="dropdown dropdown-end z-[40]">
+                  <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                    <div className="w-10 rounded-full">
+                      <img src={user?.photoURL || 'https://avatars.githubusercontent.com/u/86664820?v=4'} alt="User avatar" />
+                    </div>
+                  </label>
+                  <ul tabIndex={0} className="dropdown-content z-[50] menu p-2 shadow bg-base-100 rounded-box w-52">
+                    <li>
+                      <Button onClick={logout} name="Logout" className=""></Button>
+                    </li>
+                  </ul>
+                </div>
+              ) : (
                 <li className="cursor-pointer font-semibold text-black hover:text-pink-400">
                   <Link to="/login">Login</Link>
                 </li>
+              )
             }
+
 
 
 
@@ -65,13 +72,14 @@ const Navbar = () => {
           </svg>
         </div>
       </div>
-      
+
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full opacity-10">
         <div className="absolute top-2 left-2 w-10 h-10 border-2 border-blue-600 rounded-full"></div>
         <div className="absolute bottom-2 right-2 w-20 h-20 border-2 border-blue-600 rotate-45"></div>
         <div className="absolute top-1/2 left-1/4 w-8 h-8 bg-blue-600 rounded-full"></div>
         <div className="absolute bottom-1/4 right-1/3 w-12 h-12 border-2 border-blue-600 transform rotate-12"></div>
+      </div>
       </div>
     </nav>
   );
