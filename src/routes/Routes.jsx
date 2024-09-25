@@ -9,6 +9,7 @@ import EventifyReels from "../Pages/EventifyReels";
 import AddEvent from "../Pages/AdminPages/AddEvent"
 import Login from "../Components/HomeComponents/Login";
 import Register from "../Components/HomeComponents/Register";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -22,15 +23,15 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/gallery",
-                element: <Gallerys />,
+                element: <PrivateRoute><Gallerys /></PrivateRoute>,
             },
             {
                 path: "/reels",
-                element: <EventifyReels />,
+                element:  <PrivateRoute><EventifyReels /></PrivateRoute>, 
             },
             {
                 path: '/add-event',
-                element: <AddEvent></AddEvent>
+                element: <PrivateRoute><AddEvent /></PrivateRoute>,
             },
             {
                 path: '/login',

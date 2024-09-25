@@ -5,7 +5,7 @@ import TitleAndSubheading from '../../Shared/TitleAndSubheading';
 const Faq = () => {
 	return (
 		<div>
-			<TitleAndSubheading title="Frequently Asked Questions"></TitleAndSubheading>
+			<TitleAndSubheading title="Frequently Asked Questions "></TitleAndSubheading>
 			<div className=" flex flex-col lg:items-center lg:justify-center lg:gap-10 lg:flex-row">
 				<img
 					src={image}
