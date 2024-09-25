@@ -9,14 +9,12 @@ import OurEvents from "../Components/HomeComponents/OurEvents";
 const Home = () => {
     return (
         <div>
-
-
             <Banner></Banner>
             <OurEvents></OurEvents>
-            <CallToAction></CallToAction>
-            <Faq></Faq>
-            <Testimonial></Testimonial>
             <EventItems></EventItems>
+            <CallToAction></CallToAction>
+            <Testimonial></Testimonial>
+            <Faq></Faq>
         </div>
     );
 };
