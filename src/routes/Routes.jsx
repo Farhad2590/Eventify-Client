@@ -10,6 +10,7 @@ import AddEvent from "../Pages/AdminPages/AddEvent"
 import Login from "../Components/HomeComponents/Login";
 import Register from "../Components/HomeComponents/Register";
 import PrivateRoute from "./PrivateRoute";
+import Dashboard from "../Pages/AdminPages/dashboard/Dashboard";
 
 export const router = createBrowserRouter([
     {
@@ -30,17 +31,24 @@ export const router = createBrowserRouter([
                 element:  <PrivateRoute><EventifyReels /></PrivateRoute>, 
             },
             {
-                path: '/add-event',
-                element: <PrivateRoute><AddEvent /></PrivateRoute>,
-            },
-            {
                 path: '/login',
                 element: <Login></Login>
             },
             {
                 path: '/register',
                 element: <Register></Register>
+            }
+        ],
+        
+    },
+    {   
+        path:'/dashboard',
+        element: <Dashboard></Dashboard> ,
+        children:[
+            {
+                path: '/dashboard/add-event',
+                element: <PrivateRoute><AddEvent /></PrivateRoute>,
             },
         ]
-    },
+    }
 ]);
