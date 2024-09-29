@@ -6,10 +6,14 @@ import ErrorPage from "../Pages/ErrorPage";
 import Home from "../Pages/Home";
 import Gallerys from "../Pages/Gallerys";
 import EventifyReels from "../Pages/EventifyReels";
-import AddEvent from "../Pages/AdminPages/AddEvent"
+// import AddEvent from "../Pages/AdminPages/AddEvent"
 import Login from "../Components/HomeComponents/Login";
 import Register from "../Components/HomeComponents/Register";
 import PrivateRoute from "./PrivateRoute";
+// import EventPackageCart from "../Pages/EventCards";
+import EventCards from "../Pages/EventCards";
+import CustomizeEvent from "../Components/EventComponents/CustomizeEvent";
+// import Sidebar from "../Components/Events/Sidebar";
 
 export const router = createBrowserRouter([
     {
@@ -31,7 +35,13 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/add-event',
-                element: <PrivateRoute><AddEvent /></PrivateRoute>,
+                element: <PrivateRoute><EventCards /></PrivateRoute>,
+                // element: <PrivateRoute><Sidebar /></PrivateRoute>,
+            },
+            {
+                path: '/customizePlan/:packageName',
+                element: <PrivateRoute><CustomizeEvent /></PrivateRoute>,
+                // element: <PrivateRoute><Sidebar /></PrivateRoute>,
             },
             {
                 path: '/login',
