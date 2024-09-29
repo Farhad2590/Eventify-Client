@@ -8,7 +8,7 @@ const Navbar = () => {
   const { logout, user } = useContext(AuthContext);
 
   return (
-    <nav className="w-full sticky top-0 z-30 bg-white transition-all duration-300 relative ">
+    <nav className="w-full sticky top-0 z-30 bg-white transition-all duration-300  ">
       <div>
         <div className="relative px-5 lg:px-14 xl:px-44 py-3 transition-all duration-500 ease-in-out flex justify-between items-center text-black z-10">
           <div>
@@ -34,6 +34,9 @@ const Navbar = () => {
                   </li>
                   <li className="cursor-pointer font-semibold text-black hover:text-blue-600">
                     <Link to="/profile">Profile</Link>
+                  </li>
+                  <li className="cursor-pointer font-semibold text-black hover:text-blue-600">
+                    <Link to="/dashboard">Dashboard</Link>
                   </li>
                 </>
               ) : null}
