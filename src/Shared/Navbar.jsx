@@ -24,7 +24,7 @@ const Navbar = () => {
                     <Link to="/">Home</Link>
                   </li>
                   <li className="cursor-pointer font-semibold text-black hover:text-blue-600">
-                    <Link to="/add-event">Events</Link>
+                    <Link to="/event">Events</Link>
                   </li>
                   <li className="cursor-pointer font-semibold text-black hover:text-blue-600">
                     <Link to="/reels">Reels</Link>
