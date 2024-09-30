@@ -1,11 +1,15 @@
-import { Link } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import TitleAndSubheading from "../Shared/TitleAndSubheading";
 
 const EventCards = () => {
   const [events, setEvents] = useState([]);
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
+  const axiosSecure = useAxiosSecure()
+  console.log(events);
 
   const handleCheckAvailabilityClick = () => {
     setModalOpen(true);
@@ -16,11 +20,15 @@ const EventCards = () => {
   };
 
   useEffect(() => {
-    fetch("/data.json")
-      .then((response) => response.json())
-      .then((data) => setEvents(data))
-      .catch((error) => console.error("Error fetching events:", error));
-  }, []);
+    axiosSecure
+      .get("/events")
+      .then((response) => {
+        setEvents(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching events:", error);
+      });
+  }, [axiosSecure]);
 
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
@@ -43,7 +51,7 @@ const EventCards = () => {
     <div className="flex">
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 w-64 h-full bg-white text-black transition-transform transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:w-64 lg:flex-shrink-0 p-4`}
+        className={`fixed top-0 left-0 w-64 h-full bg-blue-600 min-h-screen text-white transition-transform transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:w-64 lg:flex-shrink-0 p-4 mt-16`}
       >
         <button
           onClick={toggleSidebar}
@@ -59,7 +67,7 @@ const EventCards = () => {
             <li
               key={index}
               onClick={() => handleCategoryClick(category)}
-              className="cursor-pointer mb-4 hover:bg-blue-600 hover:text-white p-2 rounded-md"
+              className="cursor-pointer mb-4 hover:bg-white hover:text-black p-2 rounded-md"
             >
               {category}
             </li>
@@ -67,7 +75,7 @@ const EventCards = () => {
         </ul>
         <button
           onClick={() => setSelectedCategory(null)}
-          className="mt-6 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
+          className="mt-6 bg-white text-black py-2 px-4 rounded hover:bg-blue-700 hover:text-white"
         >
           Show All Events
         </button>
@@ -75,14 +83,7 @@ const EventCards = () => {
 
       {/* Main Content */}
       <div className="container mx-auto p-4 ml-0 lg:ml-64">
-        <button
-          onClick={toggleSidebar}
-          className="text-black mb-6 lg:hidden text-4xl fixed top-4 left-4"
-          aria-label="Open Sidebar"
-        >
-          <i className="bi bi-filter-left"></i>
-        </button>
-
+        <TitleAndSubheading title="Events"></TitleAndSubheading>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredEvents.map((event, index) => (
             <div
@@ -125,22 +126,19 @@ const EventCards = () => {
                     </p>
                   </div>
                 </div>
-
                 <div className="mt-4 flex justify-between">
                   <button
-                    className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
+                    className="bg-blue-600 text-white btn rounded hover:bg-blue-700"
                     onClick={handleCheckAvailabilityClick}
                   >
                     Check Availability
                   </button>
 
-                  <Link to={`/customizePlan/${event.package_name}`}>
-                    <button className="btn">
-                      Customize Plan
-                    </button>
+                  <Link to={`/events/${event._id}`} className="btn">
+
+                    Customize Plan
+
                   </Link>
-
-
                 </div>
               </div>
             </div>
