@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useLoaderData } from "react-router-dom";
 import AdjustableParameter from './AdjustableParameter';
+import FeatureInput from './FeatureInput';
 
 const CustomizeEvent = () => {
     const initialEvent = useLoaderData();
     const [event, setEvent] = useState(initialEvent);
 
+
+    const addFeature = (newFeature) => {
+        setEvent(prevEvent => ({
+            ...prevEvent,
+            features: [...prevEvent.features, newFeature],
+            price: prevEvent.price + 500 // Increase price by 500 taka
+        }));
+    };
     const updateParameter = (parameter, increment, pricePerUnit) => {
         setEvent(prevEvent => ({
             ...prevEvent,
@@ -37,19 +46,10 @@ const CustomizeEvent = () => {
                         <p className="text-xl mb-4 text-gray-600 dark:text-gray-300">Category: {event.category}</p>
                     </div>
                     <p className="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">Price: {event.price.toLocaleString()} taka</p>
-
-                    <h2 className="text-2xl font-semibold mb-3 text-gray-800 dark:text-white">Features:</h2>
-                    <div className="mb-6 flex flex-wrap gap-2">
-                        {event.features.map((feature, index) => (
-                            <button
-                                key={index}
-                                className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm"
-                            >
-                                {feature}
-                            </button>
-                        ))}
-                    </div>
-
+                    <FeatureInput
+                        features={event.features}
+                        onFeatureAdd={addFeature}
+                    />
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                         <AdjustableParameter
                             parameter="photography_team_size"
