@@ -3,13 +3,14 @@ import { useLoaderData } from "react-router-dom";
 import AdjustableParameter from './AdjustableParameter';
 import FeatureInput from './FeatureInput';
 import DatePickerModal from './DatePickerModal';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const CustomizeEvent = () => {
     const initialEvent = useLoaderData();
     const [event, setEvent] = useState(initialEvent);
     const [isModalOpen, setModalOpen] = useState(false);
     const [selectedDate, setSelectedDate] = useState(new Date());
-
+    const axiosSecure = useAxiosSecure()
     const handleCheckAvailabilityClick = () => {
         setModalOpen(true);
     };
@@ -22,10 +23,7 @@ const CustomizeEvent = () => {
         setSelectedDate(date);
     };
 
-    const handleConfirmDate = () => {
-        console.log("Selected date:", selectedDate);
-        handleCloseModal();
-    };
+   
 
     const addFeature = (newFeature) => {
         setEvent(prevEvent => ({
@@ -50,7 +48,44 @@ const CustomizeEvent = () => {
             price: (prevEvent.price ?? 0) - (pricePerUnit * ((prevEvent[parameter] ?? 0) - defaultValue))
         }));
     };
+    const date = selectedDate
+    const confirmDate = {
+        category : event.category,
+        package_name : event.package_name,
+        carrt_Image : event.carrt_Image,
+        price : event.price,
+        features : event.features,
+        images : event.images,
+        photography_team_size : event.photography_team_size,
+        videography : event.videography,
+        duration_hours : event.duration_hours,
+        expected_attendance : event.expected_attendance,
+        staff_team_size : event.staff_team_size,
+        date : date,
+        payment : 'Pending'
+    }
+    console.log(confirmDate);
+    const handleConfirmDate = () => {
+        axiosSecure.post('/confirmEvents', confirmDate)
 
+        .then(res => {
+            if (res.data.insertedId) {
+                // toast.success('Register Successfully', {
+                //     autoClose: 5000,
+                // });
+                // navigate('/')
+                console.log(res);
+                handleCloseModal();
+            }
+        })
+        .catch(error => {
+            // toast.error(error.message)
+            console.log(error);
+            
+        })
+        
+    };
+    
     return (
         <div className="flex justify-center p-6">
             <div className="max-w-4xl w-full bg-white rounded-lg shadow-md dark:bg-gray-800">
