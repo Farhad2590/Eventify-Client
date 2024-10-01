@@ -85,7 +85,7 @@ const EventCards = () => {
       <div className="container mx-auto p-4 ml-0 lg:ml-64">
         <TitleAndSubheading title="Events"></TitleAndSubheading>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredEvents.map((event, index) => (
+          {filteredEvents?.map((event, index) => (
             <div
               key={index}
               className="border border-gray-300 rounded-lg shadow-lg overflow-hidden flex flex-col"
@@ -107,7 +107,7 @@ const EventCards = () => {
                     </p>
                   </div>
                   <ul className="mb-4">
-                    {event.features.map((feature, featureIndex) => (
+                    {event?.features?.map((feature, featureIndex) => (
                       <li
                         key={featureIndex}
                         className="text-sm text-gray-500"

@@ -6,12 +6,15 @@ import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Lottie from "lottie-react";
 import animationImg from "../../assets/AnimationLottie/AnimationLogin.json";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import axios from 'axios';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 
 const Login = () => {
     const { signIn, googleLogin, githubLogin } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
+    const axiosSecure = useAxiosSecure()
     const {
         register,
         handleSubmit,
@@ -35,9 +38,17 @@ const Login = () => {
     const handleSocialLogin = socialProvider => {
         socialProvider()
             .then(result => {
-                if (result.user) {
-                    navigate(location?.state || '/')
+                const userInfo = {
+                    name: result.user?.displayName,
+                    email: result.user?.email,
+                    role: 'Client'
                 }
+                axiosSecure.post('/addUsers', userInfo)
+                    .then(res => {
+                        console.log(res.data)
+                        navigate(location?.state || '/')
+
+                    })
             })
     }
 
@@ -94,7 +105,7 @@ const Login = () => {
                             onClick={() => handleSocialLogin(googleLogin)}
                             className="flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md hover:bg-gray-50 transition duration-150"
                         >
-                            <FaGoogle/>
+                            <FaGoogle />
                             <span className="ml-2">Google</span>
                         </button>
                         <button
