@@ -6,12 +6,16 @@ import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Lottie from 'lottie-react';
 import animationImg from "../../assets/AnimationLottie/AnimationRegister.json";
 import { FaGithub, FaGoogle } from 'react-icons/fa';
+import axios from 'axios';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 
 const Register = () => {
+
     const { createUser, googleLogin, githubLogin, updateUserProfile } = useContext(AuthContext)
     const navigate = useNavigate();
     const location = useLocation();
+    const axiosSecure = useAxiosSecure()
     // console.log(location)
     const {
         register,
@@ -27,10 +31,21 @@ const Register = () => {
                 // navigate('/')
                 updateUserProfile(data.FullName, data.PhotoURL)
                     .then(() => {
-                        toast.success('Register Successfully', {
-                            autoClose: 5000,
-                        });
-                        navigate('/')
+                        const userInfo = {
+                            name: data.FullName,
+                            email: data.Email,
+                            role: 'Client'
+                        }
+                        axiosSecure.post('/addUsers', userInfo)
+
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    toast.success('Register Successfully', {
+                                        autoClose: 5000,
+                                    });
+                                    navigate('/')
+                                }
+                            })
                     })
 
             })
@@ -42,9 +57,25 @@ const Register = () => {
     const handleSocialLogin = socialProvider => {
         socialProvider()
             .then(result => {
-                if (result.user) {
-                    navigate(location?.state || '/')
+                const userInfo = {
+                    name: result.user?.displayName,
+                    email: result.user?.email,
+                    role: 'Client'
                 }
+                // axios.post('http://localhost:5000/users', userInfo)
+                //     .then(res => {
+                //         console.log(res.data)
+                //         navigate(location?.state || '/')
+
+                //     })
+                axiosSecure.post('/addUsers', userInfo)
+                    .then(res => {
+                        console.log(res.data)
+                        navigate(location?.state || '/')
+                    })
+                    .catch(error => {
+                        toast.error(error.message)
+                    })
             })
     }
     return (

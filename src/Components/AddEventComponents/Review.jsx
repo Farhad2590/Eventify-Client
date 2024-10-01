@@ -11,20 +11,20 @@ const Review = () => {
     const formData = useSelector(store => store.formInfo.formData)
     const axiosSecure = useAxiosSecure()
     const dispatch = useDispatch()
-    
-    
-    const handleSubmit =async (e)=>{
+
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
-        axiosSecure.post('/event/add-event', formData)
-        .then(res=>{
-            if(res.data){
-                dispatch(submitForm())
-            }
-        })
-        .catch(error=>{
-            toast.error(error.message)
-        })
+        axiosSecure.post('/add-event', formData)
+            .then(res => {
+                if (res.data) {
+                    dispatch(submitForm())
+                }
+            })
+            .catch(error => {
+                toast.error(error.message)
+            })
 
     }
     return (

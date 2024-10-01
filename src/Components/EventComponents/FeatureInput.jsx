@@ -1,5 +1,5 @@
 import { Button, Input } from '@mui/material';
-import  { useState } from 'react';
+import { useState } from 'react';
 
 
 const FeatureInput = ({ features, onFeatureAdd }) => {
@@ -23,13 +23,13 @@ const FeatureInput = ({ features, onFeatureAdd }) => {
     <div className="mb-6">
       <h2 className="text-2xl font-semibold mb-3 text-gray-800 dark:text-white">Features:</h2>
       <div className="flex flex-wrap gap-2 mb-2">
-        {features.map((feature, index) => (
+        {features?.map((feature, index) => (
           <div key={index} className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm">
             {feature}
           </div>
         ))}
         {!isInputVisible && (
-          <div 
+          <div
             className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm cursor-pointer"
             onClick={() => setIsInputVisible(true)}
           >
