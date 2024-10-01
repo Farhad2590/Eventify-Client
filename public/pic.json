@@ -1,304 +1,302 @@
 {
-    "imagesByCategory": {
-        "Wedding": [
-            {
-                "src": "https://i.ibb.co.com/wyxttxr/1.jpg",
-                "alt": "1"
-            },
-            {
-                "src": "https://i.ibb.co.com/HhTPCks/2.jpg",
-                "alt": "2"
-            },
-            {
-                "src": "https://i.ibb.co.com/yqGWz38/3.jpg",
-                "alt": "3"
-            },
-            {
-                "src": "https://i.ibb.co.com/PxV5WMC/4.jpg",
-                "alt": "4"
-            },
-            {
-                "src": "https://i.ibb.co.com/CbGYJnX/5.jpg",
-                "alt": "5"
-            },
-            {
-                "src": "https://i.ibb.co.com/dWQdbqq/8.jpg",
-                "alt": "8"
-            },
-            {
-                "src": "https://i.ibb.co.com/dQKc6S1/9.jpg",
-                "alt": "9"
-            },
-            {
-                "src": "https://i.ibb.co.com/hBrqkhB/11.jpg",
-                "alt": "11"
-            },
-            {
-                "src": "https://i.ibb.co.com/DV0Brsw/12.jpg",
-                "alt": "12"
-            },
-            {
-                "src": "https://i.ibb.co.com/4pSwZJY/13.jpg",
-                "alt": "13"
-            },
-            {
-                "src": "https://i.ibb.co.com/92zggqz/14.jpg",
-                "alt": "14"
-            },
-            {
-                "src": "https://i.ibb.co.com/k4rBmLY/15.jpg",
-                "alt": "15"
-            }
-        ],
-        "Concert": [
-            {
-                "src": "https://i.ibb.co.com/cQqCYgY/6.jpg",
-                "alt": "6"
-            },
-            {
-                "src": "https://i.ibb.co.com/RgpWKJr/7.jpg",
-                "alt": "7"
-            },
-            {
-                "src": "https://i.ibb.co.com/yN2717n/10.jpg",
-                "alt": "10"
-            },
-            {
-                "src": "https://i.ibb.co.com/4T56Qm3/16.jpg",
-                "alt": "16"
-            },
-            {
-                "src": "https://i.ibb.co.com/m48Y71t/18.jpg",
-                "alt": "18"
-            },
-            {
-                "src": "https://i.ibb.co.com/QQ6K2qL/19.jpg",
-                "alt": "19"
-            },
-            {
-                "src": "https://i.ibb.co.com/MVzP67L/20.jpg",
-                "alt": "20"
-            },
-            {
-                "src": "https://i.ibb.co.com/P64DYKD/24.jpg",
-                "alt": "24"
-            },
-            {
-                "src": "https://i.ibb.co.com/k5LBXVH/30.jpg",
-                "alt": "30"
-            },
-            {
-                "src": "https://i.ibb.co.com/8NxyR8R/31.jpg",
-                "alt": "31"
-            },
-            {
-                "src": "https://i.ibb.co.com/hdKM4Pf/32.jpg",
-                "alt": "32"
-            },
-            {
-                "src": "https://i.ibb.co.com/J5kFg3h/36.jpg",
-                "alt": "36"
-            }
-        ],
-        "Birthdays": [
-            {
-                "src": "https://i.ibb.co.com/m48Y71t/17.jpg",
-                "alt": "17"
-            },
-            {
-                "src": "https://i.ibb.co.com/34ZhJrL/21.jpg",
-                "alt": "21"
-            },
-            {
-                "src": "https://i.ibb.co.com/FbMGHZc/22.jpg",
-                "alt": "22"
-            },
-            {
-                "src": "https://i.ibb.co.com/7bQxG09/23.jpg",
-                "alt": "23"
-            },
-            {
-                "src": "https://i.ibb.co.com/zVpyGpd/25.jpg",
-                "alt": "25"
-            },
-            {
-                "src": "https://i.ibb.co.com/KxFmw2W/26.jpg",
-                "alt": "26"
-            },
-            {
-                "src": "https://i.ibb.co.com/JCtp6Cr/27.jpg",
-                "alt": "27"
-            },
-            {
-                "src": "https://i.ibb.co.com/BcYG27t/28.jpg",
-                "alt": "28"
-            },
-            {
-                "src": "https://i.ibb.co.com/Lxfy7M3/29.jpg",
-                "alt": "29"
-            },
-            {
-                "src": "https://i.ibb.co.com/5nbnzcc/33.jpg",
-                "alt": "33"
-            },
-            {
-                "src": "https://i.ibb.co.com/LRCF166/34.jpg",
-                "alt": "34"
-            },
-            {
-                "src": "https://i.ibb.co.com/TMP7hmm/35.jpg",
-                "alt": "35"
-            }
-        ],
-        "Festival": [
-            {
-                "src": "https://i.ibb.co.com/gtkVsqM/37.jpg",
-                "alt": "37"
-            },
-            {
-                "src": "https://i.ibb.co.com/9YsK6KS/38.jpg",
-                "alt": "38"
-            },
-            {
-                "src": "https://i.ibb.co.com/2jsCzf9/39.jpg",
-                "alt": "39"
-            },
-            {
-                "src": "https://i.ibb.co.com/q0v72D0/40.jpg",
-                "alt": "40"
-            },
-            {
-                "src": "https://i.ibb.co.com/rb7dQZP/41.jpg",
-                "alt": "41"
-            },
-            {
-                "src": "https://i.ibb.co.com/xhr3dW3/42.jpg",
-                "alt": "42"
-            },
-            {
-                "src": "https://i.ibb.co.com/MgJ4pKC/43.jpg",
-                "alt": "43"
-            },
-            {
-                "src": "https://i.ibb.co.com/YXLKnYr/44.jpg",
-                "alt": "44"
-            },
-            {
-                "src": "https://i.ibb.co.com/VCJBw5Q/45.jpg",
-                "alt": "45"
-            },
-            {
-                "src": "https://i.ibb.co.com/QCY9xyR/46.jpg",
-                "alt": "46"
-            },
-            {
-                "src": "https://i.ibb.co.com/L1StMHv/47.jpg",
-                "alt": "47"
-            },
-            {
-                "src": "https://i.ibb.co.com/tKxrNQ1/48.jpg",
-                "alt": "48"
-            }
-        ],
-        "Newyear": [
-            {
-                "src": "https://i.ibb.co.com/M18dfND/49.jpg",
-                "alt": "49"
-            },
-            {
-                "src": "https://i.ibb.co.com/2KBBHks/50.jpg",
-                "alt": "50"
-            },
-            {
-                "src": "https://i.ibb.co.com/stpDmm9/51.jpg",
-                "alt": "51"
-            },
-            {
-                "src": "https://i.ibb.co.com/wKsgh9M/52.jpg",
-                "alt": "52"
-            },
-            {
-                "src": "https://i.ibb.co.com/crbqsWy/53.jpg",
-                "alt": "53"
-            },
-            {
-                "src": "https://i.ibb.co.com/FzYqbQJ/54.jpg",
-                "alt": "54"
-            },
-            {
-                "src": "https://i.ibb.co.com/vd0L8Bm/55.jpg",
-                "alt": "55"
-            },
-            {
-                "src": "https://i.ibb.co.com/wrfzMjs/56.jpg",
-                "alt": "56"
-            },
-            {
-                "src": "https://i.ibb.co.com/54pKb71/57.jpg",
-                "alt": "57"
-            },
-            {
-                "src": "https://i.ibb.co.com/chvSPqD/58.jpg",
-                "alt": "58"
-            },
-            {
-                "src": "https://i.ibb.co.com/Cm0ZJcv/59.jpg",
-                "alt": "59"
-            },
-            {
-                "src": "https://i.ibb.co.com/xm7NQjb/60.jpg",
-                "alt": "60"
-            }
-        ],
-        "Conference": [
-            {
-                "src": "https://i.ibb.co.com/6gPDWsm/61.jpg",
-                "alt": "61"
-            },
-            {
-                "src": "https://i.ibb.co.com/WkcPfNJ/62.jpg",
-                "alt": "62"
-            },
-            {
-                "src": "https://i.ibb.co.com/mcJq874/63.jpg",
-                "alt": "63"
-            },
-            {
-                "src": "https://i.ibb.co.com/jb5m86L/64.jpg",
-                "alt": "64"
-            },
-            {
-                "src": "https://i.ibb.co.com/F0NS6ZS/65.jpg",
-                "alt": "65"
-            },
-            {
-                "src": "https://i.ibb.co.com/x8Jm10V/66.jpg",
-                "alt": "66"
-            },
-            {
-                "src": "https://i.ibb.co.com/zVm4WmZ/67.jpg",
-                "alt": "67"
-            },
-            {
-                "src": "https://i.ibb.co.com/ctBGqxZ/68.jpg",
-                "alt": "68"
-            },
-            {
-                "src": "https://i.ibb.co.com/hg6xvJm/69.jpg",
-                "alt": "69"
-            },
-            {
-                "src": "https://i.ibb.co.com/20rh7Mc/70.jpg",
-                "alt": "70"
-            },
-            {
-                "src": "https://i.ibb.co.com/7JH70TR/71.jpg",
-                "alt": "71"
-            },
-            {
-                "src": "https://i.ibb.co.com/WNh9c4X/72.jpg",
-                "alt": "72"
-            }
-        ]
-    }
+    "Wedding": [
+        {
+            "src": "https://i.ibb.co.com/wyxttxr/1.jpg",
+            "alt": "1"
+        },
+        {
+            "src": "https://i.ibb.co.com/HhTPCks/2.jpg",
+            "alt": "2"
+        },
+        {
+            "src": "https://i.ibb.co.com/yqGWz38/3.jpg",
+            "alt": "3"
+        },
+        {
+            "src": "https://i.ibb.co.com/PxV5WMC/4.jpg",
+            "alt": "4"
+        },
+        {
+            "src": "https://i.ibb.co.com/CbGYJnX/5.jpg",
+            "alt": "5"
+        },
+        {
+            "src": "https://i.ibb.co.com/dWQdbqq/8.jpg",
+            "alt": "8"
+        },
+        {
+            "src": "https://i.ibb.co.com/dQKc6S1/9.jpg",
+            "alt": "9"
+        },
+        {
+            "src": "https://i.ibb.co.com/hBrqkhB/11.jpg",
+            "alt": "11"
+        },
+        {
+            "src": "https://i.ibb.co.com/DV0Brsw/12.jpg",
+            "alt": "12"
+        },
+        {
+            "src": "https://i.ibb.co.com/4pSwZJY/13.jpg",
+            "alt": "13"
+        },
+        {
+            "src": "https://i.ibb.co.com/92zggqz/14.jpg",
+            "alt": "14"
+        },
+        {
+            "src": "https://i.ibb.co.com/k4rBmLY/15.jpg",
+            "alt": "15"
+        }
+    ],
+    "Concert": [
+        {
+            "src": "https://i.ibb.co.com/cQqCYgY/6.jpg",
+            "alt": "6"
+        },
+        {
+            "src": "https://i.ibb.co.com/RgpWKJr/7.jpg",
+            "alt": "7"
+        },
+        {
+            "src": "https://i.ibb.co.com/yN2717n/10.jpg",
+            "alt": "10"
+        },
+        {
+            "src": "https://i.ibb.co.com/4T56Qm3/16.jpg",
+            "alt": "16"
+        },
+        {
+            "src": "https://i.ibb.co.com/m48Y71t/18.jpg",
+            "alt": "18"
+        },
+        {
+            "src": "https://i.ibb.co.com/QQ6K2qL/19.jpg",
+            "alt": "19"
+        },
+        {
+            "src": "https://i.ibb.co.com/MVzP67L/20.jpg",
+            "alt": "20"
+        },
+        {
+            "src": "https://i.ibb.co.com/P64DYKD/24.jpg",
+            "alt": "24"
+        },
+        {
+            "src": "https://i.ibb.co.com/k5LBXVH/30.jpg",
+            "alt": "30"
+        },
+        {
+            "src": "https://i.ibb.co.com/8NxyR8R/31.jpg",
+            "alt": "31"
+        },
+        {
+            "src": "https://i.ibb.co.com/hdKM4Pf/32.jpg",
+            "alt": "32"
+        },
+        {
+            "src": "https://i.ibb.co.com/J5kFg3h/36.jpg",
+            "alt": "36"
+        }
+    ],
+    "Birthdays": [
+        {
+            "src": "https://i.ibb.co.com/m48Y71t/17.jpg",
+            "alt": "17"
+        },
+        {
+            "src": "https://i.ibb.co.com/34ZhJrL/21.jpg",
+            "alt": "21"
+        },
+        {
+            "src": "https://i.ibb.co.com/FbMGHZc/22.jpg",
+            "alt": "22"
+        },
+        {
+            "src": "https://i.ibb.co.com/7bQxG09/23.jpg",
+            "alt": "23"
+        },
+        {
+            "src": "https://i.ibb.co.com/zVpyGpd/25.jpg",
+            "alt": "25"
+        },
+        {
+            "src": "https://i.ibb.co.com/KxFmw2W/26.jpg",
+            "alt": "26"
+        },
+        {
+            "src": "https://i.ibb.co.com/JCtp6Cr/27.jpg",
+            "alt": "27"
+        },
+        {
+            "src": "https://i.ibb.co.com/BcYG27t/28.jpg",
+            "alt": "28"
+        },
+        {
+            "src": "https://i.ibb.co.com/Lxfy7M3/29.jpg",
+            "alt": "29"
+        },
+        {
+            "src": "https://i.ibb.co.com/5nbnzcc/33.jpg",
+            "alt": "33"
+        },
+        {
+            "src": "https://i.ibb.co.com/LRCF166/34.jpg",
+            "alt": "34"
+        },
+        {
+            "src": "https://i.ibb.co.com/TMP7hmm/35.jpg",
+            "alt": "35"
+        }
+    ],
+    "Festival": [
+        {
+            "src": "https://i.ibb.co.com/gtkVsqM/37.jpg",
+            "alt": "37"
+        },
+        {
+            "src": "https://i.ibb.co.com/9YsK6KS/38.jpg",
+            "alt": "38"
+        },
+        {
+            "src": "https://i.ibb.co.com/2jsCzf9/39.jpg",
+            "alt": "39"
+        },
+        {
+            "src": "https://i.ibb.co.com/q0v72D0/40.jpg",
+            "alt": "40"
+        },
+        {
+            "src": "https://i.ibb.co.com/rb7dQZP/41.jpg",
+            "alt": "41"
+        },
+        {
+            "src": "https://i.ibb.co.com/xhr3dW3/42.jpg",
+            "alt": "42"
+        },
+        {
+            "src": "https://i.ibb.co.com/MgJ4pKC/43.jpg",
+            "alt": "43"
+        },
+        {
+            "src": "https://i.ibb.co.com/YXLKnYr/44.jpg",
+            "alt": "44"
+        },
+        {
+            "src": "https://i.ibb.co.com/VCJBw5Q/45.jpg",
+            "alt": "45"
+        },
+        {
+            "src": "https://i.ibb.co.com/QCY9xyR/46.jpg",
+            "alt": "46"
+        },
+        {
+            "src": "https://i.ibb.co.com/L1StMHv/47.jpg",
+            "alt": "47"
+        },
+        {
+            "src": "https://i.ibb.co.com/tKxrNQ1/48.jpg",
+            "alt": "48"
+        }
+    ],
+    "Newyear": [
+        {
+            "src": "https://i.ibb.co.com/M18dfND/49.jpg",
+            "alt": "49"
+        },
+        {
+            "src": "https://i.ibb.co.com/2KBBHks/50.jpg",
+            "alt": "50"
+        },
+        {
+            "src": "https://i.ibb.co.com/stpDmm9/51.jpg",
+            "alt": "51"
+        },
+        {
+            "src": "https://i.ibb.co.com/wKsgh9M/52.jpg",
+            "alt": "52"
+        },
+        {
+            "src": "https://i.ibb.co.com/crbqsWy/53.jpg",
+            "alt": "53"
+        },
+        {
+            "src": "https://i.ibb.co.com/FzYqbQJ/54.jpg",
+            "alt": "54"
+        },
+        {
+            "src": "https://i.ibb.co.com/vd0L8Bm/55.jpg",
+            "alt": "55"
+        },
+        {
+            "src": "https://i.ibb.co.com/wrfzMjs/56.jpg",
+            "alt": "56"
+        },
+        {
+            "src": "https://i.ibb.co.com/54pKb71/57.jpg",
+            "alt": "57"
+        },
+        {
+            "src": "https://i.ibb.co.com/chvSPqD/58.jpg",
+            "alt": "58"
+        },
+        {
+            "src": "https://i.ibb.co.com/Cm0ZJcv/59.jpg",
+            "alt": "59"
+        },
+        {
+            "src": "https://i.ibb.co.com/xm7NQjb/60.jpg",
+            "alt": "60"
+        }
+    ],
+    "Conference": [
+        {
+            "src": "https://i.ibb.co.com/6gPDWsm/61.jpg",
+            "alt": "61"
+        },
+        {
+            "src": "https://i.ibb.co.com/WkcPfNJ/62.jpg",
+            "alt": "62"
+        },
+        {
+            "src": "https://i.ibb.co.com/mcJq874/63.jpg",
+            "alt": "63"
+        },
+        {
+            "src": "https://i.ibb.co.com/jb5m86L/64.jpg",
+            "alt": "64"
+        },
+        {
+            "src": "https://i.ibb.co.com/F0NS6ZS/65.jpg",
+            "alt": "65"
+        },
+        {
+            "src": "https://i.ibb.co.com/x8Jm10V/66.jpg",
+            "alt": "66"
+        },
+        {
+            "src": "https://i.ibb.co.com/zVm4WmZ/67.jpg",
+            "alt": "67"
+        },
+        {
+            "src": "https://i.ibb.co.com/ctBGqxZ/68.jpg",
+            "alt": "68"
+        },
+        {
+            "src": "https://i.ibb.co.com/hg6xvJm/69.jpg",
+            "alt": "69"
+        },
+        {
+            "src": "https://i.ibb.co.com/20rh7Mc/70.jpg",
+            "alt": "70"
+        },
+        {
+            "src": "https://i.ibb.co.com/7JH70TR/71.jpg",
+            "alt": "71"
+        },
+        {
+            "src": "https://i.ibb.co.com/WNh9c4X/72.jpg",
+            "alt": "72"
+        }
+    ]
 }
