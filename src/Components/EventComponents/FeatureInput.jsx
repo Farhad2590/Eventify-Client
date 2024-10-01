@@ -1,5 +1,5 @@
 import { Button, Input } from '@mui/material';
-import  { useState } from 'react';
+import { useState } from 'react';
 
 
 const FeatureInput = ({ features, onFeatureAdd }) => {
@@ -29,7 +29,7 @@ const FeatureInput = ({ features, onFeatureAdd }) => {
           </div>
         ))}
         {!isInputVisible && (
-          <div 
+          <div
             className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm cursor-pointer"
             onClick={() => setIsInputVisible(true)}
           >
