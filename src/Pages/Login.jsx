@@ -6,7 +6,6 @@ import { AuthContext } from '../AuthProvider/AuthProvider';
 import Lottie from "lottie-react";
 import animationImg from "../assets/AnimationLottie/AnimationLogin.json";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-// import axios from 'axios';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 
 
@@ -117,7 +116,7 @@ const Login = () => {
                         </button>
                     </div>
                     <p className="mt-8 text-sm text-center text-gray-600">
-                        Don't have an account?{' '}
+                        Dont have an account?{' '}
                         <Link to='/register' className="font-medium text-blue-600 hover:text-blue-500">
                             Sign Up
                         </Link>

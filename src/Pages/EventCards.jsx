@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import TitleAndSubheading from "../Shared/TitleAndSubheading";
 import DatePickerModal from "../Components/EventComponents/DatePickerModal";
 import { toast } from "react-toastify";
+import useAuth from "../hooks/useAuth";
 
 const EventCard = () => {
   const [events, setEvents] = useState([]);
@@ -13,6 +14,9 @@ const EventCard = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [confirmDate, setconfirmDate] = useState(new Date());
   const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     axiosSecure
@@ -50,7 +54,8 @@ const EventCard = () => {
       expected_attendance: event.expected_attendance,
       staff_team_size: event.staff_team_size,
       date: date,
-      payment: 'Pending'
+      payment: 'Pending',
+      email: user.email
     };
 
     // Save confirmDate to state
@@ -62,10 +67,10 @@ const EventCard = () => {
 
       .then(res => {
         if (res.data.insertedId) {
-          toast.success('Added Successfully', {
-              autoClose: 5000,
+          toast.success('Event Added To Cart Successfully', {
+            autoClose: 5000,
           });
-          // navigate('/')
+          navigate('/cart')
           console.log(res);
           handleCloseModal();
         }

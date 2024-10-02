@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import AdjustableParameter from './AdjustableParameter';
 import FeatureInput from './FeatureInput';
 import DatePickerModal from './DatePickerModal';
@@ -12,6 +12,9 @@ const CustomizeEvent = () => {
     const [isModalOpen, setModalOpen] = useState(false);
     const [selectedDate, setSelectedDate] = useState(new Date());
     const axiosSecure = useAxiosSecure()
+    const navigate = useNavigate();
+
+
     const handleCheckAvailabilityClick = () => {
         setModalOpen(true);
     };
@@ -71,10 +74,10 @@ const CustomizeEvent = () => {
 
         .then(res => {
             if (res.data.insertedId) {
-                toast.success('Register Successfully', {
+                toast.success('Event Added To Cart Successfully', {
                     autoClose: 5000,
                 });
-                // navigate('/')
+                navigate('/cart')
                 console.log(res);
                 handleCloseModal();
             }
