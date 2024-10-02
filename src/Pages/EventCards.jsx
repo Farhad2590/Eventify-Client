@@ -10,6 +10,7 @@ const EventCard = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [confirmDate, setconfirmDate] = useState(new Date());
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
@@ -32,10 +33,49 @@ const EventCard = () => {
     setSidebarOpen(false);
   };
 
-  const handleCheckAvailabilityClick = () => {
+  const handleCheckAvailabilityClick = (event) => {
     setModalOpen(true);
+    const date = selectedDate;
+    const newConfirmDate = {
+      category: event.category,
+      package_name: event.package_name,
+      carrt_Image: event.carrt_Image,
+      price: event.price,
+      features: event.features,
+      images: event.images,
+      photography_team_size: event.photography_team_size,
+      videography: event.videography,
+      duration_hours: event.duration_hours,
+      expected_attendance: event.expected_attendance,
+      staff_team_size: event.staff_team_size,
+      date: date,
+      payment: 'Pending'
+    };
+
+    // Save confirmDate to state
+    setconfirmDate(newConfirmDate);
   };
 
+  const handleConfirmDate = () => {
+    axiosSecure.post('/confirmEvents', confirmDate)
+
+      .then(res => {
+        if (res.data.insertedId) {
+          // toast.success('Register Successfully', {
+          //     autoClose: 5000,
+          // });
+          // navigate('/')
+          console.log(res);
+          handleCloseModal();
+        }
+      })
+      .catch(error => {
+        // toast.error(error.message)
+        console.log(error);
+
+      })
+
+  };
   const handleCloseModal = () => {
     setModalOpen(false);
   };
@@ -44,15 +84,10 @@ const EventCard = () => {
     setSelectedDate(date);
   };
 
-  const handleConfirmDate = () => {
-    console.log("Selected date:", selectedDate);
-    handleCloseModal();
-  };
 
   // Remove duplicate categories
   const uniqueCategories = [...new Set(events?.map(event => event?.category) || [])];
 
-  // Filter events based on selected category
   const filteredEvents = selectedCategory
     ? events?.filter(event => event?.category === selectedCategory)
     : events;
@@ -61,9 +96,8 @@ const EventCard = () => {
     <div className="flex">
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 w-64 h-full bg-blue-600 min-h-screen text-white transition-transform transform ${
-          isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        } lg:translate-x-0 lg:w-64 lg:flex-shrink-0 p-4 mt-16`}
+        className={`fixed top-0 left-0 w-64 h-full bg-blue-600 min-h-screen text-white transition-transform transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+          } lg:translate-x-0 lg:w-64 lg:flex-shrink-0 p-4 mt-16`}
       >
         <button
           onClick={toggleSidebar}
@@ -140,7 +174,7 @@ const EventCard = () => {
                 <div className="mt-4 flex justify-between">
                   <button
                     className="bg-blue-600 text-white btn rounded hover:bg-blue-700"
-                    onClick={handleCheckAvailabilityClick}
+                    onClick={() => handleCheckAvailabilityClick(event)}
                   >
                     Check Availability
                   </button>
