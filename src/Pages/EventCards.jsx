@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import TitleAndSubheading from "../Shared/TitleAndSubheading";
 import DatePickerModal from "../Components/EventComponents/DatePickerModal";
+import { toast } from "react-toastify";
 
 const EventCard = () => {
   const [events, setEvents] = useState([]);
@@ -61,16 +62,16 @@ const EventCard = () => {
 
       .then(res => {
         if (res.data.insertedId) {
-          // toast.success('Register Successfully', {
-          //     autoClose: 5000,
-          // });
+          toast.success('Added Successfully', {
+              autoClose: 5000,
+          });
           // navigate('/')
           console.log(res);
           handleCloseModal();
         }
       })
       .catch(error => {
-        // toast.error(error.message)
+        toast.error(error.message)
         console.log(error);
 
       })

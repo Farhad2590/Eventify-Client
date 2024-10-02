@@ -8,6 +8,8 @@ import { router } from "./routes/Routes";
 import { Provider } from "react-redux";
 import store from "./app/store";
 import AuthProvider from "./AuthProvider/AuthProvider";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -16,11 +18,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
     <AuthProvider>
       <Provider store={store}>
-
+      <ToastContainer />
         <RouterProvider router={router} />
-
       </Provider>
     </AuthProvider>
-
   </React.StrictMode>
 );

@@ -4,6 +4,7 @@ import AdjustableParameter from './AdjustableParameter';
 import FeatureInput from './FeatureInput';
 import DatePickerModal from './DatePickerModal';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { toast } from 'react-toastify';
 
 const CustomizeEvent = () => {
     const initialEvent = useLoaderData();
@@ -70,16 +71,16 @@ const CustomizeEvent = () => {
 
         .then(res => {
             if (res.data.insertedId) {
-                // toast.success('Register Successfully', {
-                //     autoClose: 5000,
-                // });
+                toast.success('Register Successfully', {
+                    autoClose: 5000,
+                });
                 // navigate('/')
                 console.log(res);
                 handleCloseModal();
             }
         })
         .catch(error => {
-            // toast.error(error.message)
+            toast.error(error.message)
             console.log(error);
             
         })
