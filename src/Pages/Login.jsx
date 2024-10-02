@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import  { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { AuthContext } from '../../AuthProvider/AuthProvider';
+import { AuthContext } from '../AuthProvider/AuthProvider';
 import Lottie from "lottie-react";
-import animationImg from "../../assets/AnimationLottie/AnimationLogin.json";
+import animationImg from "../assets/AnimationLottie/AnimationLogin.json";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import axios from 'axios';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
+// import axios from 'axios';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 
 const Login = () => {
