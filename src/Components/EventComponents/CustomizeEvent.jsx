@@ -49,8 +49,26 @@ const CustomizeEvent = () => {
             [parameter]: defaultValue,
             price: (prevEvent.price ?? 0) - (pricePerUnit * ((prevEvent[parameter] ?? 0) - defaultValue))
         }));
-    };
-
+    };   
+    
+    // console.log(selectedDate);
+    const date = selectedDate
+    const confirmDate = {
+        category : event.category,
+        package_name : event.package_name,
+        carrt_Image : event.carrt_Image,
+        price : event.price,
+        features : event.features,
+        images : event.images,
+        photography_team_size : event.photography_team_size,
+        videography : event.videography,
+        duration_hours : event.duration_hours,
+        expected_attendance : event.expected_attendance,
+        staff_team_size : event.staff_team_size,
+        date : date
+    }
+    console.log(confirmDate);
+    
     return (
         <div className="flex justify-center p-6">
             <div className="max-w-4xl w-full bg-white rounded-lg shadow-md dark:bg-gray-800">
