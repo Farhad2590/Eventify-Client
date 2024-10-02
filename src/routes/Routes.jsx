@@ -13,6 +13,7 @@ import EventCards from "../Pages/EventCards";
 import CustomizeEvent from "../Components/EventComponents/CustomizeEvent";
 import Dashboard from "../Pages/AdminPages/dashboard/Dashboard";
 import AddEvent from "../Pages/AdminPages/AddEvent";
+import Cart from "../Pages/Cart";
 
 export const router = createBrowserRouter([
     {
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute><CustomizeEvent /></PrivateRoute>,
                 loader: ({ params }) =>
                     fetch(`http://localhost:5000/events/${params._id}`),
+            },
+            {
+                path: '/cart',
+                element: <Cart/>
             },
             {
                 path: '/login',
