@@ -14,6 +14,7 @@ import CustomizeEvent from "../Components/EventComponents/CustomizeEvent";
 import Dashboard from "../Pages/AdminPages/dashboard/Dashboard";
 import AddEvent from "../Pages/AdminPages/AddEvent";
 import Cart from "../Pages/Cart";
+import ManageEvents from "../Pages/AdminPages/ManageEvents";
 
 export const router = createBrowserRouter([
     {
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/add-event',
                 element: <PrivateRoute><AddEvent /></PrivateRoute>,
+            },
+            {
+                path: '/dashboard/manage-event',
+                element: <PrivateRoute><ManageEvents /></PrivateRoute>,
             },
         ]
     }
