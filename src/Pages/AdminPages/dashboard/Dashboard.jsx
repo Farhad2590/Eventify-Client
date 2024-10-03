@@ -31,6 +31,11 @@ export default function Dashboard() {
             path: '/dashboard/add-event',
             icon: <AddIcon />,
         },
+        {
+            name: 'Manage Events',
+            path: '/dashboard/manage-event',
+            icon: <AddIcon />,
+        },
     ]
 
 

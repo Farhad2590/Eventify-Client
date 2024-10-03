@@ -17,6 +17,7 @@ const EventCard = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
+console.log(user);
 
   useEffect(() => {
     axiosSecure
@@ -55,7 +56,9 @@ const EventCard = () => {
       staff_team_size: event.staff_team_size,
       date: date,
       payment: 'Pending',
-      email: user.email
+      email: user.email,
+      user_Name : user.displayName,
+      user_Photo : user.photoURL
     };
 
     // Save confirmDate to state
