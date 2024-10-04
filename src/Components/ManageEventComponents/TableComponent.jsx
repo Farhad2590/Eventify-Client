@@ -1,3 +1,4 @@
+import CustomDropdown from "./CustomDropdown";
 
 const TableComponent = ({ carts }) => {
     console.log(carts);
@@ -83,7 +84,10 @@ const TableComponent = ({ carts }) => {
     //         deadline: "04/10/21"
     //     }
     // ];
-
+    const handleSave = (selectedOption) => {
+        console.log('Selected option in parent:', selectedOption);
+        // Add your logic here to handle the saved option
+      };
     return (
         <div className="p-6 overflow-scroll px-0">
             <table className="mt-4 w-full min-w-max table-auto text-left">
@@ -128,7 +132,8 @@ const TableComponent = ({ carts }) => {
                                 </div>
                             </td>
                             <td className="p-4 border-b border-blue-gray-50">
-                                <button className="btn">Add Organizer</button>
+                                <CustomDropdown onSave={handleSave}/>
+                                {/* <button className="btn">Add Organizer</button> */}
                             </td>
                             <td className="p-4 border-b border-blue-gray-50">
                                 <button className="btn">Delete Event</button>
