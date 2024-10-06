@@ -53,7 +53,7 @@ const FirstForm = () => {
             <div className="relative">
               <select required {...register('category')} className="block appearance-none w-full border border-gray-200 text-black py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                 <option value='' >Select Category</option>
-                <option>Birthday Party</option>
+                <option>Birthday</option>
                 <option>Conference</option>
                 <option>Concert</option>
                 <option>Wedding</option>

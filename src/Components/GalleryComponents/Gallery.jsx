@@ -18,24 +18,28 @@ import lgFullscreen from 'lightgallery/plugins/fullscreen';
 import lgShare from 'lightgallery/plugins/share';
 import lgRotate from 'lightgallery/plugins/rotate';
 import TitleAndSubheading from '../../Shared/TitleAndSubheading';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 export function Gallery() {
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState({});
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const axiosSecure = useAxiosSecure();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const response = await fetch('/pic.json');
-        const data = await response.json();
-        setImages(data.imagesByCategory);
-      } catch (error) {
-        console.error('Error fetching images:', error);
-      }
-    };
-
-    fetchImages();
-  }, []);
+    axiosSecure
+      .get(`/gallery`)
+      .then((response) => {
+        if (response.data && response.data.length > 0) {
+          setImages(response.data[0]);
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching gallery images:", error);
+        setLoading(false);
+      });
+  }, [axiosSecure]);
 
   const onInit = () => {
     console.log('lightGallery has been initialized');
@@ -43,12 +47,18 @@ export function Gallery() {
 
   const filteredImages =
     selectedCategory === 'All'
-      ? Object.values(images).flat()
-      : (images[selectedCategory] || []).flat();
+      ? Object.entries(images)
+          .filter(([key]) => key !== '_id')
+          .flatMap(([, value]) => value)
+      : images[selectedCategory] || [];
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="App">
-      <TitleAndSubheading title="Image Gallery"></TitleAndSubheading>
+      <TitleAndSubheading title="Image Gallery" />
       <div className="flex flex-wrap justify-center space-x-2 space-y-2 sm:space-x-4 mb-6">
         <button
           className={`px-3 py-1 sm:px-4 sm:py-2 rounded-lg ${selectedCategory === 'All'
@@ -119,10 +129,15 @@ export function Gallery() {
         onInit={onInit}
         speed={500}
         plugins={[lgThumbnail, lgZoom, lgAutoplay, lgFullscreen, lgRotate, lgShare]}
+        elementClassNames="columns-3 gap-2.5" // This replaces .lg-react-element styles
       >
         {filteredImages.map((image, index) => (
-          <a href={image.src} key={index}>
-            <img alt={image.alt} src={image.src} />
+          <a href={image.src} key={index} className="block pb-2.5">
+            <img 
+              alt={image.alt} 
+              src={image.src} 
+              className="max-w-full block py-1.5 rounded-[20px] transition-transform duration-200 hover:opacity-90 hover:scale-[1.01]"
+            />
           </a>
         ))}
       </LightGallery>

@@ -1,6 +1,6 @@
 
 import { Gallery } from "../Components/GalleryComponents/Gallery"
-import "../Components/GalleryComponents/styles.css"
+// import "../Components/GalleryComponents/styles.css"
 
 
 function App() {
