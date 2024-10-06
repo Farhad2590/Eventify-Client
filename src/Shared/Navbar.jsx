@@ -17,7 +17,7 @@ const Navbar = () => {
             </Link>
           </div>
           <div>
-            <ul className="md:flex sm:gap-5 xl:gap-10 text-[17px] font-normal hidden">
+            <ul className="md:flex items-center sm:gap-5 xl:gap-10 text-[17px] font-normal hidden">
               {user ? (
                 <>
                   <li className="cursor-pointer font-semibold text-black hover:text-blue-600">
@@ -31,9 +31,6 @@ const Navbar = () => {
                   </li>
                   <li className="cursor-pointer font-semibold text-black hover:text-blue-600">
                     <Link to="/gallery">Gallery</Link>
-                  </li>
-                  <li className="cursor-pointer font-semibold text-black hover:text-blue-600">
-                    <Link to="/profile">Profile</Link>
                   </li>
                   <li className="cursor-pointer font-semibold text-black hover:text-blue-600">
                     <Link to="/dashboard">Dashboard</Link>
