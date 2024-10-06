@@ -11,10 +11,10 @@ const CallToAction = () => {
                 <p className="text-4xl text-black">Let us complete it for you</p>
                 <Button name="Book Now"></Button>
             </div>
-            <div className="flex  justify-between gap-10">
-                <img className="h-60 w-60 rounded-full border shadow-blue-600 shadow-md cta1"src={cta1} alt="" />
-                <img className="h-60 w-60 rounded-full border shadow-blue-600 shadow-md  cta2" src={cta2} alt="" />
-                <img className="h-60 w-60 rounded-full border shadow-blue-600 shadow-md  cta3" src={cta3} alt="" />
+            <div className="flex w-full flex-col items-center md:flex-row lg:flex-row justify-between gap-10">
+                <img className="h-52 w-52 xl:h-60 xl:w-60 lg:h-40 lg:w-40 rounded-full border shadow-blue-600 shadow-md cta1"src={cta1} alt="" />
+                <img className="h-52 w-52 xl:h-60 xl:w-60 lg:h-40 lg:w-40 rounded-full border shadow-blue-600 shadow-md  cta2" src={cta2} alt="" />
+                <img className="h-52 w-52 xl:h-60 xl:w-60 lg:h-40 lg:w-40 rounded-full border shadow-blue-600 shadow-md  cta3" src={cta3} alt="" />
 
             </div>
         </div>

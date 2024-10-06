@@ -20,7 +20,6 @@ const Register = () => {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm()
 
@@ -34,7 +33,7 @@ const Register = () => {
                         const userInfo = {
                             name: data.FullName,
                             email: data.Email,
-                            role: 'Client'
+                            role: 'user'
                         }
                         axiosSecure.post('/addUsers', userInfo)
 
