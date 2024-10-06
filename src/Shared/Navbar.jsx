@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { Tooltip } from 'react-tooltip';
 import Button from "../Shared/Button";
+import useAdmin from "../hooks/useAdmin";
 
 const Navbar = () => {
   const { logout, user } = useContext(AuthContext);
-
+  const [isAdmin] = useAdmin()
+  
   return (
     <nav className="w-full sticky top-0 z-30 bg-white transition-all duration-300  ">
       <div>

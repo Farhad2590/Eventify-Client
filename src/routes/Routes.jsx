@@ -15,6 +15,7 @@ import Dashboard from "../Pages/AdminPages/dashboard/Dashboard";
 import AddEvent from "../Pages/AdminPages/AddEvent";
 import Cart from "../Pages/Cart";
 import ManageEvents from "../Pages/AdminPages/ManageEvents";
+import Demo from "../Shared/Demo";
 
 export const router = createBrowserRouter([
     {
@@ -71,6 +72,85 @@ export const router = createBrowserRouter([
                 path: '/dashboard/manage-event',
                 element: <PrivateRoute><ManageEvents /></PrivateRoute>,
             },
+            {
+                path: '/dashboard/add-media',
+                element: <Demo></Demo>,
+            },
+            {
+                path: '/dashboard/manage-users',
+                element: <Demo></Demo>,
+            },
+            {
+                path: '/dashboard/manage-media',
+                element: <Demo></Demo>,
+            },
+            {
+                path: '/dashboard/business-reports',
+                element: <Demo></Demo>,
+            },
+            {
+                path: '/dashboard/admin-profile',
+                element: <Demo></Demo>,
+            },
+            // moderator routes
+            {
+                path: '/dashboard/mod/user-profile',
+                element: <Demo></Demo>,
+            },
+            {
+                path: '/dashboard/mod/manage-event',
+                element: <Demo></Demo>,
+            },
+            {
+                path: '/dashboard/mod/add-report',
+                element: <Demo></Demo>,
+            },
+            {
+                path: '/dashboard/mod/add-requirements',
+                element: <Demo></Demo>,
+            },
+            {
+                path: '/dashboard/mod/event-status',
+                element: <Demo></Demo>,
+            },
+            {
+                path: '/dashboard/mod/feedbacks',
+                element: <Demo></Demo>,
+            },
+            {
+                path: '/dashboard/mod/manage-budget',
+                element: <Demo></Demo>,
+            },
+            // users routes
+            {
+                path: '/dashboard/user/user-profile',
+                element: <Demo></Demo>,
+            },
+            {
+                path: '/dashboard/user/booked-events',
+                element: <Demo></Demo>,
+            },
+            {
+                path: '/dashboard/user/add-review',
+                element: <Demo></Demo>,
+            },
+            {
+                path: '/dashboard/user/reviews',
+                element: <Demo></Demo>,
+            },
+            {
+                path: '/dashboard/user/payment-history',
+                element: <Demo></Demo>,
+            },
+            {
+                path: '/dashboard/user/event-suggestions',
+                element: <Demo></Demo>,
+            },
+            {
+                path: '/dashboard/user/support',
+                element: <Demo></Demo>,
+            },
+
         ]
     }
 ]);
