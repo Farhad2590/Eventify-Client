@@ -61,12 +61,6 @@ const Register = () => {
                     email: result.user?.email,
                     role: 'Client'
                 }
-                // axios.post('http://localhost:5000/users', userInfo)
-                //     .then(res => {
-                //         console.log(res.data)
-                //         navigate(location?.state || '/')
-
-                //     })
                 axiosSecure.post('/addUsers', userInfo)
                     .then(res => {
                         console.log(res.data)

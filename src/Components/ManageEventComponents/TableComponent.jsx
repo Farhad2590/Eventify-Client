@@ -1,93 +1,42 @@
+import { useEffect, useState } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import CustomDropdown from "./CustomDropdown";
 
 const TableComponent = ({ carts }) => {
+    const axiosSecure = useAxiosSecure();
+    const [options, setOptions] = useState([]);
     console.log(carts);
 
-    //     {
-    //         name: "React carts",
-    //         startDate: "10 Dec 2023",
-    //         teamLead: {
-    //             name: "John Michael",
-    //             email: "john@creative-tim.com",
-    //             image: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg"
-    //         },
-    //         function: {
-    //             role: "Manager",
-    //             department: "Organization"
-    //         },
-    //         status: "Completed",
-    //         statusColor: "green",
-    //         deadline: "23/04/18"
-    //     },
-    //     {
-    //         name: "Angular Project",
-    //         startDate: "10 Dec 2023",
-    //         teamLead: {
-    //             name: "Alexa Liras",
-    //             email: "alexa@creative-tim.com",
-    //             image: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-2.jpg"
-    //         },
-    //         function: {
-    //             role: "Programator",
-    //             department: "Developer"
-    //         },
-    //         status: "Active",
-    //         statusColor: "purple",
-    //         deadline: "23/04/18"
-    //     },
-    //     {
-    //         name: "Tailwind Project",
-    //         startDate: "10 Dec 2023",
-    //         teamLead: {
-    //             name: "Laurent Perrier",
-    //             email: "laurent@creative-tim.com",
-    //             image: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-1.jpg"
-    //         },
-    //         function: {
-    //             role: "Executive",
-    //             department: "Projects"
-    //         },
-    //         status: "Scheduled",
-    //         statusColor: "yellow",
-    //         deadline: "19/09/17"
-    //     },
-    //     {
-    //         name: "Laravel Project",
-    //         startDate: "10 Dec 2023",
-    //         teamLead: {
-    //             name: "Michael Levi",
-    //             email: "michael@creative-tim.com",
-    //             image: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-4.jpg"
-    //         },
-    //         function: {
-    //             role: "Programator",
-    //             department: "Developer"
-    //         },
-    //         status: "Completed",
-    //         statusColor: "green",
-    //         deadline: "24/12/08"
-    //     },
-    //     {
-    //         name: "Astro Project",
-    //         startDate: "10 Dec 2023",
-    //         teamLead: {
-    //             name: "Richard Gran",
-    //             email: "richard@creative-tim.com",
-    //             image: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg"
-    //         },
-    //         function: {
-    //             role: "Manager",
-    //             department: "Executive"
-    //         },
-    //         status: "Pending",
-    //         statusColor: "red",
-    //         deadline: "04/10/21"
-    //     }
-    // ];
-    const handleSave = (selectedOption) => {
-        console.log('Selected option in parent:', selectedOption);
-        // Add your logic here to handle the saved option
-      };
+    useEffect(() => {
+        fetchModerators();
+    }, []);
+
+    const fetchModerators = async () => {
+        try {
+            const { data } = await axiosSecure.get(`/users`);
+            const moderators = data.filter(user => user.role === 'moderator');
+            const emails = moderators.map(moderator => moderator.email);
+            setOptions(emails); 
+        } catch (error) {
+            console.error("Error fetching users:", error);
+        }
+    };
+
+    const handleSave = async (selectedOption, id) => {
+        try {
+            const bookingData = {
+                event_organizer: selectedOption,
+            };
+            const { data: update } = await axiosSecure.put(`/addOrganizer/${id}`, bookingData);
+            console.log("Update successful:", update);
+            fetchModerators();
+        } catch (err) {
+            console.log("Error updating:", err.message);
+        }
+    };
+
+
+
     return (
         <div className="p-6 overflow-scroll px-0">
             <table className="mt-4 w-full min-w-max table-auto text-left">
@@ -103,15 +52,13 @@ const TableComponent = ({ carts }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {carts.map((project, index) => (
+                    {carts?.map((project, index) => (
                         <tr key={index}>
                             <td className="p-4 border-b border-blue-gray-50">
                                 <div className="flex items-center gap-3">
                                     <div className="flex flex-col">
                                         <p className="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">{project.package_name}</p>
                                         <p className="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal opacity-70">Category: {project.category}</p>
-                                        {/* <p className="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">{project.package_name}</p> */}
-
                                     </div>
                                 </div>
                             </td>
@@ -132,9 +79,14 @@ const TableComponent = ({ carts }) => {
                                 </div>
                             </td>
                             <td className="p-4 border-b border-blue-gray-50">
-                                <CustomDropdown onSave={handleSave}/>
-                                {/* <button className="btn">Add Organizer</button> */}
+                                {project.event_organizer === "" ? (
+                                    <CustomDropdown onSave={(selectedOption) => handleSave(selectedOption, project._id)} options={options} />
+                                ) : (
+                                    <p>{project.event_organizer}</p>
+                                )}
                             </td>
+
+
                             <td className="p-4 border-b border-blue-gray-50">
                                 <button className="btn">Delete Event</button>
                             </td>
