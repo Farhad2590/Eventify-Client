@@ -16,12 +16,9 @@ import AddEvent from "../Pages/AdminPages/AddEvent";
 import Cart from "../Pages/Cart";
 import ManageEvents from "../Pages/AdminPages/ManageEvents";
 import Demo from "../Shared/Demo";
-<<<<<<< HEAD
 import ManageUsers from "../Pages/AdminPages/ManageUsers";
-=======
 import Eventstatus from "../Pages/ModeratorPages/Eventstatus";
 import Faq from "../Pages/ModeratorPages/Faq";
->>>>>>> 312bc73cc959f3ffd33281c62aeb5b4619d2de3f
 
 export const router = createBrowserRouter([
     {
@@ -113,7 +110,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/mod/add-requirements',
-                element: <Demo></Demo> ,
+                element: <Demo></Demo>,
             },
             {
                 path: '/dashboard/mod/event-status',
