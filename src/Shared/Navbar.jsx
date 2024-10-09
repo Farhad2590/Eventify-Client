@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Tooltip } from 'react-tooltip';
-import Button from "../Shared/Button";
+import Button_Customize from "../Shared/Button_Customize";
 import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
@@ -48,7 +48,7 @@ const Navbar = () => {
                   </label>
                   <ul tabIndex={0} className="dropdown-content z-[50] menu p-2 shadow bg-base-100 rounded-box w-52">
                     <li>
-                      <Button onClick={logout} name="Logout" className=""></Button>
+                      <Button_Customize onClick={logout} name="Logout" className=""></Button_Customize>
                     </li>
                   </ul>
                 </div>

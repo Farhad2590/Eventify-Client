@@ -2,7 +2,7 @@
 import img from "../../assets/profile-pic.png"
 const Faq = () => {
     return (
-        <div className="container mx-auto">
+        <div className="mx-auto ">
             <div className="flex flex-col justify-center items-center min-h-screen">
                 
             <img className="w-96" src={img} alt="" />

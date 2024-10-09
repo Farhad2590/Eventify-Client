@@ -248,7 +248,7 @@ export default function Dashboard() {
         </Box>
     );
     const DrawerListLg = (
-        <Box sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' }, flexDirection: { lg: 'column' }, width: 280, color: 'white', bgcolor: '#2563EB', height: { lg: '100vh' }, marginTop: { lg: '0' } }} role="presentation" onClick={toggleDrawer(false)}>
+        <Box sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' }, flexDirection: { lg: 'column' }, width: 280, color: 'white', bgcolor: '#2563EB' ,marginTop: { lg: '0' } }} role="presentation" onClick={toggleDrawer(false)}>
             <List>
                 <ListItem disablePadding>
                     <h1 className="text-3xl mx-auto my-5 sm:text-5xl font-bold gradient-text">Eventify</h1>
@@ -318,7 +318,7 @@ export default function Dashboard() {
             <Drawer open={open} onClose={toggleDrawer(false)}>
                 {DrawerList}
             </Drawer>
-            <div className='flex justify-between '>
+            <div className='flex min-h-svh'>
                 {DrawerListLg}
                 <Outlet />
             </div>

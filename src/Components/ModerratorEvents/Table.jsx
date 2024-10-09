@@ -16,13 +16,26 @@ const Table = ({ carts }) => {
             const { data } = await axiosSecure.get(`/users`);
             const moderators = data.filter(user => user.role === 'moderator');
             const emails = moderators.map(moderator => moderator.email);
-            setOptions(emails); 
+            setOptions(emails);
         } catch (error) {
             console.error("Error fetching users:", error);
         }
     };
 
-   
+    const handleSave = async (id) => {
+        console.log(id);
+
+        try {
+            const bookingData = {
+                event_organizer: "",
+            };
+            const { data: update } = await axiosSecure.put(`/addOrganizer/${id}`, bookingData);
+            console.log("Update successful:", update);
+            fetchModerators();
+        } catch (err) {
+            console.log("Error updating:", err.message);
+        }
+    };
 
 
     return (
@@ -67,11 +80,11 @@ const Table = ({ carts }) => {
                                 </div>
                             </td>
                             <td className="p-4 border-b border-blue-gray-50">
-                                <button className="btn">Accept Event</button>
+                                <button className="btn" >Accept Event</button>
                             </td>
 
                             <td className="p-4 border-b border-blue-gray-50">
-                                <button className="btn">Ignore Event</button>
+                                <button className="btn" onClick={() => handleSave(project._id)}>Ignore Event</button>
                             </td>
                         </tr>
                     ))}

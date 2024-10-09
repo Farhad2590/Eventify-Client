@@ -27,7 +27,7 @@ const Eventstatus = () => {
     }, [axiosSecure]);
     console.log(carts);
     return (
-        <div className="container mx-auto">
+        <div className="mx-auto">
             <TitleAndSubheading title="Event Suggested and Complted"></TitleAndSubheading>
             <Table carts={carts}></Table>
         </div>
