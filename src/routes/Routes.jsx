@@ -16,6 +16,7 @@ import AddEvent from "../Pages/AdminPages/AddEvent";
 import Cart from "../Pages/Cart";
 import ManageEvents from "../Pages/AdminPages/ManageEvents";
 import Demo from "../Shared/Demo";
+import ManageUsers from "../Pages/AdminPages/ManageUsers";
 
 export const router = createBrowserRouter([
     {
@@ -33,7 +34,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/reels",
-                element:  <PrivateRoute><EventifyReels /></PrivateRoute>, 
+                element: <PrivateRoute><EventifyReels /></PrivateRoute>,
             },
             {
                 path: '/event',
@@ -47,7 +48,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/cart',
-                element: <Cart/>
+                element: <Cart />
             },
             {
                 path: '/login',
@@ -58,12 +59,12 @@ export const router = createBrowserRouter([
                 element: <Register></Register>
             }
         ],
-        
+
     },
-    {   
-        path:'/dashboard',
-        element: <Dashboard></Dashboard> ,
-        children:[
+    {
+        path: '/dashboard',
+        element: <Dashboard></Dashboard>,
+        children: [
             {
                 path: '/dashboard/add-event',
                 element: <PrivateRoute><AddEvent /></PrivateRoute>,
@@ -78,7 +79,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/manage-users',
-                element: <Demo></Demo>,
+                element: <ManageUsers></ManageUsers>
             },
             {
                 path: '/dashboard/manage-media',
