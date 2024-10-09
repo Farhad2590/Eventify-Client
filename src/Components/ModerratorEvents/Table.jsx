@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import CustomDropdown from "./CustomDropdown";
+// import CustomDropdown from "./CustomDropdown";
 
-const TableComponent = ({ carts }) => {
+const Table = ({ carts }) => {
     const axiosSecure = useAxiosSecure();
     const [options, setOptions] = useState([]);
     console.log(carts);
@@ -22,19 +22,7 @@ const TableComponent = ({ carts }) => {
         }
     };
 
-    const handleSave = async (selectedOption, id) => {
-        try {
-            const bookingData = {
-                event_organizer: selectedOption,
-            };
-            const { data: update } = await axiosSecure.put(`/addOrganizer/${id}`, bookingData);
-            console.log("Update successful:", update);
-            fetchModerators();
-        } catch (err) {
-            console.log("Error updating:", err.message);
-        }
-    };
-
+   
 
 
     return (
@@ -79,16 +67,11 @@ const TableComponent = ({ carts }) => {
                                 </div>
                             </td>
                             <td className="p-4 border-b border-blue-gray-50">
-                                {project.event_organizer === "" ? (
-                                    <CustomDropdown onSave={(selectedOption) => handleSave(selectedOption, project._id)} options={options} />
-                                ) : (
-                                    <p>{project.event_organizer}</p>
-                                )}
+                                <button className="btn">Accept Event</button>
                             </td>
 
-
                             <td className="p-4 border-b border-blue-gray-50">
-                                <button className="btn">Delete Event</button>
+                                <button className="btn">Ignore Event</button>
                             </td>
                         </tr>
                     ))}
@@ -99,4 +82,4 @@ const TableComponent = ({ carts }) => {
     );
 };
 
-export default TableComponent;
+export default Table;

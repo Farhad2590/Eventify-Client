@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
+import Table from "../../Components/ModerratorEvents/Table";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import TitleAndSubheading from "../../Shared/TitleAndSubheading";
-import TableComponent from "../../Components/ManageEventComponents/TableComponent";
+import useAuth from "../../hooks/useAuth";
 
-
-
-const ManageEvents = () => {
+const Eventstatus = () => {
     const axiosSecure = useAxiosSecure();
     const [carts, setCarts] = useState([]);
     // const [loading, setLoading] = useState(true);
+    const {  user } = useAuth();
+    // console.log();
     
     useEffect(() => {
         axiosSecure
             .get(`/eventConfirmed`)
             .then((response) => {
-                const filteredCarts = response.data.filter(cart => cart.payment === "Advance_Done");
+                const filteredCarts = response.data.filter(cart => cart.event_organizer === user.email);
                 setCarts(filteredCarts);
                 // setLoading(false);
             })
@@ -27,10 +28,10 @@ const ManageEvents = () => {
     console.log(carts);
     return (
         <div className="container mx-auto">
-            <TitleAndSubheading title="Manage Events"></TitleAndSubheading>
-            <TableComponent carts={carts}/>
+            <TitleAndSubheading title="Event Suggested and Complted"></TitleAndSubheading>
+            <Table carts={carts}></Table>
         </div>
     );
 };
 
-export default ManageEvents;
+export default Eventstatus;
