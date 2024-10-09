@@ -1,6 +1,6 @@
 // import React from 'react';
 
-const Button = ({ name, onClick, type = "button", className = "" }) => {
+const Button_Customize = ({ name, onClick, type = "button", className = "" }) => {
   return (
     <button
       type={type}
@@ -12,4 +12,4 @@ const Button = ({ name, onClick, type = "button", className = "" }) => {
   );
 };
 
-export default Button;
+export default Button_Customize;
