@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+// import { toast } from "react-toastify";
+// import { Navigate } from "react-router-dom";
 // import CustomDropdown from "./CustomDropdown";
 
 const Table = ({ carts }) => {
@@ -28,6 +30,38 @@ const Table = ({ carts }) => {
         try {
             const bookingData = {
                 event_organizer: "",
+                moderator: ""
+            };
+            const { data: update } = await axiosSecure.put(`/addOrganizer/${id}`, bookingData);
+            console.log("Update successful:", update);
+            fetchModerators();
+        } catch (err) {
+            console.log("Error updating:", err.message);
+        }
+    };
+    const handleCompleted = async (id) => {
+        console.log(id);
+
+        try {
+            const bookingData = {
+                event_organizer: "completed",
+                
+            };
+            const { data: update } = await axiosSecure.put(`/addOrganizer/${id}`, bookingData);
+            console.log("Update successful:", update);
+            fetchModerators();
+        } catch (err) {
+            console.log("Error updating:", err.message);
+        }
+    };
+    const handleAccept = async (id) => {
+        console.log(id);
+
+        try {
+            const bookingData = {
+                // event_organizer: "completed",
+                moderator:"assigned"
+                
             };
             const { data: update } = await axiosSecure.put(`/addOrganizer/${id}`, bookingData);
             console.log("Update successful:", update);
@@ -80,12 +114,22 @@ const Table = ({ carts }) => {
                                 </div>
                             </td>
                             <td className="p-4 border-b border-blue-gray-50">
-                                <button className="btn" >Accept Event</button>
+                                {project.moderator === "" ? (
+                                    <button className="btn" onClick={() => handleAccept(project._id)}>Accept Event</button>
+                                ) : (
+                                    <span>Ongoing</span>
+                                )}
                             </td>
 
                             <td className="p-4 border-b border-blue-gray-50">
-                                <button className="btn" onClick={() => handleSave(project._id)}>Ignore Event</button>
+                                {project.moderator === "" ? (
+                                    <button className="btn" onClick={() => handleSave(project._id)}>Ignore Event</button>
+                                ) : (
+                                    <button className="btn" onClick={() => handleCompleted(project)}>Event Completed</button>
+                                )}
                             </td>
+
+
                         </tr>
                     ))}
                 </tbody>
