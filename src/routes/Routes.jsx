@@ -19,6 +19,7 @@ import Demo from "../Shared/Demo";
 import ManageUsers from "../Pages/AdminPages/ManageUsers";
 import Eventstatus from "../Pages/ModeratorPages/Eventstatus";
 import Faq from "../Pages/ModeratorPages/Faq";
+import ManageModeratorEvents from "../Pages/ModeratorPages/ManageModeratorEvents";
 
 export const router = createBrowserRouter([
     {
@@ -102,7 +103,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/mod/manage-event',
-                element: <Demo></Demo>,
+                element: <ManageModeratorEvents></ManageModeratorEvents>,
             },
             {
                 path: '/dashboard/mod/add-report',
