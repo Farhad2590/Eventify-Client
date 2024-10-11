@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-// import { toast } from "react-toastify";
-// import { Navigate } from "react-router-dom";
-// import CustomDropdown from "./CustomDropdown";
+
 
 const Table = ({ carts }) => {
     const axiosSecure = useAxiosSecure();
     const [options, setOptions] = useState([]);
-    console.log(carts);
+    console.log(options);
 
     useEffect(() => {
         fetchModerators();

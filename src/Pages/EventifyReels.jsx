@@ -11,7 +11,7 @@ import Vid8 from "../assets/videos/vid8.mp4";
 import Vid9 from "../assets/videos/vid9.mp4";
 import Vid10 from "../assets/videos/vid10.mp4";
 
-import "./Eventify.css"; // Assuming custom styles here
+// import "./Eventify.css"; // Assuming custom styles here
 import { useState } from "react";
 import TitleAndSubheading from "../Shared/TitleAndSubheading";
 
