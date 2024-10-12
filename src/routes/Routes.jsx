@@ -2,24 +2,24 @@ import {
     createBrowserRouter,
 } from "react-router-dom";
 import Main from "../Layouts/Main";
-import ErrorPage from "../Pages/ErrorPage";
-import Home from "../Pages/Home";
-import Gallerys from "../Pages/Gallerys";
-import EventifyReels from "../Pages/EventifyReels";
-import Login from "../Pages/Login";
-import Register from "../Pages/Register";
-import PrivateRoute from "./PrivateRoute";
-import EventCards from "../Pages/EventCards";
+import PrivateRoute from "../routes/PrivateRoute";
+import ErrorPage from "../Pages/SharedPages/ErrorPage";
+import Home from "../Pages/SharedPages/Home";
+import Gallerys from "../Pages/SharedPages/Gallerys";
+import EventifyReels from "../Pages/SharedPages/EventifyReels";
+import EventCards from "../Pages/SharedPages/EventCards";
 import CustomizeEvent from "../Components/EventComponents/CustomizeEvent";
-import Dashboard from "../Pages/AdminPages/dashboard/Dashboard";
-import AddEvent from "../Pages/AdminPages/AddEvent";
-import Cart from "../Pages/Cart";
-import ManageEvents from "../Pages/AdminPages/ManageEvents";
+import Login from "../Pages/SharedPages/Login";
+import Register from "../Pages/SharedPages/Register";
+import Dashboard from "../Pages/dashboard/Dashboard";
+import AdminAddEvent from "../Pages/AdminPages/AdminAddEvent";
+import AdminManageEvents from "../Pages/AdminPages/AdminManageEvents";
 import Demo from "../Shared/Demo";
-import ManageUsers from "../Pages/AdminPages/ManageUsers";
-import Eventstatus from "../Pages/ModeratorPages/Eventstatus";
-import Faq from "../Pages/ModeratorPages/Faq";
-import ManageModeratorEvents from "../Pages/ModeratorPages/ManageModeratorEvents";
+import AdminManageUsers from "../Pages/AdminPages/AdminManageUsers";
+import ManageModeratorEvents from "../Pages/ModeratorPages/ModeratorManageModeratorEvents";
+import ModeartorEventstatus from "../Pages/ModeratorPages/ModeartorEventstatus";
+import UserBookedEvents from "../Pages/UserPages/UserBookedEvents";
+
 
 export const router = createBrowserRouter([
     {
@@ -50,10 +50,6 @@ export const router = createBrowserRouter([
                     fetch(`http://localhost:5000/events/${params._id}`),
             },
             {
-                path: '/cart',
-                element: <Cart />
-            },
-            {
                 path: '/login',
                 element: <Login></Login>
             },
@@ -70,11 +66,11 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: '/dashboard/add-event',
-                element: <PrivateRoute><AddEvent /></PrivateRoute>,
+                element: <PrivateRoute><AdminAddEvent /></PrivateRoute>,
             },
             {
                 path: '/dashboard/manage-event',
-                element: <PrivateRoute><ManageEvents /></PrivateRoute>,
+                element: <PrivateRoute><AdminManageEvents /></PrivateRoute>,
             },
             {
                 path: '/dashboard/add-media',
@@ -82,7 +78,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/manage-users',
-                element: <ManageUsers></ManageUsers>
+                element: <AdminManageUsers/>
             },
             {
                 path: '/dashboard/manage-media',
@@ -115,12 +111,12 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/mod/event-status',
-                element: <Eventstatus></Eventstatus>,
+                element: <ModeartorEventstatus></ModeartorEventstatus>,
             },
-            {
-                path: '/dashboard/mod/feedbacks',
-                element: <Faq></Faq>,
-            },
+            // {
+            //     path: '/dashboard/mod/feedbacks',
+            //     element: <Faq></Faq>,
+            // },
             {
                 path: '/dashboard/mod/manage-budget',
                 element: <Demo></Demo>,
@@ -132,7 +128,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/user/booked-events',
-                element: <Demo></Demo>,
+                element: <UserBookedEvents></UserBookedEvents>,
             },
             {
                 path: '/dashboard/user/add-review',

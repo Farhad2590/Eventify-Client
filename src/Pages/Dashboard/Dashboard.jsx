@@ -33,8 +33,8 @@ import GroupIcon from '@mui/icons-material/Group';
 import CompareIcon from '@mui/icons-material/Compare';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import useAdmin from '../../../hooks/useAdmin';
-import useModerator from '../../../hooks/useModerator';
+import useAdmin from '../../hooks/useAdmin';
+import useModerator from '../../hooks/useModerator';
 export default function Dashboard() {
     const [open, setOpen] = React.useState(false);
 

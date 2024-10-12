@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import TitleAndSubheading from '../../Shared/TitleAndSubheading';
 
-const AddEvent = () => {
+const AdminAddEvent = () => {
     return (
         <div className="container mx-auto">
             <TitleAndSubheading title="Add Event Form"></TitleAndSubheading>
@@ -17,4 +17,4 @@ const AddEvent = () => {
     );
 };
 
-export default AddEvent;
+export default AdminAddEvent;

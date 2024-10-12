@@ -2,12 +2,12 @@ import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { AuthContext } from '../AuthProvider/AuthProvider';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Lottie from 'lottie-react';
-import animationImg from "../assets/AnimationLottie/AnimationRegister.json";
+import animationImg from "../../assets/AnimationLottie/AnimationRegister.json";
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 // import axios from 'axios';
-import useAxiosSecure from '../hooks/useAxiosSecure';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 
 const Register = () => {
@@ -20,7 +20,7 @@ const Register = () => {
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        // formState: { errors },
     } = useForm()
 
 

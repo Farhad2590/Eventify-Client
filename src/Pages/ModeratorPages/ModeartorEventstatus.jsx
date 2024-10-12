@@ -1,33 +1,97 @@
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+// import Table from "../../Components/ModerratorEvents/Table";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import CustomDropdown from "./CustomDropdown";
-import useFetchModerators from "../../hooks/useFetchModerators";
+import TitleAndSubheading from "../../Shared/TitleAndSubheading";
+import useAuth from "../../hooks/useAuth";
 
-const TableComponent = ({ carts }) => {
+const ModeartorEventstatus = () => {
     const axiosSecure = useAxiosSecure();
-    // const [options, setOptions] = useState([]);
-    console.log(carts);
-    const [moderatorsEmails, ,refetch] = useFetchModerators()
-    
-    const handleSave = async (selectedOption, id) => {
+    const [carts, setCarts] = useState([]);
+    const [options, setOptions] = useState([]);
+    const {  user } = useAuth();    
+    console.log(options);
+
+    useEffect(() => {
+        fetchModerators();
+    }, []);
+
+    const fetchModerators = async () => {
+        try {
+            const { data } = await axiosSecure.get(`/users`);
+            const moderators = data.filter(user => user.role === 'moderator');
+            const emails = moderators.map(moderator => moderator.email);
+            setOptions(emails);
+        } catch (error) {
+            console.error("Error fetching users:", error);
+        }
+    };
+
+    const handleSave = async (id) => {
+        console.log(id);
+
         try {
             const bookingData = {
-                event_organizer: selectedOption,
-                moderator : "",
+                event_organizer: "",
+                moderator: ""
             };
             const { data: update } = await axiosSecure.put(`/addOrganizer/${id}`, bookingData);
             console.log("Update successful:", update);
-            // fetchModerators();
-            refetch()
+            fetchModerators();
         } catch (err) {
             console.log("Error updating:", err.message);
         }
     };
+    const handleCompleted = async (id) => {
+        console.log(id);
 
+        try {
+            const bookingData = {
+                event_organizer: "completed",
+                
+            };
+            const { data: update } = await axiosSecure.put(`/addOrganizer/${id}`, bookingData);
+            console.log("Update successful:", update);
+            fetchModerators();
+        } catch (err) {
+            console.log("Error updating:", err.message);
+        }
+    };
+    const handleAccept = async (id) => {
+        console.log(id);
 
+        try {
+            const bookingData = {
+                moderator:"assigned"              
+            };
+            const { data: update } = await axiosSecure.put(`/addOrganizer/${id}`, bookingData);
+            console.log("Update successful:", update);
+            fetchModerators();
+        } catch (err) {
+            console.log("Error updating:", err.message);
+        }
+    };
+    
+    useEffect(() => {
+        axiosSecure
+            .get(`/eventConfirmed`)
+            .then((response) => {
+                const filteredCarts = response.data.filter(cart => cart.event_organizer === user.email);
+                setCarts(filteredCarts);
+                // setLoading(false);
+            })
+            .catch((error) => {
+                console.error("Error fetching events:", error);
+                // setLoading(false);
+            });
 
+    }, [axiosSecure]);
+    // console.log(carts);
     return (
-        <div className="p-6 overflow-scroll px-0">
+        <div className="mx-auto">
+            <TitleAndSubheading title="Event Suggested and Complted"></TitleAndSubheading>
+            {/* <Table carts={carts}></Table> */}
+
+            <div className="p-6 overflow-scroll px-0">
             <table className="mt-4 w-full min-w-max table-auto text-left">
                 <thead>
                     <tr>
@@ -68,24 +132,30 @@ const TableComponent = ({ carts }) => {
                                 </div>
                             </td>
                             <td className="p-4 border-b border-blue-gray-50">
-                                {project.event_organizer === "" ? (
-                                    <CustomDropdown onSave={(selectedOption) => handleSave(selectedOption, project._id)} options={moderatorsEmails} />
+                                {project.moderator === "" ? (
+                                    <button className="btn" onClick={() => handleAccept(project._id)}>Accept Event</button>
                                 ) : (
-                                    <p>{project.event_organizer}</p>
+                                    <span>Ongoing</span>
+                                )}
+                            </td>
+
+                            <td className="p-4 border-b border-blue-gray-50">
+                                {project.moderator === "" ? (
+                                    <button className="btn" onClick={() => handleSave(project._id)}>Ignore Event</button>
+                                ) : (
+                                    <button className="btn" onClick={() => handleCompleted(project)}>Event Completed</button>
                                 )}
                             </td>
 
 
-                            <td className="p-4 border-b border-blue-gray-50">
-                                <button className="btn">Delete Event</button>
-                            </td>
                         </tr>
                     ))}
                 </tbody>
 
             </table>
         </div>
+        </div>
     );
 };
 
-export default TableComponent;
+export default ModeartorEventstatus;

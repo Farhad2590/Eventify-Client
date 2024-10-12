@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import useAxiosSecure from "../hooks/useAxiosSecure";
-import TitleAndSubheading from "../Shared/TitleAndSubheading";
-import DatePickerModal from "../Components/EventComponents/DatePickerModal";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import TitleAndSubheading from "../../Shared/TitleAndSubheading";
+import DatePickerModal from "../../Components/EventComponents/DatePickerModal";
 import { toast } from "react-toastify";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
 const EventCard = () => {
   const [events, setEvents] = useState([]);
