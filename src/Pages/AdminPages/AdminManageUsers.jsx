@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import Button_Customize from '../../Shared/Button_Customize';
 
-const ManageUsers = () => {
+const AdminManageUsers = () => {
     const axiosSecure = useAxiosSecure()
     const { refetch, data: users = [] } = useQuery({
         queryKey: ['requestToAdmin'],
@@ -124,4 +124,4 @@ const ManageUsers = () => {
     );
 };
 
-export default ManageUsers;
+export default AdminManageUsers;

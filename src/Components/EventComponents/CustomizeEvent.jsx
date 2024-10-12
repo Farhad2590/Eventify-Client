@@ -71,7 +71,9 @@ const CustomizeEvent = () => {
         payment: 'Pending',
         email: user.email,
         user_Name: user.displayName,
-        user_Photo: user.photoURL
+        user_Photo: user.photoURL,
+        event_organizer: "",
+        moderator: ""
     }
     console.log(confirmDate);
     const handleConfirmDate = () => {
@@ -82,7 +84,7 @@ const CustomizeEvent = () => {
                     toast.success('Event Added To Cart Successfully', {
                         autoClose: 5000,
                     });
-                    navigate('/cart')
+                    navigate('/dashboard/user/booked-events')
                     console.log(res);
                     handleCloseModal();
                 }

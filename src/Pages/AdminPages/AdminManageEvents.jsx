@@ -5,7 +5,7 @@ import TableComponent from "../../Components/ManageEventComponents/TableComponen
 
 
 
-const ManageEvents = () => {
+const AdminManageEvents = () => {
     const axiosSecure = useAxiosSecure();
     const [carts, setCarts] = useState([]);
     // const [loading, setLoading] = useState(true);
@@ -34,4 +34,4 @@ const ManageEvents = () => {
     );
 };
 
-export default ManageEvents;
+export default AdminManageEvents;
