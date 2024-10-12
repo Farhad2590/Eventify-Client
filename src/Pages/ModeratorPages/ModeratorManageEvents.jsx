@@ -5,7 +5,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import TitleAndSubheading from "../../Shared/TitleAndSubheading";
 
-const ManageModeratorEvents = () => {
+const ModeratorManageEvents = () => {
     const [events, setEvents] = useState([]);
     // const [loading, setLoading] = useState(true);
     const { user } = useAuth();
@@ -77,16 +77,6 @@ const ManageModeratorEvents = () => {
                                 <td className="p-4 border-b border-blue-gray-50">
                                     <button className="btn" onClick={() => handleSave(project._id)}>See Details</button>
                                 </td>
-
-                                {/* <td className="p-4 border-b border-blue-gray-50">
-                                    {project.moderator === "" ? (
-                                        <button className="btn" onClick={() => handleSave(project._id)}>Ignore Event</button>
-                                    ) : (
-                                        <button className="btn" onClick={() => handleCompleted(project)}>Event Completed</button>
-                                    )}
-                                </td> */}
-
-
                             </tr>
                         ))}
                     </tbody>
@@ -97,4 +87,4 @@ const ManageModeratorEvents = () => {
     );
 };
 
-export default ManageModeratorEvents;
+export default ModeratorManageEvents;

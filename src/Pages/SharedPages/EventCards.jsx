@@ -17,7 +17,7 @@ const EventCard = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-console.log(user);
+  console.log(user);
 
   useEffect(() => {
     axiosSecure
@@ -57,8 +57,10 @@ console.log(user);
       date: date,
       payment: 'Pending',
       email: user.email,
-      user_Name : user.displayName,
-      user_Photo : user.photoURL
+      user_Name: user.displayName,
+      user_Photo: user.photoURL,
+      event_organizer: "",
+      moderator: ""
     };
 
     // Save confirmDate to state
@@ -73,7 +75,7 @@ console.log(user);
           toast.success('Event Added To Cart Successfully', {
             autoClose: 5000,
           });
-          navigate('/cart')
+          navigate('/dashboard/user/booked-events')
           console.log(res);
           handleCloseModal();
         }
