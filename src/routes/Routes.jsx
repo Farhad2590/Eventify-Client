@@ -16,9 +16,10 @@ import AdminAddEvent from "../Pages/AdminPages/AdminAddEvent";
 import AdminManageEvents from "../Pages/AdminPages/AdminManageEvents";
 import Demo from "../Shared/Demo";
 import AdminManageUsers from "../Pages/AdminPages/AdminManageUsers";
-import ManageModeratorEvents from "../Pages/ModeratorPages/ModeratorManageModeratorEvents";
+import ModeratorManageEvents from "../Pages/ModeratorPages/ModeratorManageEvents";
 import ModeartorEventstatus from "../Pages/ModeratorPages/ModeartorEventstatus";
 import UserBookedEvents from "../Pages/UserPages/UserBookedEvents";
+import ModeratorRequirements from "../Pages/ModeratorPages/ModeratorRequirements";
 
 
 export const router = createBrowserRouter([
@@ -99,7 +100,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/mod/manage-event',
-                element: <ManageModeratorEvents></ManageModeratorEvents>,
+                element: <ModeratorManageEvents></ModeratorManageEvents>,
             },
             {
                 path: '/dashboard/mod/add-report',
@@ -107,7 +108,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/mod/add-requirements',
-                element: <Demo></Demo>,
+                element: <ModeratorRequirements></ModeratorRequirements>,
             },
             {
                 path: '/dashboard/mod/event-status',
