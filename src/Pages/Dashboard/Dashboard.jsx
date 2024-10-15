@@ -94,7 +94,7 @@ export default function Dashboard() {
             icon: <CalendarMonthIcon />,
         },
         {
-            name: 'Add Report',
+            name: 'Add Staffs',
             path: '/dashboard/mod/add-report',
             icon: <ReportIcon />,
         },
