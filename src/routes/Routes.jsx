@@ -20,6 +20,7 @@ import ModeratorManageEvents from "../Pages/ModeratorPages/ModeratorManageEvents
 import ModeartorEventstatus from "../Pages/ModeratorPages/ModeartorEventstatus";
 import UserBookedEvents from "../Pages/UserPages/UserBookedEvents";
 import ModeratorRequirements from "../Pages/ModeratorPages/ModeratorRequirements";
+import ModeratorStaffs from "../Pages/ModeratorPages/ModeratorStaffs";
 
 
 export const router = createBrowserRouter([
@@ -104,7 +105,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/mod/add-report',
-                element: <Demo></Demo>,
+                element: <ModeratorStaffs></ModeratorStaffs>,
             },
             {
                 path: '/dashboard/mod/add-requirements',
