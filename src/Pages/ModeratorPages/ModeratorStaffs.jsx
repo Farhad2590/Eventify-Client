@@ -38,8 +38,30 @@ const ModeratorStaffs = () => {
     const [vediographer, setVediographer] = useState(0);
     const [cakePound, setcakePound] = useState(0);
     const [clubsSF, setClubsSF] = useState(0);
-    const [soundPairCount, setSoundPairCount] = useState(2);
+    const [soundPairCount, setSoundPairCount] = useState(0);
     const [selectedEvent, setSelectedEvent] = useState("");
+
+    // Prices for each new item
+    const photografferPersonPrice = 1000; // per photographer person
+    const waiterPersonPrice = 500; // per waiter person
+    const vediographerPrice = 1500; // per vediographer
+    const cakePoundPrice = 300; // per cake pound
+    const clubsSFPrice = 200; // per square feet of club
+    const soundPairPrice = 750; // per pair of sound
+
+    // Function to calculate total amount
+    const calculateTotalAmount = () => {
+        const photografferAmount = photografferPerson * photografferPersonPrice;
+        const waiterAmount = waiterPerson * waiterPersonPrice;
+        const vediographerAmount = vediographer * vediographerPrice;
+        const cakeAmount = cakePound * cakePoundPrice;
+        const clubsAmount = clubsSF * clubsSFPrice;
+        const soundPairAmount = soundPairCount * soundPairPrice;
+
+        const totalAmount = photografferAmount + waiterAmount + vediographerAmount + cakeAmount + clubsAmount + soundPairAmount;
+        return totalAmount;
+    };
+
 
     useEffect(() => {
         axiosSecure
@@ -64,6 +86,10 @@ const ModeratorStaffs = () => {
 
             <FormControl fullWidth margin="normal">
                 <InputLabel id="event-select-label">Select Event</InputLabel>
+                <div className="flex justify-end">
+                    <h1 className="text-2xl text-blue-600">Total Amount: {calculateTotalAmount()} Taka</h1>
+
+                </div>
                 <Select
                     labelId="event-select-label"
                     id="event-select"
@@ -71,6 +97,7 @@ const ModeratorStaffs = () => {
                     label="Select Event"
                     onChange={(e) => setSelectedEvent(e.target.value)}
                 >
+
                     {events.map((event) => (
                         <MenuItem key={event._id} value={event._id}>
                             {event.package_name}
