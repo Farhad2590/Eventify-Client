@@ -34,8 +34,8 @@ const ModeratorRequirements = () => {
     const [tableCount, setTableCount] = useState(0);
     const [photoBoothCount, setPhotoBoothCount] = useState(0);
     const [groceryCount, setGroceryCount] = useState(0);
-    const [ledCount, setLedCount] = useState(16);
-    const [soundPairCount, setSoundPairCount] = useState(2);
+    const [ledCount, setLedCount] = useState(0);
+    const [soundPairCount, setSoundPairCount] = useState(0);
     const [selectedEvent, setSelectedEvent] = useState("");
 
     useEffect(() => {
@@ -55,12 +55,38 @@ const ModeratorRequirements = () => {
             });
     }, [axiosSecure, user.email]);
 
+    // Prices for each item
+    const chairPrice = 5; // per piece
+    const tablePrice = 10; // per piece
+    const photoBoothPrice = 500; // per piece
+    const groceryPrice = 250; // per set
+    const ledPrice = 50; // per inch
+    const soundPairPrice = 750; // per pair
+
+    // Function to calculate total amount
+    const calculateTotalAmount = () => {
+        const chairAmount = chairCount * chairPrice;
+        const tableAmount = tableCount * tablePrice;
+        const photoBoothAmount = photoBoothCount * photoBoothPrice;
+        const groceryAmount = groceryCount * groceryPrice;
+        const ledAmount = ledCount * ledPrice;
+        const soundPairAmount = soundPairCount * soundPairPrice;
+
+        const totalAmount = chairAmount + tableAmount + photoBoothAmount + groceryAmount + ledAmount + soundPairAmount;
+        return totalAmount;
+    };
+
     return (
         <Box sx={{ width: '100%', padding: '10px' }}>
             <TitleAndSubheading title="Add Requirements"></TitleAndSubheading>
+            
 
             <FormControl fullWidth margin="normal">
                 <InputLabel id="event-select-label">Select Event</InputLabel>
+                <div className="flex justify-end">
+                    <h1 className="text-2xl text-blue-600">Total Amount: {calculateTotalAmount()} Taka</h1>
+
+                </div>
                 <Select
                     labelId="event-select-label"
                     id="event-select"
