@@ -21,6 +21,7 @@ import ModeartorEventstatus from "../Pages/ModeratorPages/ModeartorEventstatus";
 import UserBookedEvents from "../Pages/UserPages/UserBookedEvents";
 import ModeratorRequirements from "../Pages/ModeratorPages/ModeratorRequirements";
 import ModeratorStaffs from "../Pages/ModeratorPages/ModeratorStaffs";
+import ProfileSettings from "../Shared/ProfileSettings";
 
 
 export const router = createBrowserRouter([
@@ -92,12 +93,12 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/admin-profile',
-                element: <Demo></Demo>,
+                element: <ProfileSettings></ProfileSettings>,
             },
             // moderator routes
             {
                 path: '/dashboard/mod/user-profile',
-                element: <Demo></Demo>,
+                element: <ProfileSettings></ProfileSettings>,
             },
             {
                 path: '/dashboard/mod/manage-event',
@@ -126,7 +127,7 @@ export const router = createBrowserRouter([
             // users routes
             {
                 path: '/dashboard/user/user-profile',
-                element: <Demo></Demo>,
+                element: <ProfileSettings></ProfileSettings>,
             },
             {
                 path: '/dashboard/user/booked-events',
