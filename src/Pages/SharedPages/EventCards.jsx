@@ -146,7 +146,7 @@ const EventCard = () => {
             <div
               key={index}
               className="border border-gray-300 rounded-lg shadow-lg overflow-hidden flex flex-col"
-              style={{ height: '650px' }}
+              style={{ height: '750px' }}
             >
               <img
                 src={event?.carrt_Image}
@@ -182,7 +182,7 @@ const EventCard = () => {
                     </p>
                   </div>
                 </div>
-                <div className="mt-4 flex justify-between">
+                <div className="mt-4 flex gap-2 justify-between">
                   <button
                     className="bg-blue-600 text-white btn rounded hover:bg-blue-700"
                     onClick={() => handleCheckAvailabilityClick(event)}

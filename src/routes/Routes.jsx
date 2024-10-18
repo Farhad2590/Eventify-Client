@@ -21,9 +21,15 @@ import ModeratorManageEvents from "../Pages/ModeratorPages/ModeratorManageEvents
 import ModeartorEventstatus from "../Pages/ModeratorPages/ModeartorEventstatus";
 import UserBookedEvents from "../Pages/UserPages/UserBookedEvents";
 import ModeratorRequirements from "../Pages/ModeratorPages/ModeratorRequirements";
+<<<<<<< HEAD
 import AddReview from "../Pages/UserPages/AddReview";
 import EditEvent from "../Pages/AdminPages/EditEvent";
 import ViewReview from "../Pages/UserPages/ViewReview";
+=======
+import ModeratorStaffs from "../Pages/ModeratorPages/ModeratorStaffs";
+import ProfileSettings from "../Shared/ProfileSettings";
+import UserConfirmedEvents from "../Pages/UserPages/UserConfirmedEvents";
+>>>>>>> fd315fc848a9621db3f5ec884181fc55957afcd7
 
 
 export const router = createBrowserRouter([
@@ -104,12 +110,12 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/admin-profile',
-                element: <Demo></Demo>,
+                element: <ProfileSettings></ProfileSettings>,
             },
             // moderator routes
             {
                 path: '/dashboard/mod/user-profile',
-                element: <Demo></Demo>,
+                element: <ProfileSettings></ProfileSettings>,
             },
             {
                 path: '/dashboard/mod/manage-event',
@@ -117,7 +123,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/mod/add-report',
-                element: <Demo></Demo>,
+                element: <ModeratorStaffs></ModeratorStaffs>,
             },
             {
                 path: '/dashboard/mod/add-requirements',
@@ -138,11 +144,15 @@ export const router = createBrowserRouter([
             // users routes
             {
                 path: '/dashboard/user/user-profile',
-                element: <Demo></Demo>,
+                element: <ProfileSettings></ProfileSettings>,
             },
             {
                 path: '/dashboard/user/booked-events',
                 element: <UserBookedEvents></UserBookedEvents>,
+            },
+            {
+                path: '/dashboard/user/booked-confirms',
+                element: <UserConfirmedEvents></UserConfirmedEvents>,
             },
             {
                 path: '/dashboard/user/add-review',
@@ -156,10 +166,7 @@ export const router = createBrowserRouter([
                 path: '/dashboard/user/payment-history',
                 element: <Demo></Demo>,
             },
-            {
-                path: '/dashboard/user/event-suggestions',
-                element: <Demo></Demo>,
-            },
+            
             {
                 path: '/dashboard/user/support',
                 element: <Demo></Demo>,

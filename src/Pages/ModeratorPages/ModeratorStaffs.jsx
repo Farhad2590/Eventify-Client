@@ -13,30 +13,55 @@ import {
     IconButton
 } from "@mui/material";
 import {
-    Chair as ChairIcon,
-    TableBar as TableIcon,
-    PhotoCamera as CameraIcon,
     Add as AddIcon,
     Remove as RemoveIcon
 } from "@mui/icons-material";
-import TvIcon from '@mui/icons-material/Tv';
-import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import TitleAndSubheading from "../../Shared/TitleAndSubheading";
 import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
+import CenterFocusStrongIcon from '@mui/icons-material/CenterFocusStrong';
+import FlatwareIcon from '@mui/icons-material/Flatware';
+import CakeIcon from '@mui/icons-material/Cake';
+import Groups2Icon from '@mui/icons-material/Groups2';
 
-const ModeratorRequirements = () => {
+
+
+
+const ModeratorStaffs = () => {
     const [events, setEvents] = useState([]);
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
-    const [chairCount, setChairCount] = useState(0);
-    const [tableCount, setTableCount] = useState(0);
-    const [photoBoothCount, setPhotoBoothCount] = useState(0);
-    const [groceryCount, setGroceryCount] = useState(0);
-    const [ledCount, setLedCount] = useState(0);
+    const [photografferPerson, setPhotografferPerson] = useState(0);
+    const [waiterPerson, setWaiterPerson] = useState(0);
+    const [vediographer, setVediographer] = useState(0);
+    const [cakePound, setcakePound] = useState(0);
+    const [clubsSF, setClubsSF] = useState(0);
     const [soundPairCount, setSoundPairCount] = useState(0);
     const [selectedEvent, setSelectedEvent] = useState("");
+
+    // Prices for each new item
+    const photografferPersonPrice = 1000; // per photographer person
+    const waiterPersonPrice = 500; // per waiter person
+    const vediographerPrice = 1500; // per vediographer
+    const cakePoundPrice = 300; // per cake pound
+    const clubsSFPrice = 200; // per square feet of club
+    const soundPairPrice = 750; // per pair of sound
+
+    // Function to calculate total amount
+    const calculateTotalAmount = () => {
+        const photografferAmount = photografferPerson * photografferPersonPrice;
+        const waiterAmount = waiterPerson * waiterPersonPrice;
+        const vediographerAmount = vediographer * vediographerPrice;
+        const cakeAmount = cakePound * cakePoundPrice;
+        const clubsAmount = clubsSF * clubsSFPrice;
+        const soundPairAmount = soundPairCount * soundPairPrice;
+
+        const totalAmount = photografferAmount + waiterAmount + vediographerAmount + cakeAmount + clubsAmount + soundPairAmount;
+        return totalAmount;
+    };
+
 
     useEffect(() => {
         axiosSecure
@@ -55,31 +80,9 @@ const ModeratorRequirements = () => {
             });
     }, [axiosSecure, user.email]);
 
-    // Prices for each item
-    const chairPrice = 5; // per piece
-    const tablePrice = 10; // per piece
-    const photoBoothPrice = 500; // per piece
-    const groceryPrice = 250; // per set
-    const ledPrice = 50; // per inch
-    const soundPairPrice = 750; // per pair
-
-    // Function to calculate total amount
-    const calculateTotalAmount = () => {
-        const chairAmount = chairCount * chairPrice;
-        const tableAmount = tableCount * tablePrice;
-        const photoBoothAmount = photoBoothCount * photoBoothPrice;
-        const groceryAmount = groceryCount * groceryPrice;
-        const ledAmount = ledCount * ledPrice;
-        const soundPairAmount = soundPairCount * soundPairPrice;
-
-        const totalAmount = chairAmount + tableAmount + photoBoothAmount + groceryAmount + ledAmount + soundPairAmount;
-        return totalAmount;
-    };
-
     return (
         <Box sx={{ width: '100%', padding: '10px' }}>
-            <TitleAndSubheading title="Add Requirements"></TitleAndSubheading>
-            
+            <TitleAndSubheading title="Add Staffs"></TitleAndSubheading>
 
             <FormControl fullWidth margin="normal">
                 <InputLabel id="event-select-label">Select Event</InputLabel>
@@ -94,6 +97,7 @@ const ModeratorRequirements = () => {
                     label="Select Event"
                     onChange={(e) => setSelectedEvent(e.target.value)}
                 >
+
                     {events.map((event) => (
                         <MenuItem key={event._id} value={event._id}>
                             {event.package_name}
@@ -107,14 +111,14 @@ const ModeratorRequirements = () => {
                     <Card>
                         <CardContent>
                             <Typography variant="h6" display="flex" alignItems="center">
-                                <ChairIcon sx={{ mr: 1 }} /> Chairs Needed
+                                <AddAPhotoIcon sx={{ mr: 1 }} /> Photographer Staff Needed
                             </Typography>
                             <Box display="flex" alignItems="center" justifyContent="space-between" mt={2}>
-                                <IconButton onClick={() => setChairCount(Math.max(0, chairCount - 50))} color="primary">
+                                <IconButton onClick={() => setPhotografferPerson(Math.max(0, photografferPerson - 1))} color="primary">
                                     <RemoveIcon />
                                 </IconButton>
-                                <Typography variant="h5">{chairCount}</Typography>
-                                <IconButton onClick={() => setChairCount(chairCount + 50)} color="primary">
+                                <Typography variant="h5">{photografferPerson}</Typography>
+                                <IconButton onClick={() => setPhotografferPerson(photografferPerson + 1)} color="primary">
                                     <AddIcon />
                                 </IconButton>
                             </Box>
@@ -125,14 +129,14 @@ const ModeratorRequirements = () => {
                     <Card>
                         <CardContent>
                             <Typography variant="h6" display="flex" alignItems="center">
-                                <TableIcon sx={{ mr: 1 }} /> Tables Needed
+                                <FlatwareIcon sx={{ mr: 1 }} /> Waiter Staff Needed
                             </Typography>
                             <Box display="flex" alignItems="center" justifyContent="space-between" mt={2}>
-                                <IconButton onClick={() => setTableCount(Math.max(0, tableCount - 10))} color="primary">
+                                <IconButton onClick={() => setWaiterPerson(Math.max(0, waiterPerson - 5))} color="primary">
                                     <RemoveIcon />
                                 </IconButton>
-                                <Typography variant="h5">{tableCount}</Typography>
-                                <IconButton onClick={() => setTableCount(tableCount + 10)} color="primary">
+                                <Typography variant="h5">{waiterPerson}</Typography>
+                                <IconButton onClick={() => setWaiterPerson(waiterPerson + 5)} color="primary">
                                     <AddIcon />
                                 </IconButton>
                             </Box>
@@ -143,14 +147,14 @@ const ModeratorRequirements = () => {
                     <Card>
                         <CardContent>
                             <Typography variant="h6" display="flex" alignItems="center">
-                                <CameraIcon sx={{ mr: 1 }} /> Photo Booths
+                                <CenterFocusStrongIcon sx={{ mr: 1 }} /> Vediographer Staff Needed
                             </Typography>
                             <Box display="flex" alignItems="center" justifyContent="space-between" mt={2}>
-                                <IconButton onClick={() => setPhotoBoothCount(Math.max(0, photoBoothCount - 1))} color="primary">
+                                <IconButton onClick={() => setVediographer(Math.max(0, vediographer - 1))} color="primary">
                                     <RemoveIcon />
                                 </IconButton>
-                                <Typography variant="h5">{photoBoothCount}</Typography>
-                                <IconButton onClick={() => setPhotoBoothCount(photoBoothCount + 1)} color="primary">
+                                <Typography variant="h5">{vediographer}</Typography>
+                                <IconButton onClick={() => setVediographer(vediographer + 1)} color="primary">
                                     <AddIcon />
                                 </IconButton>
                             </Box>
@@ -164,14 +168,14 @@ const ModeratorRequirements = () => {
                     <Card>
                         <CardContent>
                             <Typography variant="h6" display="flex" alignItems="center">
-                                <LocalGroceryStoreIcon sx={{ mr: 1 }} /> Grocery Set Needed
+                                <CakeIcon sx={{ mr: 1 }} /> Birthday Cake Pound
                             </Typography>
                             <Box display="flex" alignItems="center" justifyContent="space-between" mt={2}>
-                                <IconButton onClick={() => setGroceryCount(Math.max(0, groceryCount - 1))} color="primary">
+                                <IconButton onClick={() => setcakePound(Math.max(0, cakePound - 1))} color="primary">
                                     <RemoveIcon />
                                 </IconButton>
-                                <Typography variant="h5">{groceryCount}</Typography>
-                                <IconButton onClick={() => setGroceryCount(groceryCount + 1)} color="primary">
+                                <Typography variant="h5">{cakePound}</Typography>
+                                <IconButton onClick={() => setcakePound(cakePound + 1)} color="primary">
                                     <AddIcon />
                                 </IconButton>
                             </Box>
@@ -182,14 +186,14 @@ const ModeratorRequirements = () => {
                     <Card>
                         <CardContent>
                             <Typography variant="h6" display="flex" alignItems="center">
-                                <TvIcon sx={{ mr: 1 }} /> Led Screen Inches
+                                <Groups2Icon sx={{ mr: 1 }} /> Clubs in Square Feet
                             </Typography>
                             <Box display="flex" alignItems="center" justifyContent="space-between" mt={2}>
-                                <IconButton onClick={() => setLedCount(Math.max(16, ledCount - 3))} color="primary">
+                                <IconButton onClick={() => setClubsSF(Math.max(0, clubsSF - 1020))} color="primary">
                                     <RemoveIcon />
                                 </IconButton>
-                                <Typography variant="h5">{ledCount}</Typography>
-                                <IconButton onClick={() => setLedCount(ledCount + 3)} color="primary">
+                                <Typography variant="h5">{clubsSF}</Typography>
+                                <IconButton onClick={() => setClubsSF(clubsSF + 1050)} color="primary">
                                     <AddIcon />
                                 </IconButton>
                             </Box>
@@ -229,4 +233,4 @@ const ModeratorRequirements = () => {
     );
 };
 
-export default ModeratorRequirements;
+export default ModeratorStaffs;
