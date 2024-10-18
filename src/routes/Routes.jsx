@@ -22,6 +22,7 @@ import UserBookedEvents from "../Pages/UserPages/UserBookedEvents";
 import ModeratorRequirements from "../Pages/ModeratorPages/ModeratorRequirements";
 import ModeratorStaffs from "../Pages/ModeratorPages/ModeratorStaffs";
 import ProfileSettings from "../Shared/ProfileSettings";
+import UserConfirmedEvents from "../Pages/UserPages/UserConfirmedEvents";
 
 
 export const router = createBrowserRouter([
@@ -134,6 +135,10 @@ export const router = createBrowserRouter([
                 element: <UserBookedEvents></UserBookedEvents>,
             },
             {
+                path: '/dashboard/user/booked-confirms',
+                element: <UserConfirmedEvents></UserConfirmedEvents>,
+            },
+            {
                 path: '/dashboard/user/add-review',
                 element: <Demo></Demo>,
             },
@@ -145,10 +150,7 @@ export const router = createBrowserRouter([
                 path: '/dashboard/user/payment-history',
                 element: <Demo></Demo>,
             },
-            {
-                path: '/dashboard/user/event-suggestions',
-                element: <Demo></Demo>,
-            },
+            
             {
                 path: '/dashboard/user/support',
                 element: <Demo></Demo>,
