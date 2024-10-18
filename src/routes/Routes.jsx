@@ -21,15 +21,13 @@ import ModeratorManageEvents from "../Pages/ModeratorPages/ModeratorManageEvents
 import ModeartorEventstatus from "../Pages/ModeratorPages/ModeartorEventstatus";
 import UserBookedEvents from "../Pages/UserPages/UserBookedEvents";
 import ModeratorRequirements from "../Pages/ModeratorPages/ModeratorRequirements";
-<<<<<<< HEAD
-import AddReview from "../Pages/UserPages/AddReview";
+import AddReview from "../Pages/UserPages/UserAddReview";
 import EditEvent from "../Pages/AdminPages/EditEvent";
-import ViewReview from "../Pages/UserPages/ViewReview";
-=======
+import ViewReview from "../Pages/UserPages/UserViewReview";
 import ModeratorStaffs from "../Pages/ModeratorPages/ModeratorStaffs";
 import ProfileSettings from "../Shared/ProfileSettings";
 import UserConfirmedEvents from "../Pages/UserPages/UserConfirmedEvents";
->>>>>>> fd315fc848a9621db3f5ec884181fc55957afcd7
+import UserSupportPage from "../Pages/UserPages/UserSupportPage";
 
 
 export const router = createBrowserRouter([
@@ -169,7 +167,7 @@ export const router = createBrowserRouter([
             
             {
                 path: '/dashboard/user/support',
-                element: <Demo></Demo>,
+                element: <UserSupportPage></UserSupportPage>,
             },
 
         ]
