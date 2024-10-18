@@ -16,10 +16,14 @@ import AdminAddEvent from "../Pages/AdminPages/AdminAddEvent";
 import AdminManageEvents from "../Pages/AdminPages/AdminManageEvents";
 import Demo from "../Shared/Demo";
 import AdminManageUsers from "../Pages/AdminPages/AdminManageUsers";
+import AdminAssignMod from "../Pages/AdminPages/AdminAssignMod";
 import ModeratorManageEvents from "../Pages/ModeratorPages/ModeratorManageEvents";
 import ModeartorEventstatus from "../Pages/ModeratorPages/ModeartorEventstatus";
 import UserBookedEvents from "../Pages/UserPages/UserBookedEvents";
 import ModeratorRequirements from "../Pages/ModeratorPages/ModeratorRequirements";
+import AddReview from "../Pages/UserPages/AddReview";
+import EditEvent from "../Pages/AdminPages/EditEvent";
+import ViewReview from "../Pages/UserPages/ViewReview";
 
 
 export const router = createBrowserRouter([
@@ -48,7 +52,7 @@ export const router = createBrowserRouter([
                 path: '/events/:_id',
                 element: <PrivateRoute><CustomizeEvent /></PrivateRoute>,
                 loader: ({ params }) =>
-                    fetch(`http://localhost:5000/events/${params._id}`),
+                    fetch(`http://localhost:5000/event/${params._id}`),
             },
             {
                 path: '/login',
@@ -80,6 +84,15 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/manage-users',
                 element: <AdminManageUsers/>
+            },
+            {
+                path: '/dashboard/assign-mod',
+                element: <AdminAssignMod/>
+            },
+            {
+                path:'/dashboard/edit-event/:_id',
+                element: <EditEvent/>,
+                loader: ({params})=>fetch(`http://localhost:5000/event/${params._id}`)
             },
             {
                 path: '/dashboard/manage-media',
@@ -133,11 +146,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/user/add-review',
-                element: <Demo></Demo>,
+                element: <AddReview></AddReview>,
             },
             {
                 path: '/dashboard/user/reviews',
-                element: <Demo></Demo>,
+                element: <ViewReview/>,
             },
             {
                 path: '/dashboard/user/payment-history',

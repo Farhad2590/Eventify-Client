@@ -28,6 +28,7 @@ import FeedbackIcon from '@mui/icons-material/Feedback';
 import CalculateIcon from '@mui/icons-material/Calculate';
 import { Link, Outlet } from 'react-router-dom';
 import PermMediaIcon from '@mui/icons-material/PermMedia';
+import AddModeratorIcon from '@mui/icons-material/AddModerator';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import GroupIcon from '@mui/icons-material/Group';
 import CompareIcon from '@mui/icons-material/Compare';
@@ -54,6 +55,11 @@ export default function Dashboard() {
             name: 'Manage Events',
             path: '/dashboard/manage-event',
             icon: <CalendarMonthIcon />,
+        },
+        {
+            name: 'Assign Moderator',
+            path: '/dashboard/assign-mod',
+            icon: <AddModeratorIcon />,
         },
         {
             name: 'Add Media',
@@ -189,7 +195,7 @@ export default function Dashboard() {
                 <ListItem disablePadding>
                     <h1 className="text-3xl sm:text-5xl font-bold gradient-text">Eventify</h1>
                 </ListItem>
-            </List>
+            </List>z
             <Divider />
             <List>
                 {isAdmin && adminLinks.map((link, index) => (
@@ -248,7 +254,7 @@ export default function Dashboard() {
         </Box>
     );
     const DrawerListLg = (
-        <Box sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' }, flexDirection: { lg: 'column' }, width: 280, color: 'white', bgcolor: '#2563EB' ,marginTop: { lg: '0' } }} role="presentation" onClick={toggleDrawer(false)}>
+        <Box sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' }, flexDirection: { lg: 'column' }, width: 320, color: 'white', bgcolor: '#2563EB' ,marginTop: { lg: '0' } }} role="presentation" onClick={toggleDrawer(false)}>
             <List>
                 <ListItem disablePadding>
                     <h1 className="text-3xl mx-auto my-5 sm:text-5xl font-bold gradient-text">Eventify</h1>
