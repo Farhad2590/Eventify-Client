@@ -23,6 +23,7 @@ import ModeratorRequirements from "../Pages/ModeratorPages/ModeratorRequirements
 import ModeratorStaffs from "../Pages/ModeratorPages/ModeratorStaffs";
 import ProfileSettings from "../Shared/ProfileSettings";
 import UserConfirmedEvents from "../Pages/UserPages/UserConfirmedEvents";
+import UserSupportPage from "../Pages/UserPages/UserSupportPage";
 
 
 export const router = createBrowserRouter([
@@ -153,7 +154,7 @@ export const router = createBrowserRouter([
             
             {
                 path: '/dashboard/user/support',
-                element: <Demo></Demo>,
+                element: <UserSupportPage></UserSupportPage>,
             },
 
         ]
