@@ -8,13 +8,16 @@ const UserBookedEvents = () => {
   const { user } = useAuth();
   const [carts, setCarts] = useState([]);
   const [loading, setLoading] = useState(true);
+  console.log(carts);
+
 
   useEffect(() => {
     if (user && user.email) {
       axiosSecure
         .get(`/confirmEvents/${user.email}`)
         .then((response) => {
-          setCarts(response.data);
+          const filteredCarts = response.data.filter(event => event.payment === "Pending");
+          setCarts(filteredCarts);
           setLoading(false);
         })
         .catch((error) => {
@@ -37,7 +40,7 @@ const UserBookedEvents = () => {
           <div className="font-sans md:max-w-5xl max-md:max-w-xl mx-auto bg-white py-4">
             <div className="grid md:grid-cols-3 gap-4">
               <div className="md:col-span-2 bg-gray-100 p-4 rounded-md">
-                
+
 
                 <div className="space-y-4">
                   <div className="grid grid-cols-3 items-center gap-4">

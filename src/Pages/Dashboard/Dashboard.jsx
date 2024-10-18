@@ -132,6 +132,11 @@ export default function Dashboard() {
             icon: <BookmarkAddedIcon />,
         },
         {
+            name: 'Confirmed Events',
+            path: '/dashboard/user/booked-confirms',
+            icon: <TipsAndUpdatesIcon/>,
+        },
+        {
             name: 'Add Review',
             path: '/dashboard/user/add-review',
             icon: <RateReviewIcon />,
@@ -145,11 +150,6 @@ export default function Dashboard() {
             name: 'Payment History',
             path: '/dashboard/user/payment-history',
             icon: <ReceiptIcon/>,
-        },
-        {
-            name: 'Suggest New Events',
-            path: '/dashboard/user/event-suggestions',
-            icon: <TipsAndUpdatesIcon/>,
         },
         {
             name: 'Contact Support',
@@ -320,7 +320,17 @@ export default function Dashboard() {
             </Drawer>
             <div className='flex min-h-svh'>
                 {DrawerListLg}
-                <Outlet />
+                <Box
+                    sx={{
+                        flex: 1,
+                        display: 'flex',
+                        // alignItems: 'center',
+                        justifyContent: 'center',
+                        padding: 2,
+                    }}
+                >
+                    <Outlet />
+                </Box>
             </div>
         </div>
     );
