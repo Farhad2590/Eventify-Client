@@ -24,7 +24,7 @@ const SecondForm = () => {
                     const formData = new FormData()
                     formData.append('image', file)
                     try {
-                        await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_APIKEY}`, formData)
+                        await axios.post('https://api.imgbb.com/1/upload?key=df7d8ca9de8439e27997113848057067', formData)
                     .then(res=>
                        setImages(((prevImages)=>[...prevImages, res.data.data.url]))
                     )

@@ -29,13 +29,13 @@ const UserBookedEvents = () => {
   console.log(carts);
 
   return (
-    <div>
+    <div className="mx-auto">
       {loading ? (
         <div className="flex justify-center items-center min-h-screen">
           <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
         </div>
       ) : (
-        <div className="mx-auto">
+        <div >
           <TitleAndSubheading title="Booked Events"></TitleAndSubheading>
           <div className="font-sans md:max-w-5xl max-md:max-w-xl mx-auto bg-white py-4">
             <div className="grid md:grid-cols-3 gap-4">

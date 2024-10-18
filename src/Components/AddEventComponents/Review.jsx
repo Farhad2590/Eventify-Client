@@ -5,12 +5,14 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { submitForm } from "./MultipleFormSlice";
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Review = () => {
 
     const formData = useSelector(store => store.formInfo.formData)
     const axiosSecure = useAxiosSecure()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
 
     const handleSubmit = async (e) => {
@@ -20,6 +22,10 @@ const Review = () => {
             .then(res => {
                 if (res.data) {
                     dispatch(submitForm())
+                    toast.success('The Event has been successfully added!')
+                    setTimeout(() => {
+                        navigate('/dashboard/manage-event')
+                    }, 1500)
                 }
             })
             .catch(error => {
@@ -59,18 +65,6 @@ const Review = () => {
                     Submit
                 </Button>
             </div>
-            <ToastContainer
-                position="top-center"
-                autoClose={1500}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-            />
         </div>
     );
 };
