@@ -6,7 +6,7 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import useAuth from '../../hooks/useAuth';
 
-const ViewReview = () => {
+const UserViewReview = () => {
     const axiosSecure = useAxiosSecure()
     const [open, setOpen] = useState(false)
     const [reviews, setReviews] = useState([])
@@ -49,7 +49,7 @@ const ViewReview = () => {
 
     return (
         <div className="w-full mx-auto">
-            <TitleAndSubheading title="Add Review"></TitleAndSubheading>
+            <TitleAndSubheading title="View Reviews"></TitleAndSubheading>
 
             <table className="w-full text-left border border-separate rounded border-slate-200" cellSpacing="0">
                 <tbody>
@@ -103,4 +103,4 @@ const ViewReview = () => {
     );
 };
 
-export default ViewReview;
+export default UserViewReview;

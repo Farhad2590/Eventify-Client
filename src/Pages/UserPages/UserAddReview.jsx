@@ -10,7 +10,7 @@ import '@smastrom/react-rating/style.css'
 import { toast } from "react-toastify";
 
 
-const AddReview = () => {
+const UserAddReview = () => {
     const axiosSecure = useAxiosSecure()
     const [data, setData] = useState([])
     const [open, setOpen] = useState(false)
@@ -135,4 +135,4 @@ const AddReview = () => {
     );
 };
 
-export default AddReview;
+export default UserAddReview;
