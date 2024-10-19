@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {
     Box,
+    Container,
     Typography,
     Card,
     CardContent,
@@ -10,21 +11,24 @@ import {
     FormControl,
     InputLabel,
     Grid,
+    Paper,
     IconButton
 } from "@mui/material";
 import {
+    Add as AddIcon,
+    Remove as RemoveIcon,
     Chair as ChairIcon,
     TableBar as TableIcon,
     PhotoCamera as CameraIcon,
-    Add as AddIcon,
-    Remove as RemoveIcon
+    Tv as TvIcon,
+    LocalGroceryStore as GroceryIcon,
+    RecordVoiceOver as SoundIcon,
+    AttachMoney
 } from "@mui/icons-material";
-import TvIcon from '@mui/icons-material/Tv';
-import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { toast } from "react-toastify";
 import TitleAndSubheading from "../../Shared/TitleAndSubheading";
-import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
 
 const ModeratorRequirements = () => {
     const [events, setEvents] = useState([]);
@@ -37,195 +41,224 @@ const ModeratorRequirements = () => {
     const [ledCount, setLedCount] = useState(0);
     const [soundPairCount, setSoundPairCount] = useState(0);
     const [selectedEvent, setSelectedEvent] = useState("");
+    const [selectedPackageName, setSelectedPackageName] = useState('');
+
+    const requirements = [
+        {
+            icon: ChairIcon,
+            label: "Chairs",
+            value: chairCount,
+            setValue: setChairCount,
+            step: 5,
+            price: 5,
+            color: "#1976d2",
+            bgColor: "#e3f2fd"
+        },
+        {
+            icon: TableIcon,
+            label: "Tables",
+            value: tableCount,
+            setValue: setTableCount,
+            step: 1,
+            price: 10,
+            color: "#2e7d32",
+            bgColor: "#e8f5e9"
+        },
+        {
+            icon: CameraIcon,
+            label: "Photo Booths",
+            value: photoBoothCount,
+            setValue: setPhotoBoothCount,
+            step: 1,
+            price: 500,
+            color: "#d81b60",
+            bgColor: "#fce4ec"
+        },
+        {
+            icon: GroceryIcon,
+            label: "Groceries",
+            value: groceryCount,
+            setValue: setGroceryCount,
+            step: 10,
+            price: 250,
+            color: "#0288d1",
+            bgColor: "#e1f5fe"
+        },
+        {
+            icon: TvIcon,
+            label: "LED Screens",
+            value: ledCount,
+            setValue: setLedCount,
+            step: 1,
+            price: 50,
+            color: "#00796b",
+            bgColor: "#e0f2f1"
+        },
+        {
+            icon: SoundIcon,
+            label: "Sound Pairs",
+            value: soundPairCount,
+            setValue: setSoundPairCount,
+            step: 1,
+            price: 750,
+            color: "#f57c00",
+            bgColor: "#fff3e0"
+        }
+    ];
 
     useEffect(() => {
         axiosSecure
             .get(`/eventConfirmed`)
             .then((response) => {
                 const filteredEvents = response.data.filter(
-                    (event) => event.event_organizer === user.email && event.moderator === "assigned"
+                    (event) =>
+                        event.event_organizer === user?.email &&
+                        event.moderator === "assigned" &&
+                        event.requirements !== "Requirements_Added"
                 );
                 setEvents(filteredEvents);
                 if (filteredEvents.length > 0) {
                     setSelectedEvent(filteredEvents[0]._id);
+                    setSelectedPackageName(filteredEvents[0].package_name);
                 }
             })
             .catch((error) => {
                 console.error("Error fetching events:", error);
             });
-    }, [axiosSecure, user.email]);
+    }, [axiosSecure, user?.email]);
 
-    // Prices for each item
-    const chairPrice = 5; // per piece
-    const tablePrice = 10; // per piece
-    const photoBoothPrice = 500; // per piece
-    const groceryPrice = 250; // per set
-    const ledPrice = 50; // per inch
-    const soundPairPrice = 750; // per pair
+    const handleEventSelect = (eventId) => {
+        const selectedEventObj = events.find(event => event._id === eventId);
+        setSelectedEvent(eventId);
+        setSelectedPackageName(selectedEventObj ? selectedEventObj.package_name : '');
+    };
 
-    // Function to calculate total amount
     const calculateTotalAmount = () => {
-        const chairAmount = chairCount * chairPrice;
-        const tableAmount = tableCount * tablePrice;
-        const photoBoothAmount = photoBoothCount * photoBoothPrice;
-        const groceryAmount = groceryCount * groceryPrice;
-        const ledAmount = ledCount * ledPrice;
-        const soundPairAmount = soundPairCount * soundPairPrice;
+        return requirements.reduce((total, item) => total + item.value * item.price, 0);
+    };
 
-        const totalAmount = chairAmount + tableAmount + photoBoothAmount + groceryAmount + ledAmount + soundPairAmount;
-        return totalAmount;
+    const handleSubmit = async () => {
+        const ModeratorRequiredTotalPrice = calculateTotalAmount();
+        const requiredData = {
+            // selectedPackageName,
+            chairCount,
+            tableCount,
+            photoBoothCount,
+            groceryCount,
+            ledCount,
+            soundPairCount,
+            ModeratorRequiredTotalPrice
+        };
+
+        try {
+            const res = await axiosSecure.put(`/requiredItem/${selectedEvent}`, requiredData);
+            console.log(res);
+            
+
+            if (res.data.result.modifiedCount) {
+                console.log(res);
+                
+                const bookingData = { requirements: "Requirements_Added" };
+                await axiosSecure.put(`/addOrganizer/${selectedEvent}`, bookingData);
+                toast.success('Item Sent To Admin For Approve', { autoClose: 5000 })
+            }
+        } catch (error) {
+            toast.error(error.message);
+            console.log(error);
+        }
     };
 
     return (
-        <Box sx={{ width: '100%', padding: '10px' }}>
-            <TitleAndSubheading title="Add Requirements"></TitleAndSubheading>
-            
+        <Container maxWidth="lg" sx={{ py: 4 }}>
+            {/* Title Section */}
+            <Box sx={{ textAlign: 'center', mb: 4 }}>
+                <TitleAndSubheading title="Moderator Requirements" />
+            </Box>
 
-            <FormControl fullWidth margin="normal">
-                <InputLabel id="event-select-label">Select Event</InputLabel>
-                <div className="flex justify-end">
-                    <h1 className="text-2xl text-blue-600">Total Amount: {calculateTotalAmount()} Taka</h1>
-
-                </div>
-                <Select
-                    labelId="event-select-label"
-                    id="event-select"
-                    value={selectedEvent}
-                    label="Select Event"
-                    onChange={(e) => setSelectedEvent(e.target.value)}
-                >
-                    {events.map((event) => (
-                        <MenuItem key={event._id} value={event._id}>
-                            {event.package_name}
-                        </MenuItem>
-                    ))}
-                </Select>
-            </FormControl>
-
-            <Grid container spacing={3} marginTop={2}>
-                <Grid item xs={12} md={4}>
-                    <Card>
-                        <CardContent>
-                            <Typography variant="h6" display="flex" alignItems="center">
-                                <ChairIcon sx={{ mr: 1 }} /> Chairs Needed
-                            </Typography>
-                            <Box display="flex" alignItems="center" justifyContent="space-between" mt={2}>
-                                <IconButton onClick={() => setChairCount(Math.max(0, chairCount - 50))} color="primary">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="h5">{chairCount}</Typography>
-                                <IconButton onClick={() => setChairCount(chairCount + 50)} color="primary">
-                                    <AddIcon />
-                                </IconButton>
-                            </Box>
-                        </CardContent>
-                    </Card>
+            {/* Event Selection and Total Amount */}
+            <Grid container spacing={3} sx={{ mb: 4 }}>
+                <Grid item xs={12} md={8}>
+                    <FormControl fullWidth>
+                        <InputLabel>Select Event</InputLabel>
+                        <Select
+                            value={selectedEvent}
+                            label="Select Event"
+                            onChange={(e) => handleEventSelect(e.target.value)}
+                        >
+                            {events.map((event) => (
+                                <MenuItem key={event._id} value={event._id}>
+                                    {event.package_name}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <Card>
+                    <Card sx={{ background: 'rgb(37,99,235)', color: 'white', height: '100%' }}>
                         <CardContent>
-                            <Typography variant="h6" display="flex" alignItems="center">
-                                <TableIcon sx={{ mr: 1 }} /> Tables Needed
-                            </Typography>
-                            <Box display="flex" alignItems="center" justifyContent="space-between" mt={2}>
-                                <IconButton onClick={() => setTableCount(Math.max(0, tableCount - 10))} color="primary">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="h5">{tableCount}</Typography>
-                                <IconButton onClick={() => setTableCount(tableCount + 10)} color="primary">
-                                    <AddIcon />
-                                </IconButton>
-                            </Box>
-                        </CardContent>
-                    </Card>
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    <Card>
-                        <CardContent>
-                            <Typography variant="h6" display="flex" alignItems="center">
-                                <CameraIcon sx={{ mr: 1 }} /> Photo Booths
-                            </Typography>
-                            <Box display="flex" alignItems="center" justifyContent="space-between" mt={2}>
-                                <IconButton onClick={() => setPhotoBoothCount(Math.max(0, photoBoothCount - 1))} color="primary">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="h5">{photoBoothCount}</Typography>
-                                <IconButton onClick={() => setPhotoBoothCount(photoBoothCount + 1)} color="primary">
-                                    <AddIcon />
-                                </IconButton>
+                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                <Paper elevation={0} sx={{ p: 2, borderRadius: '50%', bgcolor: 'white', mr: 2 }}>
+                                    <AttachMoney sx={{ color: 'rgb(37,99,235)' }} />
+                                </Paper>
+                                <Box>
+                                    <Typography variant="body2" sx={{ opacity: 0.9 }}>
+                                        Total Amount
+                                    </Typography>
+                                    <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+                                        ৳{calculateTotalAmount()}
+                                    </Typography>
+                                </Box>
                             </Box>
                         </CardContent>
                     </Card>
                 </Grid>
             </Grid>
 
-            <Grid container spacing={3} marginTop={2}>
-                <Grid item xs={12} md={4}>
-                    <Card>
-                        <CardContent>
-                            <Typography variant="h6" display="flex" alignItems="center">
-                                <LocalGroceryStoreIcon sx={{ mr: 1 }} /> Grocery Set Needed
-                            </Typography>
-                            <Box display="flex" alignItems="center" justifyContent="space-between" mt={2}>
-                                <IconButton onClick={() => setGroceryCount(Math.max(0, groceryCount - 1))} color="primary">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="h5">{groceryCount}</Typography>
-                                <IconButton onClick={() => setGroceryCount(groceryCount + 1)} color="primary">
-                                    <AddIcon />
-                                </IconButton>
-                            </Box>
-                        </CardContent>
-                    </Card>
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    <Card>
-                        <CardContent>
-                            <Typography variant="h6" display="flex" alignItems="center">
-                                <TvIcon sx={{ mr: 1 }} /> Led Screen Inches
-                            </Typography>
-                            <Box display="flex" alignItems="center" justifyContent="space-between" mt={2}>
-                                <IconButton onClick={() => setLedCount(Math.max(16, ledCount - 3))} color="primary">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="h5">{ledCount}</Typography>
-                                <IconButton onClick={() => setLedCount(ledCount + 3)} color="primary">
-                                    <AddIcon />
-                                </IconButton>
-                            </Box>
-                        </CardContent>
-                    </Card>
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    <Card>
-                        <CardContent>
-                            <Typography variant="h6" display="flex" alignItems="center">
-                                <RecordVoiceOverIcon sx={{ mr: 1 }} /> Sound System Pair
-                            </Typography>
-                            <Box display="flex" alignItems="center" justifyContent="space-between" mt={2}>
-                                <IconButton onClick={() => setSoundPairCount(Math.max(2, soundPairCount - 1))} color="primary">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="h5">{soundPairCount}</Typography>
-                                <IconButton onClick={() => setSoundPairCount(soundPairCount + 1)} color="primary">
-                                    <AddIcon />
-                                </IconButton>
-                            </Box>
-                        </CardContent>
-                    </Card>
-                </Grid>
+            {/* Requirements Grid */}
+            <Grid container spacing={3}>
+                {requirements.map((item, index) => (
+                    <Grid item xs={12} sm={6} md={4} key={index}>
+                        <Card elevation={2} sx={{ transition: 'all 0.3s', '&:hover': { transform: 'translateY(-4px)', boxShadow: 6 } }}>
+                            <CardContent>
+                                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                                    <Paper elevation={0} sx={{ p: 2, borderRadius: '50%', bgcolor: item.bgColor, mr: 2 }}>
+                                        <item.icon sx={{ color: item.color, fontSize: 32 }} />
+                                    </Paper>
+                                    <Box>
+                                        <Typography color="text.secondary" variant="body2">
+                                            {item.label}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary">
+                                            ৳{item.price} each
+                                        </Typography>
+                                    </Box>
+                                </Box>
+                                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                    <IconButton onClick={() => item.setValue(Math.max(0, item.value - item.step))} sx={{ bgcolor: item.bgColor, '&:hover': { bgcolor: item.bgColor } }}>
+                                        <RemoveIcon sx={{ color: item.color }} />
+                                    </IconButton>
+                                    <Typography variant="h5" sx={{ fontWeight: 'medium' }}>{item.value}</Typography>
+                                    <IconButton onClick={() => item.setValue(item.value + item.step)} sx={{ bgcolor: item.bgColor, '&:hover': { bgcolor: item.bgColor } }}>
+                                        <AddIcon sx={{ color: item.color }} />
+                                    </IconButton>
+                                </Box>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                ))}
             </Grid>
 
+            {/* Submit Button */}
             <Button
                 variant="contained"
-                color="primary"
-                fullWidth
                 size="large"
-                style={{ marginTop: '2rem' }}
+                fullWidth
+                sx={{ mt: 4, py: 2, background: 'rgb(37,99,235)', '&:hover': { background: 'rgb(37,99,235)' } }}
+                onClick={handleSubmit}
             >
                 Submit Requirements
             </Button>
-        </Box>
+        </Container>
     );
 };
 

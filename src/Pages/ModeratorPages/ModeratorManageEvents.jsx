@@ -15,8 +15,9 @@ const ModeratorManageEvents = () => {
             .get(`/eventConfirmed`)
             .then((response) => {
                 const filteredCarts = response.data.filter(cart =>
-                    cart.event_organizer === user.email && cart.moderator === "assigned"
+                    (cart.moderator === "Requirements_Added" || cart.moderator === "assigned") && cart.event_organizer === user?.email
                 );
+                
                 setEvents(filteredCarts);
                 // setLoading(false);
             })
@@ -24,7 +25,7 @@ const ModeratorManageEvents = () => {
                 console.error("Error fetching events:", error);
                 // setLoading(false);
             });
-    }, [axiosSecure, user.email]); // added user.email to the dependency array
+    }, [axiosSecure, user?.email]);
 
     console.log(events);
     const handleSave = async (id) => {
@@ -32,7 +33,7 @@ const ModeratorManageEvents = () => {
     };
 
     return (
-        <div className="mx-auto">
+        <div className="">
             <TitleAndSubheading title="Manage Events"></TitleAndSubheading>
             <div className="p-6 overflow-scroll px-0">
                 <table className="mt-4 w-full min-w-max table-auto text-left">

@@ -28,6 +28,7 @@ import ModeratorStaffs from "../Pages/ModeratorPages/ModeratorStaffs";
 import ProfileSettings from "../Shared/ProfileSettings";
 import UserConfirmedEvents from "../Pages/UserPages/UserConfirmedEvents";
 import UserSupportPage from "../Pages/UserPages/UserSupportPage";
+import ModeratorPackageDetails from "../Pages/ModeratorPages/ModeratorPackageDetails";
 
 
 export const router = createBrowserRouter([
@@ -137,7 +138,7 @@ export const router = createBrowserRouter([
             // },
             {
                 path: '/dashboard/mod/manage-budget',
-                element: <Demo></Demo>,
+                element: <ModeratorPackageDetails></ModeratorPackageDetails>,
             },
             // users routes
             {
