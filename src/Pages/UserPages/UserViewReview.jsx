@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import TitleAndSubheading from '../../Shared/TitleAndSubheading';
-import { Box, Button, Modal, Rating } from '@mui/material';
-import axios from 'axios';
+import { Box, Button, Modal } from '@mui/material';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import useAuth from '../../hooks/useAuth';
+import { Rating, ThinRoundedStar } from '@smastrom/react-rating';
 
 const UserViewReview = () => {
     const axiosSecure = useAxiosSecure()
@@ -12,11 +12,11 @@ const UserViewReview = () => {
     const [reviews, setReviews] = useState([])
     const [singleReview, setSingleReview] = useState(null)
     const { user } = useAuth()
-    console.log('single' , singleReview);
-    
+    console.log('single', singleReview);
+
     const handleOpen = (review) => {
         console.log(review);
-        
+
         setSingleReview(review)
         setOpen(true)
     };
@@ -32,6 +32,11 @@ const UserViewReview = () => {
         boxShadow: 24,
         p: 4,
     };
+    const myStyles = {
+        itemShapes: ThinRoundedStar,
+        activeFillColor: '#3A86FF',
+        inactiveFillColor: '#3A86FF50',
+    }
 
     useEffect(() => {
         if (user) {
@@ -86,9 +91,10 @@ const UserViewReview = () => {
                                 <span className="text-center">How was your experience?</span>
                                 <div>
                                     <Rating
-
+                                        itemStyles={myStyles}
                                         style={{ maxWidth: 180 }}
                                         value={singleReview?.rating}
+                                        readOnly
                                     />
                                 </div>
                             </div>
