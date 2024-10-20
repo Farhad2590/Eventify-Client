@@ -61,8 +61,8 @@ const ModeratorRequirements = () => {
             setValue: setTableCount,
             step: 1,
             price: 10,
-            color: "#2e7d32",
-            bgColor: "#e8f5e9"
+            color: "#1976d2",
+            bgColor: "#e3f2fd"
         },
         {
             icon: CameraIcon,
@@ -71,8 +71,8 @@ const ModeratorRequirements = () => {
             setValue: setPhotoBoothCount,
             step: 1,
             price: 500,
-            color: "#d81b60",
-            bgColor: "#fce4ec"
+            color: "#1976d2",
+            bgColor: "#e3f2fd"
         },
         {
             icon: GroceryIcon,
@@ -81,8 +81,8 @@ const ModeratorRequirements = () => {
             setValue: setGroceryCount,
             step: 10,
             price: 250,
-            color: "#0288d1",
-            bgColor: "#e1f5fe"
+            color: "#1976d2",
+            bgColor: "#e3f2fd"
         },
         {
             icon: TvIcon,
@@ -91,8 +91,8 @@ const ModeratorRequirements = () => {
             setValue: setLedCount,
             step: 1,
             price: 50,
-            color: "#00796b",
-            bgColor: "#e0f2f1"
+            color: "#1976d2",
+            bgColor: "#e3f2fd"
         },
         {
             icon: SoundIcon,
@@ -101,8 +101,8 @@ const ModeratorRequirements = () => {
             setValue: setSoundPairCount,
             step: 1,
             price: 750,
-            color: "#f57c00",
-            bgColor: "#fff3e0"
+            color: "#1976d2",
+            bgColor: "#e3f2fd"
         }
     ];
 

@@ -1,246 +1,384 @@
-import React from 'react';
-import { 
+import React, { useState, useEffect } from 'react';
+import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { toast } from "react-toastify";
+import {
   Box,
   Card,
   CardContent,
   Typography,
   Grid,
-  Paper,
   Container,
-  Divider
+  FormControl,
+  Select,
+  MenuItem,
+  CircularProgress,
+  Paper,
+  Avatar,
+  Divider,
+  TextField,
+  Stack,
+  Button
 } from '@mui/material';
-import { 
-  PhotoCamera as PhotoCameraIcon, 
-  ShoppingBag as ShoppingBagIcon, 
-  Tv as TvIcon, 
-  MusicNote as MusicNoteIcon, 
-  TableBar as TableBarIcon, 
-  People as PeopleIcon, 
-  Restaurant as RestaurantIcon, 
-  Videocam as VideocamIcon,
-  Cake as CakeIcon, 
-  AttachMoney as AttachMoneyIcon, 
-  LocationCity as LocationCityIcon,
-  EventSeat as EventSeatIcon,
-  Inventory as InventoryIcon
+import {
+  CameraAlt,
+  Restaurant,
+  Videocam,
+  Cake,
+  LocationCity,
+  RestaurantMenu,
+  Chair,
+  ShoppingCart,
+  Light,
+  Camera,
+  Speaker,
+  TableBar,
+  AttachMoney,
+  DirectionsCar,
+  CalculateOutlined
 } from '@mui/icons-material';
+import TitleAndSubheading from '../../Shared/TitleAndSubheading';
 
 const ModeratorPackageDetails = () => {
-  const items = [
-    {
-      icon: InventoryIcon,
-      label: "Package Name",
-      value: "Ultimate New Year Package",
-      category: "General",
-      color: "#9c27b0",
-      bgColor: "#f3e5f5"
-    },
-    {
-      icon: PeopleIcon,
-      label: "Photographers",
-      value: "5 persons",
-      category: "Staff",
-      color: "#1976d2",
-      bgColor: "#e3f2fd"
-    },
-    {
-      icon: PeopleIcon,
-      label: "Waiters",
-      value: "5 persons",
-      category: "Staff",
-      color: "#1976d2",
-      bgColor: "#e3f2fd"
-    },
-    {
-      icon: VideocamIcon,
-      label: "Videographer",
-      value: "1 person",
-      category: "Staff",
-      color: "#d81b60",
-      bgColor: "#fce4ec"
-    },
-    {
-      icon: EventSeatIcon,
-      label: "Chairs",
-      value: "50 pieces",
-      category: "Equipment",
-      color: "#2e7d32",
-      bgColor: "#e8f5e9"
-    },
-    {
-      icon: TableBarIcon,
-      label: "Tables",
-      value: "10 pieces",
-      category: "Equipment",
-      color: "#2e7d32",
-      bgColor: "#e8f5e9"
-    },
-    {
-      icon: PhotoCameraIcon,
-      label: "Photo Booth",
-      value: "1 unit",
-      category: "Equipment",
-      color: "#d81b60",
-      bgColor: "#fce4ec"
-    },
-    {
-      icon: ShoppingBagIcon,
-      label: "Grocery",
-      value: "1 set",
-      category: "Supplies",
-      color: "#ed6c02",
-      bgColor: "#fff3e0"
-    },
-    {
-      icon: TvIcon,
-      label: "LED Screens",
-      value: "3 units",
-      category: "Equipment",
-      color: "#d32f2f",
-      bgColor: "#ffebee"
-    },
-    {
-      icon: MusicNoteIcon,
-      label: "Sound Pairs",
-      value: "1 pair",
-      category: "Equipment",
-      color: "#3949ab",
-      bgColor: "#e8eaf6"
-    },
-    {
-      icon: CakeIcon,
-      label: "Cake",
-      value: "4 pounds",
-      category: "Food",
-      color: "#c2185b",
-      bgColor: "#fce4ec"
-    },
-    {
-      icon: LocationCityIcon,
-      label: "Club Space Fee",
-      value: "$2,100",
-      category: "Venue",
-      color: "#0288d1",
-      bgColor: "#e1f5fe"
-    },
-    {
-      icon: RestaurantIcon,
-      label: "Catering per Plate",
-      value: "$100",
-      category: "Food",
-      color: "#00796b",
-      bgColor: "#e0f2f1"
+  const [events, setEvents] = useState([]);
+  const [selectedEvent, setSelectedEvent] = useState('');
+  const [selectedIdEvent, setSelectedIdEvent] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [additionalCosts, setAdditionalCosts] = useState('');
+  const [transportationCosts, setTransportationCosts] = useState('');
+  const [grandTotal, setGrandTotal] = useState(0);
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+
+  // console.log(grandTotal);
+
+
+  useEffect(() => {
+    setLoading(true);
+    axiosSecure.get(`/items`)
+      .then((response) => {
+
+        setEvents(response.data);
+        if (response.data.length > 0) {
+
+          setSelectedEvent(response.data[0].selectedPackageName);
+          setSelectedIdEvent(response.data[0].selectedEvent);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching events:", error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [axiosSecure, user?.email]);
+  const handleClick = async () => {
+
+    const payloadData = {
+      grandTotal: grandTotal,
+      additionalCosts: parseFloat(additionalCosts) || 0,
+      transportationCosts: parseFloat(transportationCosts) || 0,
+      event: "completed"
+
+    };
+    console.log(payloadData);
+    try {
+      const res = await axiosSecure.put(`/requiredItem/${selectedIdEvent}`, payloadData);
+      console.log(res);
+
+
+      if (res.data.result.modifiedCount) {
+        const bookingData = {
+          moderator: "completed"
+        };
+        const { data: update } = await axiosSecure.put(`/addOrganizer/${selectedIdEvent}`, bookingData);
+        console.log("Update successful:", update);
+        toast.success('Item Sent To Admin For Approve', { autoClose: 5000 })
+      }
+    } catch (error) {
+      toast.error(error.message);
+      console.log(error);
     }
+
+  };
+
+  const selectedEventData = events.find(event => event.selectedPackageName === selectedEvent);
+
+  const detailCards = [
+    { icon: <CameraAlt />, label: 'Photographer Person', value: 'photografferPerson', color: '#2196F3' },
+    { icon: <Restaurant />, label: 'Waiter Person', value: 'waiterPerson', color: '#2196F3' },
+    { icon: <Videocam />, label: 'Videographer', value: 'vediographer', color: '#2196F3' },
+    { icon: <Cake />, label: 'Cake Pound', value: 'cakePound', color: '#2196F3' },
+    { icon: <LocationCity />, label: 'Clubs SF', value: 'clubsSF', color: '#2196F3' },
+    { icon: <RestaurantMenu />, label: 'Catering Per Plate', value: 'cateringPerPlate', color: '#2196F3' },
+    { icon: <Chair />, label: 'Chair Count', value: 'chairCount', color: '#2196F3' },
+    { icon: <ShoppingCart />, label: 'Grocery Count', value: 'groceryCount', color: '#2196F3' },
+    { icon: <Light />, label: 'LED Count', value: 'ledCount', color: '#2196F3' },
+    { icon: <Camera />, label: 'Photo Booth Count', value: 'photoBoothCount', color: '#2196F3' },
+    { icon: <Speaker />, label: 'Sound Pair Count', value: 'soundPairCount', color: '#2196F3' },
+    { icon: <TableBar />, label: 'Table Count', value: 'tableCount', color: '#2196F3' },
   ];
 
-  const categories = [...new Set(items.map(item => item.category))];
+  const calculateGrandTotal = (data) => {
+    if (!data) return 0;
+    const baseTotal = (data.ModeratorStaffTotalPrice || 0) + (data.ModeratorRequiredTotalPrice || 0);
+    const additional = parseFloat(additionalCosts) || 0;
+    const transportation = parseFloat(transportationCosts) || 0;
+    return baseTotal + additional + transportation;
+  };
+
+  useEffect(() => {
+    if (selectedEventData) {
+      setGrandTotal(calculateGrandTotal(selectedEventData));
+    }
+  }, [selectedEventData, additionalCosts, transportationCosts]);
+
+  if (loading) {
+    return (
+      <Container sx={{
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}>
+        <CircularProgress size={60} thickness={4} />
+      </Container>
+    );
+  }
 
   return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
-      <Box sx={{ textAlign: 'center', mb: 4 }}>
-        <Typography variant="h3" component="h1" 
-          sx={{ 
-            color: 'primary.main',
-            fontWeight: 'bold',
-            mb: 2
-          }}
-        >
-          Event Package Details
-        </Typography>
-        <Divider sx={{ 
-          width: '100px', 
-          margin: 'auto',
-          borderWidth: 2,
-          borderColor: 'primary.main'
-        }} />
-      </Box>
-      {categories.map(category => (
-        <Box key={category} sx={{ mb: 4 }}>
-          <Typography variant="h5" sx={{ mb: 3, fontWeight: 'medium' }}>
-            {category}
-          </Typography>
-          <Grid container spacing={3}>
-            {items
-              .filter(item => item.category === category)
-              .map((item, index) => (
-                <Grid item xs={12} sm={6} md={4} key={index}>
-                  <Card 
+    <Container maxWidth="lg" sx={{ py: 6 }}>
+      <Paper
+        elevation={3}
+        sx={{
+          p: 4,
+          borderRadius: 3,
+          background: 'linear-gradient(145deg, #ffffff 0%, #f5f5f5 100%)'
+        }}
+      >
+        <Box sx={{ textAlign: 'center', mb: 5 }}>
+          <TitleAndSubheading title="Event Package Details" />
+          <FormControl
+            sx={{
+              minWidth: 300,
+              mt: 3,
+              '& .MuiOutlinedInput-root': {
+                borderRadius: 2,
+                '&:hover fieldset': {
+                  borderColor: '#2196F3',
+                },
+              }
+            }}
+          >
+            <Select
+              value={selectedEvent}
+              onChange={(e) => setSelectedEvent(e.target.value)}
+              displayEmpty
+              sx={{
+                bgcolor: 'white',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+              }}
+            >
+              {events.map((event) => (
+                <MenuItem key={event.selectedPackageName} value={event.selectedPackageName}>
+                  {event.selectedPackageName}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
+
+        {selectedEventData && (
+          <>
+            <Grid container spacing={3} sx={{ mb: 4 }}>
+              {detailCards.map((detail, index) => (
+                <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+                  <Card
                     elevation={2}
                     sx={{
-                      transition: 'all 0.3s',
+                      height: '100%',
+                      transition: 'transform 0.2s, box-shadow 0.2s',
                       '&:hover': {
                         transform: 'translateY(-4px)',
-                        boxShadow: 6
-                      }
+                        boxShadow: '0 8px 16px rgba(0,0,0,0.1)',
+                      },
+                      borderRadius: 2,
                     }}
                   >
-                    <CardContent>
-                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Paper
-                          elevation={0}
-                          sx={{
-                            p: 2,
-                            borderRadius: '50%',
-                            bgcolor: item.bgColor,
-                            mr: 2
-                          }}
-                        >
-                          <item.icon sx={{ 
-                            color: item.color,
-                            fontSize: 32
-                          }} />
-                        </Paper>
-                        <Box>
-                          <Typography color="text.secondary" variant="body2">
-                            {item.label}
-                          </Typography>
-                          <Typography variant="h6" sx={{ fontWeight: 'medium' }}>
-                            {item.value}
-                          </Typography>
-                        </Box>
-                      </Box>
+                    <CardContent sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      textAlign: 'center',
+                      p: 3,
+                    }}>
+                      <Avatar
+                        sx={{
+                          bgcolor: detail.color,
+                          width: 56,
+                          height: 56,
+                          mb: 2,
+                        }}
+                      >
+                        {detail.icon}
+                      </Avatar>
+                      <Typography
+                        variant="subtitle2"
+                        color="text.secondary"
+                        gutterBottom
+                      >
+                        {detail.label}
+                      </Typography>
+                      <Typography
+                        variant="h6"
+                        sx={{
+                          fontWeight: 600,
+                          color: detail.color
+                        }}
+                      >
+                        {selectedEventData[detail.value]}
+                      </Typography>
                     </CardContent>
                   </Card>
                 </Grid>
-            ))}
-          </Grid>
-        </Box>
-      ))}
-      <Card 
-        elevation={3}
-        sx={{
-          mt: 4,
-          background: 'linear-gradient(45deg, #9c27b0 30%, #d81b60 90%)',
-          color: 'white'
-        }}
-      >
-        <CardContent>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Paper
-              elevation={0}
-              sx={{
-                p: 2,
-                borderRadius: '50%',
-                bgcolor: 'rgba(255, 255, 255, 0.2)',
-                mr: 2
-              }}
-            >
-              <AttachMoneyIcon sx={{ 
-                color: 'white',
-                fontSize: 32
-              }} />
-            </Paper>
-            <Box>
-              <Typography variant="body2" sx={{ opacity: 0.9 }}>
-                Moderator Required Total Price
-              </Typography>
-              <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
-                ${2000}
-              </Typography>
-            </Box>
-          </Box>
-        </CardContent>
-      </Card>
+              ))}
+            </Grid>
+
+            <Divider sx={{ my: 4 }} />
+
+
+            <Grid container spacing={3} sx={{ justifyContent: 'center' }}>
+              <Grid item xs={12} md={6}>
+                <Card
+                  elevation={2}
+                  sx={{
+                    height: '100%',
+                    borderRadius: 2,
+                    transition: 'transform 0.2s, box-shadow 0.2s',
+                    '&:hover': {
+                      transform: 'translateY(-4px)',
+                      boxShadow: '0 8px 16px rgba(0,0,0,0.1)',
+                    },
+                  }}
+                >
+                  <CardContent>
+                    <Typography variant="h6" gutterBottom sx={{ mb: 3, fontWeight: 600 }}>
+                      Additional Costs
+                    </Typography>
+                    <Stack spacing={3}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                        <Avatar sx={{ bgcolor: '#2196F3' }}>
+                          <AttachMoney />
+                        </Avatar>
+                        <TextField
+                          fullWidth
+                          label="Additional Costs"
+                          type="number"
+                          value={additionalCosts}
+                          onChange={(e) => setAdditionalCosts(e.target.value)}
+                          variant="outlined"
+                          InputProps={{
+                            startAdornment: <Typography sx={{ mr: 1 }}>$</Typography>,
+                          }}
+                        />
+                      </Box>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                        <Avatar sx={{ bgcolor: '#2196F3' }}>
+                          <DirectionsCar />
+                        </Avatar>
+                        <TextField
+                          fullWidth
+                          label="Transportation Costs"
+                          type="number"
+                          value={transportationCosts}
+                          onChange={(e) => setTransportationCosts(e.target.value)}
+                          variant="outlined"
+                          InputProps={{
+                            startAdornment: <Typography sx={{ mr: 1 }}>$</Typography>,
+                          }}
+                        />
+                      </Box>
+                    </Stack>
+                  </CardContent>
+                </Card>
+              </Grid>
+
+
+              <Grid item xs={12} md={6}>
+                <Card
+                  elevation={3}
+                  sx={{
+                    height: '100%',
+                    background: 'rgb(37,99,235)',
+                    color: 'white',
+                    borderRadius: 3,
+                  }}
+                >
+                  <CardContent sx={{ p: 4 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+                      <Avatar
+                        sx={{
+                          bgcolor: 'white',
+                          width: 64,
+                          height: 64,
+                          mr: 3,
+                        }}
+                      >
+                        <CalculateOutlined sx={{ color: '#2196F3', fontSize: 32 }} />
+                      </Avatar>
+                      <Box>
+                        <Typography variant="h6" sx={{ mb: 1 }}>
+                          Grand Total
+                        </Typography>
+                        <Typography variant="h4" sx={{ fontWeight: 700 }}>
+                          ${grandTotal.toLocaleString()}
+                        </Typography>
+                      </Box>
+                    </Box>
+
+                    <Divider sx={{ my: 2, borderColor: 'rgba(255, 255, 255, 0.2)' }} />
+
+                    <Stack spacing={1} sx={{ mt: 2 }}>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <Typography variant="body2">Base Amount:</Typography>
+                        <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                          ${((selectedEventData?.ModeratorStaffTotalPrice || 0) +
+                            (selectedEventData?.ModeratorRequiredTotalPrice || 0)).toLocaleString()}
+                        </Typography>
+                      </Box>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <Typography variant="body2">Additional Costs:</Typography>
+                        <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                          ${(parseFloat(additionalCosts) || 0).toLocaleString()}
+                        </Typography>
+                      </Box>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <Typography variant="body2">Transportation:</Typography>
+                        <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                          ${(parseFloat(transportationCosts) || 0).toLocaleString()}
+                        </Typography>
+                      </Box>
+
+                    </Stack>
+
+                  </CardContent>
+
+                </Card>
+
+              </Grid>
+
+              <Button
+                variant="contained"
+                sx={{ mt: 2 }}  // Add margin-top to separate the button from the box
+                onClick={handleClick}  // Pass the parameter here
+                fullWidth  // This makes the button take full width
+              >
+                Click Me
+              </Button>
+            </Grid>
+          </>
+        )}
+      </Paper>
     </Container>
   );
 };
