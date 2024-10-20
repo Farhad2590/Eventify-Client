@@ -61,8 +61,8 @@ const ModeratorStaffs = () => {
       value: waiterPerson,
       setValue: setWaiterPerson,
       step: 5,
-      color: "#2e7d32",
-      bgColor: "#e8f5e9",
+      color: "#1976d2",
+      bgColor: "#e3f2fd",
       price: 200
     },
     {
@@ -71,8 +71,8 @@ const ModeratorStaffs = () => {
       value: vediographer,
       setValue: setVediographer,
       step: 1,
-      color: "#d81b60",
-      bgColor: "#fce4ec",
+      color: "#1976d2",
+      bgColor: "#e3f2fd",
       price: 1500
     },
     {
@@ -81,8 +81,8 @@ const ModeratorStaffs = () => {
       value: cakePound,
       setValue: setcakePound,
       step: 1,
-      color: "#c2185b",
-      bgColor: "#fce4ec",
+      color: "#1976d2",
+      bgColor: "#e3f2fd",
       price: 300
     },
     {
@@ -91,8 +91,8 @@ const ModeratorStaffs = () => {
       value: clubsSF,
       setValue: setClubsSF,
       step: 1050,
-      color: "#0288d1",
-      bgColor: "#e1f5fe",
+      color: "#1976d2",
+      bgColor: "#e3f2fd",
       price: 20
     },
     {
@@ -101,8 +101,8 @@ const ModeratorStaffs = () => {
       value: cateringPerPlate,
       setValue: setcateringPerPlate,
       step: 50,
-      color: "#00796b",
-      bgColor: "#e0f2f1",
+      color: "#1976d2",
+      bgColor: "#e3f2fd",
       price: 150
     }
   ];
@@ -138,7 +138,7 @@ const ModeratorStaffs = () => {
   }, [axiosSecure, user?.email]);
 
   const handleSubmit = async () => {
-    const ModeratorRequiredTotalPrice = calculateTotalAmount();
+    const ModeratorStaffTotalPrice = calculateTotalAmount();
     const confirmedStaffData = {
       selectedPackageName,
       photografferPerson,
@@ -147,7 +147,7 @@ const ModeratorStaffs = () => {
       cakePound,
       clubsSF,
       cateringPerPlate,
-      ModeratorRequiredTotalPrice,
+      ModeratorStaffTotalPrice,
       selectedEvent
     };
 

@@ -23,20 +23,6 @@ const ModeartorEventstatus = () => {
             console.log("Error updating:", err.message);
         }
     };
-    const handleCompleted = async (id) => {
-        console.log(id);
-
-        try {
-            const bookingData = {
-                event_organizer: "completed",
-            };
-            const { data: update } = await axiosSecure.put(`/addOrganizer/${id}`, bookingData);
-            console.log("Update successful:", update);
-            refetch();
-        } catch (err) {
-            console.log("Error updating:", err.message);
-        }
-    };
     const handleAccept = async (id) => {
         console.log(id);
 
@@ -99,16 +85,14 @@ const ModeartorEventstatus = () => {
                                     {project.moderator === "" ? (
                                         <button className="btn" onClick={() => handleAccept(project._id)}>Accept Event</button>
                                     ) : (
-                                        <span>Ongoing</span>
+                                        <span>{project.moderator}</span>
                                     )}
                                 </td>
 
                                 <td className="p-4 border-b border-blue-gray-50">
-                                    {project.moderator === "" ? (
-                                        <button className="btn" onClick={() => handleSave(project._id)}>Ignore Event</button>
-                                    ) : (
-                                        <button className="btn" onClick={() => handleCompleted(project)}>Event Completed</button>
-                                    )}
+
+                                    <button className="btn" onClick={() => handleSave(project._id)}>Ignore Event</button>
+
                                 </td>
 
 
