@@ -165,147 +165,148 @@ const ModeratorStaffs = () => {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
-      {/* Title Section */}
-      <Box sx={{ textAlign: 'center', mb: 4 }}>
-        <TitleAndSubheading title="Staff Requirements"></TitleAndSubheading>
-        {/* <Divider sx={{ 
-          width: '100px', 
-          margin: 'auto',
-          borderWidth: 2,
-          borderColor: 'primary.main'
-        }} /> */}
-      </Box>
+    <Container maxWidth="lg" >
+      <Paper
+        elevation={3}
+        sx={{
+          p: 2,
+          borderRadius: 3,
+          background: 'linear-gradient(145deg, #ffffff 0%, #f5f5f5 100%)'
+        }}
+      >
+        <Box sx={{ textAlign: 'center', mb: 4 }}>
+          <TitleAndSubheading title="Staff Requirements"></TitleAndSubheading>
+        </Box>
 
-      {/* Event Selection and Total Amount */}
-      <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid item xs={12} md={8}>
-          <FormControl fullWidth>
-            <InputLabel>Select Event</InputLabel>
-            <Select
-              value={selectedEvent}
-              label="Select Event"
-              onChange={(e) => handleEventSelect(e.target.value)}
-            >
-              {events.map((event) => (
-                <MenuItem key={event._id} value={event._id}>
-                  {event.package_name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Card 
-            sx={{
-              background: 'rgb(37,99,235)',
-              color: 'white',
-              height: '100%'
-            }}
-          >
-            <CardContent>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <Paper
-                  elevation={0}
-                  sx={{
-                    p: 2,
-                    borderRadius: '50%',
-                    bgcolor: 'white',
-                    mr: 2
-                  }}
-                >
-                  <AttachMoney sx={{ color: 'rgb(37,99,235)' }} />
-                </Paper>
-                <Box>
-                  <Typography variant="body2" sx={{ opacity: 0.9 }}>
-                    Total Amount
-                  </Typography>
-                  <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
-                    ৳{calculateTotalAmount()}
-                  </Typography>
-                </Box>
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
-
-      {/* Staff Items Grid */}
-      <Grid container spacing={3}>
-        {staffItems.map((item, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
+        <Grid container spacing={3} sx={{ mb: 4 }}>
+          <Grid item xs={12} md={8}>
+            <FormControl fullWidth>
+              <InputLabel>Select Event</InputLabel>
+              <Select
+                value={selectedEvent}
+                label="Select Event"
+                onChange={(e) => handleEventSelect(e.target.value)}
+              >
+                {events.map((event) => (
+                  <MenuItem key={event._id} value={event._id}>
+                    {event.package_name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} md={4}>
             <Card
-              elevation={2}
               sx={{
-                transition: 'all 0.3s',
-                '&:hover': {
-                  transform: 'translateY(-4px)',
-                  boxShadow: 6
-                }
+                background: 'rgb(37,99,235)',
+                color: 'white',
+                height: '100%'
               }}
             >
               <CardContent>
-                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
                   <Paper
                     elevation={0}
                     sx={{
                       p: 2,
                       borderRadius: '50%',
-                      bgcolor: item.bgColor,
+                      bgcolor: 'white',
                       mr: 2
                     }}
                   >
-                    <item.icon sx={{ color: item.color, fontSize: 32 }} />
+                    <AttachMoney sx={{ color: 'rgb(37,99,235)' }} />
                   </Paper>
                   <Box>
-                    <Typography color="text.secondary" variant="body2">
-                      {item.label}
+                    <Typography variant="body2" sx={{ opacity: 0.9 }}>
+                      Total Amount
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      ৳{item.price} each
+                    <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+                      ৳{calculateTotalAmount()}
                     </Typography>
                   </Box>
-                </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <IconButton 
-                    onClick={() => item.setValue(Math.max(0, item.value - item.step))}
-                    sx={{ bgcolor: item.bgColor, '&:hover': { bgcolor: item.bgColor } }}
-                  >
-                    <RemoveIcon sx={{ color: item.color }} />
-                  </IconButton>
-                  <Typography variant="h5" sx={{ fontWeight: 'medium' }}>
-                    {item.value}
-                  </Typography>
-                  <IconButton 
-                    onClick={() => item.setValue(item.value + item.step)}
-                    sx={{ bgcolor: item.bgColor, '&:hover': { bgcolor: item.bgColor } }}
-                  >
-                    <AddIcon sx={{ color: item.color }} />
-                  </IconButton>
                 </Box>
               </CardContent>
             </Card>
           </Grid>
-        ))}
-      </Grid>
+        </Grid>
 
-      {/* Submit Button */}
-      <Button
-        variant="contained"
-        size="large"
-        fullWidth
-        sx={{ 
-          mt: 4,
-          py: 2,
-          background: 'rgb(37,99,235)',
-          '&:hover': {
-            background: 'rgb(37,99,235)'
-          }
-        }}
-        onClick={handleSubmit}
-      >
-        Submit Requirements
-      </Button>
+        {/* Staff Items Grid */}
+        <Grid container spacing={3}>
+          {staffItems.map((item, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Card
+                elevation={2}
+                sx={{
+                  transition: 'all 0.3s',
+                  '&:hover': {
+                    transform: 'translateY(-4px)',
+                    boxShadow: 6
+                  }
+                }}
+              >
+                <CardContent>
+                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                    <Paper
+                      elevation={0}
+                      sx={{
+                        p: 2,
+                        borderRadius: '50%',
+                        bgcolor: item.bgColor,
+                        mr: 2
+                      }}
+                    >
+                      <item.icon sx={{ color: item.color, fontSize: 32 }} />
+                    </Paper>
+                    <Box>
+                      <Typography color="text.secondary" variant="body2">
+                        {item.label}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        ৳{item.price} each
+                      </Typography>
+                    </Box>
+                  </Box>
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <IconButton
+                      onClick={() => item.setValue(Math.max(0, item.value - item.step))}
+                      sx={{ bgcolor: item.bgColor, '&:hover': { bgcolor: item.bgColor } }}
+                    >
+                      <RemoveIcon sx={{ color: item.color }} />
+                    </IconButton>
+                    <Typography variant="h5" sx={{ fontWeight: 'medium' }}>
+                      {item.value}
+                    </Typography>
+                    <IconButton
+                      onClick={() => item.setValue(item.value + item.step)}
+                      sx={{ bgcolor: item.bgColor, '&:hover': { bgcolor: item.bgColor } }}
+                    >
+                      <AddIcon sx={{ color: item.color }} />
+                    </IconButton>
+                  </Box>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+
+        {/* Submit Button */}
+        <Button
+          variant="contained"
+          size="large"
+          fullWidth
+          sx={{
+            mt: 4,
+            py: 2,
+            background: 'rgb(37,99,235)',
+            '&:hover': {
+              background: 'rgb(37,99,235)'
+            }
+          }}
+          onClick={handleSubmit}
+        >
+          Submit Requirements
+        </Button>
+      </Paper>
     </Container>
   );
 };

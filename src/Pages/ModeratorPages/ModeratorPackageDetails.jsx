@@ -72,6 +72,8 @@ const ModeratorPackageDetails = () => {
         setLoading(false);
       });
   }, [axiosSecure, user?.email]);
+
+  
   const handleClick = async () => {
 
     const payloadData = {
@@ -147,11 +149,11 @@ const ModeratorPackageDetails = () => {
   }
 
   return (
-    <Container maxWidth="lg" sx={{ py: 6 }}>
+    <Container maxWidth="lg" >
       <Paper
         elevation={3}
         sx={{
-          p: 4,
+          p: 2,
           borderRadius: 3,
           background: 'linear-gradient(145deg, #ffffff 0%, #f5f5f5 100%)'
         }}
@@ -367,15 +369,18 @@ const ModeratorPackageDetails = () => {
 
               </Grid>
 
+
+            </Grid>
+            <Box>
               <Button
                 variant="contained"
-                sx={{ mt: 2 }}  // Add margin-top to separate the button from the box
-                onClick={handleClick}  // Pass the parameter here
-                fullWidth  // This makes the button take full width
+                sx={{ mt: 2 }}
+                onClick={handleClick}
+                fullWidth
               >
-                Click Me
+                Submit
               </Button>
-            </Grid>
+            </Box>
           </>
         )}
       </Paper>
