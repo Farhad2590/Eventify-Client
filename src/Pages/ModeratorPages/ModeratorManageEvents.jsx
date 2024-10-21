@@ -5,6 +5,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import TitleAndSubheading from "../../Shared/TitleAndSubheading";
 import { Container, Paper } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const ModeratorManageEvents = () => {
     const [events, setEvents] = useState([]);
@@ -18,7 +19,6 @@ const ModeratorManageEvents = () => {
                 const filteredCarts = response.data.filter(cart =>
                     (cart.moderator === "Requirements_Added" || cart.moderator === "assigned") && cart.event_organizer === user?.email
                 );
-
                 setEvents(filteredCarts);
                 // setLoading(false);
             })
@@ -86,7 +86,9 @@ const ModeratorManageEvents = () => {
                                         </div>
                                     </td>
                                     <td className="p-4 border-b border-blue-gray-50">
-                                        <button className="btn" onClick={() => handleSave(project._id)}>See Details</button>
+                                        <Link to={`/dashboard/mod/eventDetails/${project?._id}`}>
+                                            <button className="btn" onClick={() => handleSave(project._id)}>See Details</button>
+                                        </Link>
                                     </td>
                                 </tr>
                             ))}

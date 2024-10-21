@@ -30,6 +30,8 @@ import UserConfirmedEvents from "../Pages/UserPages/UserConfirmedEvents";
 import UserSupportPage from "../Pages/UserPages/UserSupportPage";
 import ModeratorPackageDetails from "../Pages/ModeratorPages/ModeratorPackageDetails";
 import { Gallery } from "../Pages/SharedPages/Gallery";
+import ModEventDetails from "../Pages/ModeratorPages/ModEventDetails";
+import ModeratorFeedback from "../Pages/ModeratorPages/ModeratorFeedback";
 
 
 export const router = createBrowserRouter([
@@ -89,16 +91,16 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/manage-users',
-                element: <AdminManageUsers/>
+                element: <AdminManageUsers />
             },
             {
                 path: '/dashboard/assign-mod',
-                element: <AdminAssignMod/>
+                element: <AdminAssignMod />
             },
             {
-                path:'/dashboard/edit-event/:_id',
-                element: <EditEvent/>,
-                loader: ({params})=>fetch(`http://localhost:5000/event/${params._id}`)
+                path: '/dashboard/edit-event/:_id',
+                element: <EditEvent />,
+                loader: ({ params }) => fetch(`http://localhost:5000/event/${params._id}`)
             },
             {
                 path: '/dashboard/manage-media',
@@ -118,8 +120,18 @@ export const router = createBrowserRouter([
                 element: <ProfileSettings></ProfileSettings>,
             },
             {
+                path: '/dashboard/mod/eventDetails/:_id',
+                element: <ModEventDetails></ModEventDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/eventConfirmed/${params._id}`)
+            },
+
+            {
                 path: '/dashboard/mod/manage-event',
                 element: <ModeratorManageEvents></ModeratorManageEvents>,
+            },
+            {
+                path: '/dashboard/mod/feedbacks',
+                element: <ModeratorFeedback/>,
             },
             {
                 path: '/dashboard/mod/add-report',
@@ -156,13 +168,13 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/user/reviews',
-                element: <ViewReview/>,
+                element: <ViewReview />,
             },
             {
                 path: '/dashboard/user/payment-history',
                 element: <Demo></Demo>,
             },
-            
+
             {
                 path: '/dashboard/user/support',
                 element: <UserSupportPage></UserSupportPage>,
