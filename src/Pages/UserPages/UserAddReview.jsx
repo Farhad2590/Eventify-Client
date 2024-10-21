@@ -72,8 +72,7 @@ const UserAddReview = () => {
     useEffect(() => {
         axiosSecure.get(`/completedEvents/${user?.email}`)
             .then(res => {
-                const filter = res?.data.filter(event => event.review === "")
-                setData(filter)
+                setData(res?.data)
             })
             .catch(error => {
                 console.log(error);

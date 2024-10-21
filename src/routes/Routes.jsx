@@ -32,6 +32,8 @@ import AddMedia from "../Pages/AdminPages/AddMedia";
 import ManageMedia from "../Pages/AdminPages/ManageMedia";
 import ModeratorPackageDetails from "../Pages/ModeratorPages/ModeratorPackageDetails";
 import { Gallery } from "../Pages/SharedPages/Gallery";
+import ModEventDetails from "../Pages/ModeratorPages/ModEventDetails";
+import ModeratorFeedback from "../Pages/ModeratorPages/ModeratorFeedback";
 
 
 export const router = createBrowserRouter([
@@ -120,8 +122,18 @@ export const router = createBrowserRouter([
                 element: <ProfileSettings></ProfileSettings>,
             },
             {
+                path: '/dashboard/mod/eventDetails/:_id',
+                element: <ModEventDetails></ModEventDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/eventConfirmed/${params._id}`)
+            },
+
+            {
                 path: '/dashboard/mod/manage-event',
                 element: <ModeratorManageEvents></ModeratorManageEvents>,
+            },
+            {
+                path: '/dashboard/mod/feedbacks',
+                element: <ModeratorFeedback/>,
             },
             {
                 path: '/dashboard/mod/add-report',
