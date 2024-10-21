@@ -5,7 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import RateReviewIcon from '@mui/icons-material/RateReview';
 import { Link, useNavigate } from "react-router-dom";
 import { Box, Button, Modal } from "@mui/material";
-import { Rating } from "@smastrom/react-rating";
+import { Rating, ThinRoundedStar } from "@smastrom/react-rating";
 import '@smastrom/react-rating/style.css'
 import { toast } from "react-toastify";
 
@@ -35,6 +35,12 @@ const UserAddReview = () => {
         boxShadow: 24,
         p: 4,
     };
+    const myStyles = {
+        itemShapes: ThinRoundedStar,
+        activeFillColor: '#3A86FF',
+        inactiveFillColor: '#3A86FF50',
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
         const message = e.target.review.value;
@@ -115,7 +121,7 @@ const UserAddReview = () => {
                                     <span className="text-center">How was your experience?</span>
                                     <div>
                                         <Rating
-
+                                            itemStyles={myStyles}
                                             style={{ maxWidth: 180 }}
                                             value={rating}
                                             onChange={setRating}

@@ -5,7 +5,7 @@ import Main from "../Layouts/Main";
 import PrivateRoute from "../routes/PrivateRoute";
 import ErrorPage from "../Pages/SharedPages/ErrorPage";
 import Home from "../Pages/SharedPages/Home";
-import Gallerys from "../Pages/SharedPages/Gallerys";
+// import Gallerys from "../Pages/SharedPages/Gallerys";
 import EventifyReels from "../Pages/SharedPages/EventifyReels";
 import EventCards from "../Pages/SharedPages/EventCards";
 import CustomizeEvent from "../Components/EventComponents/CustomizeEvent";
@@ -30,6 +30,8 @@ import UserConfirmedEvents from "../Pages/UserPages/UserConfirmedEvents";
 import UserSupportPage from "../Pages/UserPages/UserSupportPage";
 import AddMedia from "../Pages/AdminPages/AddMedia";
 import ManageMedia from "../Pages/AdminPages/ManageMedia";
+import ModeratorPackageDetails from "../Pages/ModeratorPages/ModeratorPackageDetails";
+import { Gallery } from "../Pages/SharedPages/Gallery";
 
 
 export const router = createBrowserRouter([
@@ -44,7 +46,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/gallery",
-                element: <PrivateRoute><Gallerys /></PrivateRoute>,
+                element: <PrivateRoute><Gallery /></PrivateRoute>,
             },
             {
                 path: "/reels",
@@ -133,13 +135,9 @@ export const router = createBrowserRouter([
                 path: '/dashboard/mod/event-status',
                 element: <ModeartorEventstatus></ModeartorEventstatus>,
             },
-            // {
-            //     path: '/dashboard/mod/feedbacks',
-            //     element: <Faq></Faq>,
-            // },
             {
                 path: '/dashboard/mod/manage-budget',
-                element: <Demo></Demo>,
+                element: <ModeratorPackageDetails></ModeratorPackageDetails>,
             },
             // users routes
             {
