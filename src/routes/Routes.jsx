@@ -28,6 +28,8 @@ import ModeratorStaffs from "../Pages/ModeratorPages/ModeratorStaffs";
 import ProfileSettings from "../Shared/ProfileSettings";
 import UserConfirmedEvents from "../Pages/UserPages/UserConfirmedEvents";
 import UserSupportPage from "../Pages/UserPages/UserSupportPage";
+import AddMedia from "../Pages/AdminPages/AddMedia";
+import ManageMedia from "../Pages/AdminPages/ManageMedia";
 import ModeratorPackageDetails from "../Pages/ModeratorPages/ModeratorPackageDetails";
 import { Gallery } from "../Pages/SharedPages/Gallery";
 
@@ -85,24 +87,24 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/add-media',
-                element: <Demo></Demo>,
+                element: <AddMedia></AddMedia>,
             },
             {
                 path: '/dashboard/manage-users',
-                element: <AdminManageUsers/>
+                element: <AdminManageUsers />
             },
             {
                 path: '/dashboard/assign-mod',
-                element: <AdminAssignMod/>
+                element: <AdminAssignMod />
             },
             {
-                path:'/dashboard/edit-event/:_id',
-                element: <EditEvent/>,
-                loader: ({params})=>fetch(`http://localhost:5000/event/${params._id}`)
+                path: '/dashboard/edit-event/:_id',
+                element: <EditEvent />,
+                loader: ({ params }) => fetch(`http://localhost:5000/event/${params._id}`)
             },
             {
                 path: '/dashboard/manage-media',
-                element: <Demo></Demo>,
+                element: <ManageMedia></ManageMedia>
             },
             {
                 path: '/dashboard/business-reports',
@@ -156,13 +158,13 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/user/reviews',
-                element: <ViewReview/>,
+                element: <ViewReview />,
             },
             {
                 path: '/dashboard/user/payment-history',
                 element: <Demo></Demo>,
             },
-            
+
             {
                 path: '/dashboard/user/support',
                 element: <UserSupportPage></UserSupportPage>,
