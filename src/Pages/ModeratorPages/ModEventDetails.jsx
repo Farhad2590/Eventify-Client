@@ -25,7 +25,7 @@ const ModEventDetails = () => {
                         <p className="text-xl mb-4 text-gray-600 dark:text-gray-300">Category: {data?.category}</p>
                     </div>
                     <div className='flex justify-between'>
-                        <p className="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">Price: {data?.price?.toLocaleString()} taka</p>
+                        <p className="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">Price: {data?.totalPrice?.toLocaleString()} taka</p>
                     </div>
 
                 </div>

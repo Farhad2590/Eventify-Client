@@ -55,7 +55,7 @@ const UserConfirmedEvents = () => {
                                             <h3 className="text-2xl font-bold text-gray-800">{item.package_name}</h3>
                                             <div className="flex justify-between">
                                                 <h6 className="text-xs text-red-500 cursor-pointer mt-0.5">Remove</h6>
-                                                <h4 className="text-base font-bold text-gray-800">${item.price}</h4>
+                                                <h4 className="text-base font-bold text-gray-800">${item.totalPrice}</h4>
                                             </div>
 
                                             {/* Additional Information */}
