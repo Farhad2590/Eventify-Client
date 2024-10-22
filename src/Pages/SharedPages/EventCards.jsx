@@ -17,7 +17,7 @@ const EventCard = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  console.log(user);
+  console.log(events);
 
   useEffect(() => {
     axiosSecure
@@ -46,7 +46,7 @@ const EventCard = () => {
       category: event.category,
       package_name: event.package_name,
       carrt_Image: event.carrt_Image,
-      price: event.price,
+      // price: event.price,
       features: event.features,
       images: event.images,
       photography_team_size: event.photography_team_size,
@@ -56,6 +56,7 @@ const EventCard = () => {
       staff_team_size: event.staff_team_size,
       date: date,
       payment: 'Pending',
+      totalPrice: event.price,
       email: user.email,
       user_Name: user.displayName,
       user_Photo: user.photoURL,
