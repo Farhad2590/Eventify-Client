@@ -34,6 +34,7 @@ import ModeratorPackageDetails from "../Pages/ModeratorPages/ModeratorPackageDet
 import { Gallery } from "../Pages/SharedPages/Gallery";
 import ModEventDetails from "../Pages/ModeratorPages/ModEventDetails";
 import ModeratorFeedback from "../Pages/ModeratorPages/ModeratorFeedback";
+import AdminBudgetSection from "../Pages/AdminPages/AdminBudgetSection";
 
 
 export const router = createBrowserRouter([
@@ -110,7 +111,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/business-reports',
-                element: <Demo></Demo>,
+                element: <AdminBudgetSection></AdminBudgetSection>,
             },
             {
                 path: '/dashboard/admin-profile',
