@@ -63,13 +63,7 @@ const ModeartorEventstatus = () => {
                     mb: 4
                 }}
             >
-                {/* <Typography
-                    variant="h5"
-                    component="h2"
-                    sx={{ mb: 3, fontWeight: 'medium' }}
-                >
-                    Events Suggested and Completed
-                </Typography> */}
+                
                 <TitleAndSubheading title="Events Suggested and Completed"></TitleAndSubheading>
 
                 <TableContainer>
