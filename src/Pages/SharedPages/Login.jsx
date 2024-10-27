@@ -1,4 +1,4 @@
-import  { useContext } from 'react';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -65,8 +65,11 @@ const Login = () => {
                 <div className="absolute bottom-24 right-2 w-12 h-12 border-2 border-blue-600 transform rotate-12"></div>
             </div>
 
-            <div className="bg-white rounded-lg shadow-2xl overflow-hidden flex max-w-4xl w-full z-10">
-                <div className="w-1/2 p-8">
+            <div className="bg-white rounded-lg shadow-2xl overflow-hidden flex flex-col md:flex-row max-w-4xl w-full z-10">
+               
+
+                {/* Form Section */}
+                <div className="w-full md:w-1/2 p-8">
                     <h1 className="text-3xl font-bold mb-6 text-gray-800 text-center">Welcome Back</h1>
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                         <div className="space-y-2">
@@ -99,6 +102,7 @@ const Login = () => {
                         <span className="text-xs text-gray-500 uppercase">or login with</span>
                         <span className="border-b w-1/5 md:w-1/4"></span>
                     </div>
+
                     <div className="flex justify-center space-x-4 mt-4">
                         <button
                             onClick={() => handleSocialLogin(googleLogin)}
@@ -115,17 +119,22 @@ const Login = () => {
                             <span className="ml-2">GitHub</span>
                         </button>
                     </div>
+
                     <p className="mt-8 text-sm text-center text-gray-600">
-                        Dont have an account?{' '}
+                        Don't have an account?{' '}
                         <Link to='/register' className="font-medium text-blue-600 hover:text-blue-500">
                             Sign Up
                         </Link>
                     </p>
                 </div>
-                <div className="w-1/2 bg-blue-600 flex items-center justify-center p-12">
-                    <Lottie animationData={animationImg} loop={true} className='w-full max-w-md' />
+
+                 {/* Animation Section */}
+                 <div className="w-full md:w-1/2 bg-blue-600 flex items-center justify-center p-8 md:p-12">
+                    <Lottie animationData={animationImg} loop={true} className="w-full max-w-md" />
                 </div>
             </div>
+
+
         </div>
 
     );

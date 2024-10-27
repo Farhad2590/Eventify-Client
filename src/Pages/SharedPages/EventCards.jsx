@@ -109,7 +109,7 @@ const EventCard = () => {
       {/* Sidebar */}
       <div
         className={`fixed top-0 left-0 w-64 h-full bg-blue-600 min-h-screen text-white transition-transform transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-          } lg:translate-x-0 lg:w-64 lg:flex-shrink-0 p-4 mt-16`}
+          } lg:translate-x-0 lg:w-64 lg:flex-shrink-0 p-4 pt-20`}
       >
         <button
           onClick={toggleSidebar}
