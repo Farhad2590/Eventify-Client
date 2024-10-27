@@ -4,7 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure"
 import TestimonialCard from "./TestimonialCard";
 
 import { SwiperSlide, Swiper } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -54,7 +54,10 @@ const Testimonial = () => {
 				pagination={{
 					clickable: true,
 				}}
-				modules={[Pagination]}
+				autoplay= {{
+					delay: 2000,
+				}}
+				modules={[Pagination, Autoplay]}
 				className="mySwiper"
 			>
 				{reviews.map((review, index) => (

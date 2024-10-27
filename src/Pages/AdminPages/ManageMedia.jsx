@@ -46,7 +46,7 @@ const ManageMedia = () => {
 
 
     return (
-        <div className=' mx-auto'>
+        <div className='mx-auto'>
             <TitleAndSubheading title="Manage Media "></TitleAndSubheading>
 
             <div className='w-full'>
