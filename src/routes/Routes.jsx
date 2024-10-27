@@ -63,7 +63,7 @@ export const router = createBrowserRouter([
                 path: '/events/:_id',
                 element: <PrivateRoute><CustomizeEvent /></PrivateRoute>,
                 loader: ({ params }) =>
-                    fetch(`http://localhost:5000/event/${params._id}`),
+                    fetch(`https://eventify-server-production.up.railway.app/event/${params._id}`),
             },
             {
                 path: '/login',
@@ -103,7 +103,7 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/edit-event/:_id',
                 element: <EditEvent />,
-                loader: ({ params }) => fetch(`http://localhost:5000/event/${params._id}`)
+                loader: ({ params }) => fetch(`https://eventify-server-production.up.railway.app/event/${params._id}`)
             },
             {
                 path: '/dashboard/manage-media',
@@ -125,7 +125,7 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/mod/eventDetails/:_id',
                 element: <ModEventDetails></ModEventDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/eventConfirmed/${params._id}`)
+                loader: ({ params }) => fetch(`https://eventify-server-production.up.railway.app/eventConfirmed/${params._id}`)
             },
 
             {

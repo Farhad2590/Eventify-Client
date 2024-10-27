@@ -1,4 +1,3 @@
-// import React from 'react';
 import {
   Card,
   CardContent,
@@ -10,6 +9,8 @@ import {
   Button,
   Typography,
   Box,
+  useMediaQuery,
+  useTheme
 } from '@mui/material';
 import { CameraAlt } from '@mui/icons-material';
 import TitleAndSubheading from './TitleAndSubheading';
@@ -17,12 +18,10 @@ import useUser from '../hooks/useUser';
 import useAuth from '../hooks/useAuth';
 
 const ProfileSettings = () => {
-
-  const [userData, isUserLoading] = useUser()
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const [userData, isUserLoading] = useUser();
   const { user } = useAuth();
-  console.log(user);
-
-  console.log(userData);
 
   if (isUserLoading) {
     return <Typography variant="h6">Loading...</Typography>; 
@@ -31,17 +30,20 @@ const ProfileSettings = () => {
   if (!userData) {
     return <Typography variant="h6">No user data available</Typography>; 
   }
+
   const [firstName, lastName] = userData.name ? userData.name.split(' ') : ["", ""];
+
   return (
-    <div>
-      <TitleAndSubheading title="Profile"></TitleAndSubheading>
-      <Box display="flex" minHeight="100vh" bgcolor="#f9fafb" p={3}>
+    <Box minHeight="100vh" bgcolor="#f9fafb" p={isSmallScreen ? 2 : 3}>
+      <TitleAndSubheading title="Profile" />
+
+      <Grid container spacing={isSmallScreen ? 2 : 4} justifyContent="center">
         
-        <Box minHeight="100vh" bgcolor="#f9fafb" p={3} flex={1}>
-          <Card style={{ maxWidth: '600px', margin: '0 auto', position: 'relative' }}>
+        <Grid item xs={12} md={6}>
+          <Card>
             <Box position="relative">
               <img
-                src={user.photoURL ? user.photoURL : "https://i.ibb.co/7vXPB2c/pic4.jpg"}
+                src={user.photoURL || "https://i.ibb.co/7vXPB2c/pic4.jpg"}
                 alt="Profile"
                 style={{ width: '100%', height: 'auto' }}
               />
@@ -51,30 +53,22 @@ const ProfileSettings = () => {
                 left={0}
                 width="100%"
                 height="100%"
-                bgcolor="rgba(0, 0, 0, 0.5)" 
+                bgcolor="rgba(0, 0, 0, 0.5)"
               />
             </Box>
           </Card>
-        </Box>
+        </Grid>
 
-        
-        <Box minHeight="100vh" bgcolor="#f9fafb" p={3} flex={1}>
-          <Card style={{ maxWidth: '600px', margin: '0 auto' }}>
-            <CardHeader
-              title={<Typography variant="h6">CHANGE YOUR PROFILE</Typography>}
-            />
+        <Grid item xs={12} md={6}>
+          <Card>
+            <CardHeader title={<Typography variant="h6">Change Your Profile</Typography>} />
             <CardContent>
               <Grid container spacing={2} direction="column">
-              
+                
                 <Grid item>
-                  <Box
-                    position="relative"
-                    width="128px"
-                    height="128px"
-                    mx="auto"
-                  >
+                  <Box position="relative" width="128px" height="128px" mx="auto">
                     <Avatar
-                      src={user.photoURL ? user.photoURL : "https://i.ibb.co/7vXPB2c/pic4.jpg"}
+                      src={user.photoURL || "https://i.ibb.co/7vXPB2c/pic4.jpg"}
                       alt="Profile"
                       style={{ width: '100%', height: '100%' }}
                     />
@@ -93,9 +87,8 @@ const ProfileSettings = () => {
                   </Box>
                 </Grid>
 
-                
                 <Grid item container spacing={2}>
-                  <Grid item xs={6}>
+                  <Grid item xs={12} sm={6}>
                     <TextField
                       label="First Name"
                       defaultValue={firstName}
@@ -103,7 +96,7 @@ const ProfileSettings = () => {
                       variant="outlined"
                     />
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item xs={12} sm={6}>
                     <TextField
                       label="Last Name"
                       defaultValue={lastName}
@@ -127,7 +120,7 @@ const ProfileSettings = () => {
                 </Grid>
 
                 <Grid item container spacing={2}>
-                  <Grid item xs={6}>
+                  <Grid item xs={12} sm={6}>
                     <TextField
                       label="Country"
                       defaultValue=""
@@ -135,7 +128,7 @@ const ProfileSettings = () => {
                       variant="outlined"
                     />
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item xs={12} sm={6}>
                     <TextField
                       label="City"
                       defaultValue=""
@@ -145,7 +138,6 @@ const ProfileSettings = () => {
                   </Grid>
                 </Grid>
 
-                
                 <Grid item>
                   <Button
                     fullWidth
@@ -158,9 +150,10 @@ const ProfileSettings = () => {
               </Grid>
             </CardContent>
           </Card>
-        </Box>
-      </Box>
-    </div>
+        </Grid>
+
+      </Grid>
+    </Box>
   );
 };
 
