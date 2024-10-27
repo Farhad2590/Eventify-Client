@@ -8,7 +8,7 @@ import TitleAndSubheading from '../../Shared/TitleAndSubheading';
 
 const OurEvents = () => {
     return (
-        <div className='container mx-auto'>
+        <div className='container mx-auto mt-32 md:mt-0 lg:mt-0'>
             {/* <h3 className="text-center text-5xl font-semibold mb-10">Our Events</h3> */}
             <TitleAndSubheading title="Our Events"></TitleAndSubheading>
             <div  className='grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>

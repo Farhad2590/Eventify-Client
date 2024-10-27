@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import { Tooltip } from 'react-tooltip';
 import Button_Customize from "../Shared/Button_Customize";
 import useAuth from "../hooks/useAuth";
+import useAdmin from "../hooks/useAdmin"
 import {
   AppBar,
   Box,
@@ -23,6 +23,7 @@ import {
 import { FaHome, FaCalendarAlt, FaPlayCircle, FaImages, FaTachometerAlt, FaSignInAlt, FaSignOutAlt } from 'react-icons/fa';
 import { HiMenu } from 'react-icons/hi';
 import { IoClose } from 'react-icons/io5';
+import useModerator from '../hooks/useModerator';
 
 const CustomAppBar = styled(AppBar)({
   backgroundColor: 'white',
@@ -41,6 +42,8 @@ const Navbar = () => {
   const { logout, user } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
+  const [isAdmin] = useAdmin()
+  const [isModerator] = useModerator()
 
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -63,7 +66,7 @@ const Navbar = () => {
     { text: 'Events', icon: <FaCalendarAlt />, path: '/event' },
     { text: 'Reels', icon: <FaPlayCircle />, path: '/reels' },
     { text: 'Gallery', icon: <FaImages />, path: '/gallery' },
-    { text: 'Dashboard', icon: <FaTachometerAlt />, path: '/dashboard' },
+    { text: 'Dashboard', icon: <FaTachometerAlt />, path: isAdmin && '/dashboard/admin-profile' || isModerator && '/dashboard/mod/user-profile' || user && '/dashboard/user/user-profile'},
   ] : [];
 
   const drawerContent = (
@@ -168,6 +171,7 @@ const Navbar = () => {
                   fontStyle: 'italic',
                   fontWeight: 600,
                   color: '#2563eb',
+                  fontSize:32
                 }}
               >
                 Eventify
@@ -190,7 +194,7 @@ const Navbar = () => {
                       <Avatar src={user?.photoURL || 'https://avatars.githubusercontent.com/u/86664820?v=4'} alt="User avatar" />
                     </IconButton>
                     {showLogout && (
-                      <Paper sx={{ position: 'absolute', mt: 1, mr: 16, p: 1 }}>
+                      <Paper sx={{ position: 'absolute', right: { xl:60, lg:5 , md:5}, p: 1 }}>
                         <Button_Customize
                           onClick={handleLogout}
                           name="Logout"
