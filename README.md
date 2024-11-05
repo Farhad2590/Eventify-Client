@@ -8,9 +8,28 @@ This is a group project developed by three collaborators who used GitHub for ver
 
 You can view the live application here: [Eventify Live Link](https://eventify-bd.netlify.app/)
 
+## Client Side
+
+The client-side code for Eventify can be found at: [Eventify Client GitHub Repository](https://github.com/Farhad2590/Eventify-Client)
+
 ## Server Side
 
 The server-side code for Eventify can be found at: [Eventify Server GitHub Repository](https://github.com/Marufhossain07/Eventify-Server)
+
+## Technologies Used
+
+- HTML
+- CSS
+- JavaScript
+- React
+- Redux
+- Firebase
+- Tailwind CSS
+- Bootstrap
+- Express
+- Node.js
+- MongoDB
+
 
 ## Features
 
@@ -33,7 +52,7 @@ Make sure you have the following installed on your machine:
 
 1. Clone the front-end repository:
    ```bash
-   git clone https://github.com/your-username/eventify-frontend.git
+   git clone https://github.com/Farhad2590/Eventify-Client.git
 2. Clone the server-side repository:
     ```bash
     git clone https://github.com/Marufhossain07/Eventify-Server.git
@@ -49,3 +68,13 @@ Frontend Setup
     ```bash
     npm start
 
+Backend Setup
+1. Navigate to the server-side directory:
+    ```bash
+    cd Eventify-Server
+2. Install the dependencies:
+    ```bash
+    npm install
+3. Start the development server:
+    ```bash
+    npm start
