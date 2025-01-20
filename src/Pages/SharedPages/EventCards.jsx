@@ -17,7 +17,7 @@ const EventCard = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  console.log(user);
+  console.log(events);
 
   useEffect(() => {
     axiosSecure
@@ -46,7 +46,7 @@ const EventCard = () => {
       category: event.category,
       package_name: event.package_name,
       carrt_Image: event.carrt_Image,
-      price: event.price,
+      // price: event.price,
       features: event.features,
       images: event.images,
       photography_team_size: event.photography_team_size,
@@ -56,6 +56,7 @@ const EventCard = () => {
       staff_team_size: event.staff_team_size,
       date: date,
       payment: 'Pending',
+      totalPrice: event.price,
       email: user.email,
       user_Name: user.displayName,
       user_Photo: user.photoURL,
@@ -108,8 +109,8 @@ console.log(filteredEvents);
     <div className="flex">
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 w-64 h-full bg-blue-600 min-h-screen text-white transition-transform transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-          } lg:translate-x-0 lg:w-64 lg:flex-shrink-0 p-4 mt-16`}
+        className={`fixed top-10 left-0 w-64 h-full bg-blue-600 min-h-screen text-white transition-transform transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+          } lg:translate-x-0 lg:w-64 lg:flex-shrink-0 p-4 pt-20`}
       >
         <button
           onClick={toggleSidebar}

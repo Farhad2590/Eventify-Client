@@ -1,75 +1,228 @@
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import { Tooltip } from 'react-tooltip';
 import Button_Customize from "../Shared/Button_Customize";
 import useAuth from "../hooks/useAuth";
+import useAdmin from "../hooks/useAdmin"
+import {
+  AppBar,
+  Box,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Avatar,
+  Divider,
+  Typography,
+  styled,
+  ClickAwayListener,
+  Paper,
+} from '@mui/material';
+import { FaHome, FaCalendarAlt, FaPlayCircle, FaImages, FaTachometerAlt, FaSignInAlt, FaSignOutAlt } from 'react-icons/fa';
+import { HiMenu } from 'react-icons/hi';
+import { IoClose } from 'react-icons/io5';
+import useModerator from '../hooks/useModerator';
+
+const CustomAppBar = styled(AppBar)({
+  backgroundColor: 'white',
+  color: 'black',
+  boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+});
+
+const IconWrapper = styled(Box)({
+  display: 'flex',
+  alignItems: 'center',
+  fontSize: '1.25rem',
+  color: '#2563eb',
+});
 
 const Navbar = () => {
   const { logout, user } = useAuth();
- 
-  
-  return (
-    <nav className="w-full sticky top-0 z-30 bg-white transition-all duration-300  ">
-      <div>
-        <div className="relative px-5 lg:px-14 xl:px-44 py-3 transition-all duration-500 ease-in-out flex justify-between items-center text-black z-10">
-          <div>
-            <Link to="/" className="text-xl font-serif italic sm:text-2xl font-semibold text-blue-600">
-              <h1>Eventify</h1>
-            </Link>
-          </div>
-          <div>
-            <ul className="md:flex items-center sm:gap-5 xl:gap-10 text-[17px] font-normal hidden">
-              {user ? (
-                <>
-                  <li className="cursor-pointer font-semibold text-black hover:text-blue-600">
-                    <Link to="/">Home</Link>
-                  </li>
-                  <li className="cursor-pointer font-semibold text-black hover:text-blue-600">
-                    <Link to="/event">Events</Link>
-                  </li>
-                  <li className="cursor-pointer font-semibold text-black hover:text-blue-600">
-                    <Link to="/reels">Reels</Link>
-                  </li>
-                  <li className="cursor-pointer font-semibold text-black hover:text-blue-600">
-                    <Link to="/gallery">Gallery</Link>
-                  </li>
-                  <li className="cursor-pointer font-semibold text-black hover:text-blue-600">
-                    <Link to="/dashboard">Dashboard</Link>
-                  </li>
-                </>
-              ) : null}
-              
-              <Tooltip id="my-tooltip" />
-              {user ? (
-                <div data-tooltip-id="my-tooltip" data-tooltip-place="right" data-tooltip-content={user?.displayName || 'name not found'} className="dropdown dropdown-end z-[40]">
-                  <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                    <div className="w-10 rounded-full">
-                      <img src={user?.photoURL || 'https://avatars.githubusercontent.com/u/86664820?v=4'} alt="User avatar" />
-                    </div>
-                  </label>
-                  <ul tabIndex={0} className="dropdown-content z-[50] menu p-2 shadow bg-base-100 rounded-box w-52">
-                    <li>
-                      <Button_Customize onClick={logout} name="Logout" className=""></Button_Customize>
-                    </li>
-                  </ul>
-                </div>
-              ) : (
-                <li className="cursor-pointer font-semibold text-black hover:text-blue-600">
-                  <Link className="btn bg-blue-600 text-white hover::bg-white hover:text-blue-600" to="/login">Login</Link>
-                </li>
-              )}
-            </ul>
-          </div>
-          <div className="md:hidden hover:cursor-pointer text-2xl z-20 text-black">
-            {/* Mobile menu icon */}
-          </div>
-        </div>
+  const [isOpen, setIsOpen] = useState(false);
+  const [showLogout, setShowLogout] = useState(false);
+  const [isAdmin] = useAdmin()
+  const [isModerator] = useModerator()
 
-        {/* Decorative elements */}
-        <div className="absolute top-0 left-0 w-full h-full opacity-10">
-          {/* ... (decorative elements remain unchanged) ... */}
-        </div>
-      </div>
-    </nav>
+  const toggleDrawer = (open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    setIsOpen(open);
+  };
+
+  const handleAvatarClick = () => {
+    setShowLogout((prev) => !prev);
+  };
+
+  const handleLogout = () => {
+    setShowLogout(false);
+    logout();
+  };
+
+  const menuItems = user ? [
+    { text: 'Home', icon: <FaHome />, path: '/' },
+    { text: 'Events', icon: <FaCalendarAlt />, path: '/event' },
+    { text: 'Reels', icon: <FaPlayCircle />, path: '/reels' },
+    { text: 'Gallery', icon: <FaImages />, path: '/gallery' },
+    { text: 'Dashboard', icon: <FaTachometerAlt />, path: isAdmin && '/dashboard/admin-profile' || isModerator && '/dashboard/mod/user-profile' || user && '/dashboard/user/user-profile'},
+  ] : [];
+
+  const drawerContent = (
+    <Box
+      sx={{
+        width: 280,
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+      role="presentation"
+      onClick={toggleDrawer(false)}
+      onKeyDown={toggleDrawer(false)}
+    >
+      {user && (
+        <Box sx={{ p: 2, display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Avatar
+            src={user?.photoURL || 'https://avatars.githubusercontent.com/u/86664820?v=4'}
+            alt="User avatar"
+            sx={{ width: 40, height: 40 }}
+          />
+          <Typography variant="subtitle1" fontWeight="medium">
+            {user?.displayName || 'User'}
+          </Typography>
+        </Box>
+      )}
+
+      <Divider />
+
+      <List sx={{ flexGrow: 1 }}>
+        {menuItems.map((item) => (
+          <ListItem key={item.text} disablePadding>
+            <ListItemButton
+              component={Link}
+              to={item.path}
+              sx={{
+                borderRadius: 1,
+                mx: 1,
+                '&:hover': {
+                  backgroundColor: 'rgba(37, 99, 235, 0.08)',
+                  '& .MuiListItemIcon-root': {
+                    color: '#2563eb',
+                  },
+                  '& .MuiListItemText-primary': {
+                    color: '#2563eb',
+                  },
+                },
+              }}
+            >
+              <ListItemIcon sx={{ color: 'inherit', minWidth: 40 }}>
+                <IconWrapper>{item.icon}</IconWrapper>
+              </ListItemIcon>
+              <ListItemText primary={item.text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+
+      <Box sx={{ p: 2 }}>
+        {user ? (
+          <Button_Customize
+            onClick={handleLogout}
+            name={
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <FaSignOutAlt />
+                Logout
+              </Box>
+            }
+            className="w-full"
+          />
+        ) : (
+          <Link to="/login" style={{ textDecoration: 'none' }}>
+            <Button_Customize
+              component={Link}
+              to="/login"
+              name={
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <FaSignInAlt />
+                  Login
+                </Box>
+              }
+              className="w-full bg-blue-600 text-white hover:bg-blue-700"
+            />
+          </Link>
+
+        )}
+      </Box>
+    </Box>
+  );
+
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <CustomAppBar position="sticky">
+        <Box sx={{ px: { xs: 2, lg: 1, xl: 20 }, py: 1 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <Link to="/" style={{ textDecoration: 'none' }}>
+              <Typography
+                variant="h6"
+                component="h1"
+                sx={{
+                  fontFamily: 'serif',
+                  fontStyle: 'italic',
+                  fontWeight: 600,
+                  color: '#2563eb',
+                  fontSize:32
+                }}
+              >
+                Eventify
+              </Typography>
+            </Link>
+
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 3, minHeight: '64px' }}>
+              {menuItems.map((item) => (
+                <Link key={item.text} to={item.path} style={{ textDecoration: 'none' }}>
+                  <Typography sx={{ fontWeight: 600, color: 'black', '&:hover': { color: '#2563eb' } }}>
+                    {item.text}
+                  </Typography>
+                </Link>
+              ))}
+
+              {user ? (
+                <ClickAwayListener onClickAway={() => setShowLogout(false)}>
+                  <Box>
+                    <IconButton sx={{ p: 0 }} onClick={handleAvatarClick}>
+                      <Avatar src={user?.photoURL || 'https://avatars.githubusercontent.com/u/86664820?v=4'} alt="User avatar" />
+                    </IconButton>
+                    {showLogout && (
+                      <Paper sx={{ position: 'absolute', right: { xl:60, lg:5 , md:5}, p: 1 }}>
+                        <Button_Customize
+                          onClick={handleLogout}
+                          name="Logout"
+                          className="w-full"
+                          icon={<FaSignOutAlt />}
+                        />
+                      </Paper>
+                    )}
+                  </Box>
+                </ClickAwayListener>
+              ) : (
+                <Link to="/login" style={{ textDecoration: 'none' }}>
+                  <Button_Customize name="Login" className="bg-blue-600 text-white hover:bg-blue-700" />
+                </Link>
+              )}
+            </Box>
+
+            <IconButton sx={{ display: { md: 'none' } }} onClick={toggleDrawer(true)} color="inherit">
+              {isOpen ? <IoClose size={24} /> : <HiMenu size={24} />}
+            </IconButton>
+          </Box>
+        </Box>
+      </CustomAppBar>
+
+      <Drawer anchor="right" open={isOpen} onClose={toggleDrawer(false)} sx={{ '& .MuiDrawer-paper': { boxSizing: 'border-box' }, display: { md: 'none' } }}>
+        {drawerContent}
+      </Drawer>
+    </Box>
   );
 };
 

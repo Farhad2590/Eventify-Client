@@ -6,6 +6,7 @@ import DatePickerModal from './DatePickerModal';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { toast } from 'react-toastify';
 import useAuth from '../../hooks/useAuth';
+import calculateTotalPrice from './calculateTotalPrice';
 
 const CustomizeEvent = () => {
     const initialEvent = useLoaderData();
@@ -18,6 +19,9 @@ const CustomizeEvent = () => {
     const navigate = useNavigate();
     const { user } = useAuth();
     console.log('New Events',initialEvent,event);
+    
+
+    console.log(initialEvent);
     
 
 
@@ -61,9 +65,10 @@ const CustomizeEvent = () => {
     const date = selectedDate
     const confirmDate = {
         category: event.category,
+        totalPrice: calculateTotalPrice(event, initialEvent),
         package_name: event.package_name,
         carrt_Image: event.carrt_Image,
-        price: event.price,
+        // price: event.price,
         features: event.features,
         images: event.images,
         photography_team_size: event.photography_team_size,
@@ -73,6 +78,7 @@ const CustomizeEvent = () => {
         staff_team_size: event.staff_team_size,
         date: date,
         payment: 'Pending',
+        // totalPrice: event.price,
         email: user.email,
         user_Name: user.displayName,
         user_Photo: user.photoURL,
@@ -81,6 +87,8 @@ const CustomizeEvent = () => {
     }
     // console.log(confirmDate);
     const handleConfirmDate = () => {
+        console.log(confirmDate);
+        
         axiosSecure.post('/confirmEvents', confirmDate)
 
             .then(res => {
@@ -124,7 +132,7 @@ const CustomizeEvent = () => {
                             Check Availability
                         </button>
                     </div>
-
+                    
                     <FeatureInput
                         features={event?.features}
                         onFeatureAdd={addFeature}
@@ -173,6 +181,7 @@ const CustomizeEvent = () => {
                         <p className="text-gray-600 dark:text-gray-300 text-xl font-extrabold">Videography: {event?.videography ? 'Yes' : 'No'}</p>
                     </div>
                 </div>
+                {/* <PriceTracker event={event} initialEvent={initialEvent} /> */}
 
                 <div className="px-6 pb-6">
                     <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-white">Event Images</h2>

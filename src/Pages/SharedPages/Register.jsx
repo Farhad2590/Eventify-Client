@@ -85,11 +85,11 @@ const Register = () => {
                 <div className="absolute bottom-24 right-2 w-12 h-12 border-2 border-blue-600 transform rotate-12"></div>
             </div>
 
-            <div className="bg-white rounded-lg shadow-2xl overflow-hidden flex max-w-4xl w-full z-10">
-                <div className="w-1/2 bg-blue-600 flex items-center justify-center p-12">
+            <div className="bg-white rounded-lg shadow-2xl overflow-hidden flex flex-col md:flex-row max-w-4xl w-full z-10">
+                <div className="w-full md:w-1/2 bg-blue-600 flex items-center justify-center p-8 md:p-12">
                     <Lottie animationData={animationImg} loop={true} className='w-full max-w-md' />
                 </div>
-                <div className="w-1/2 p-8">
+                <div className="w-full md:w-1/2 p-8">
                     <h1 className="text-3xl font-bold mb-6 text-gray-800 text-center">Please Register Here</h1>
                     <form
                         onSubmit={handleSubmit(onSubmit)}

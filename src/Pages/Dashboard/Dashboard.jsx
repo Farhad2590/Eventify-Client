@@ -190,12 +190,12 @@ export default function Dashboard() {
 
 
     const DrawerList = (
-        <Box sx={{ width: 250, color: 'white', bgcolor: '#2563EB', height: '100vh', marginTop: { lg: '0' } }} role="presentation" onClick={toggleDrawer(false)}>
+        <Box sx={{ width: 250, color: 'white', bgcolor: '#2563EB', height: '100%', marginTop: { lg: '0' } }} role="presentation" onClick={toggleDrawer(false)}>
             <List>
-                <ListItem disablePadding>
+                <ListItem>
                     <h1 className="text-3xl sm:text-5xl font-bold gradient-text">Eventify</h1>
                 </ListItem>
-            </List>z
+            </List>
             <Divider />
             <List>
                 {isAdmin && adminLinks.map((link, index) => (

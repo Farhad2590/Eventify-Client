@@ -34,6 +34,7 @@ import ModeratorPackageDetails from "../Pages/ModeratorPages/ModeratorPackageDet
 import { Gallery } from "../Pages/SharedPages/Gallery";
 import ModEventDetails from "../Pages/ModeratorPages/ModEventDetails";
 import ModeratorFeedback from "../Pages/ModeratorPages/ModeratorFeedback";
+import AdminBudgetSection from "../Pages/AdminPages/AdminBudgetSection";
 
 
 export const router = createBrowserRouter([
@@ -62,7 +63,7 @@ export const router = createBrowserRouter([
                 path: '/event/:_id',
                 element: <PrivateRoute><CustomizeEvent /></PrivateRoute>,
                 loader: ({ params }) =>
-                    fetch(`http://localhost:5000/event/${params._id}`),
+                    fetch(`https://eventify-server-production.up.railway.app/event/${params._id}`),
             },
             {
                 path: '/login',
@@ -102,7 +103,7 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/edit-event/:_id',
                 element: <EditEvent />,
-                loader: ({ params }) => fetch(`http://localhost:5000/event/${params._id}`)
+                loader: ({ params }) => fetch(`https://eventify-server-production.up.railway.app/event/${params._id}`)
             },
             {
                 path: '/dashboard/manage-media',
@@ -110,7 +111,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/business-reports',
-                element: <Demo></Demo>,
+                element: <AdminBudgetSection></AdminBudgetSection>,
             },
             {
                 path: '/dashboard/admin-profile',
@@ -124,7 +125,7 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/mod/eventDetails/:_id',
                 element: <ModEventDetails></ModEventDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/eventConfirmed/${params._id}`)
+                loader: ({ params }) => fetch(`https://eventify-server-production.up.railway.app/eventConfirmed/${params._id}`)
             },
 
             {
