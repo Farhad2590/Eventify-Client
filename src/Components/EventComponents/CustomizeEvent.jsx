@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import AdjustableParameter from './AdjustableParameter';
 import FeatureInput from './FeatureInput';
 import DatePickerModal from './DatePickerModal';
@@ -9,12 +9,16 @@ import useAuth from '../../hooks/useAuth';
 
 const CustomizeEvent = () => {
     const initialEvent = useLoaderData();
+
+    
     const [event, setEvent] = useState(initialEvent);
     const [isModalOpen, setModalOpen] = useState(false);
     const [selectedDate, setSelectedDate] = useState(new Date());
     const axiosSecure = useAxiosSecure()
     const navigate = useNavigate();
     const { user } = useAuth();
+    console.log('New Events',initialEvent,event);
+    
 
 
     const handleCheckAvailabilityClick = () => {
@@ -75,7 +79,7 @@ const CustomizeEvent = () => {
         event_organizer: "",
         moderator: ""
     }
-    console.log(confirmDate);
+    // console.log(confirmDate);
     const handleConfirmDate = () => {
         axiosSecure.post('/confirmEvents', confirmDate)
 

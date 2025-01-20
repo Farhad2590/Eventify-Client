@@ -102,6 +102,7 @@ const EventCard = () => {
   const filteredEvents = selectedCategory
     ? events?.filter(event => event?.category === selectedCategory)
     : events;
+console.log(filteredEvents);
 
   return (
     <div className="flex">
@@ -189,7 +190,7 @@ const EventCard = () => {
                   >
                     Check Availability
                   </button>
-                  <Link to={`/events/${event?._id}`} className="btn">
+                  <Link to={`/event/${event?._id}`} className="btn">
                     Customize Plan
                   </Link>
                 </div>

@@ -140,7 +140,7 @@ export default function Dashboard() {
         {
             name: 'Confirmed Events',
             path: '/dashboard/user/booked-confirms',
-            icon: <TipsAndUpdatesIcon/>,
+            icon: <TipsAndUpdatesIcon />,
         },
         {
             name: 'Add Review',
@@ -150,17 +150,17 @@ export default function Dashboard() {
         {
             name: 'View Reviews',
             path: '/dashboard/user/reviews',
-            icon: <ReviewsIcon/>,
+            icon: <ReviewsIcon />,
         },
         {
             name: 'Payment History',
             path: '/dashboard/user/payment-history',
-            icon: <ReceiptIcon/>,
+            icon: <ReceiptIcon />,
         },
         {
             name: 'Contact Support',
             path: '/dashboard/user/support',
-            icon: <SupportAgentIcon/>,
+            icon: <SupportAgentIcon />,
         },
     ]
 
@@ -254,13 +254,13 @@ export default function Dashboard() {
         </Box>
     );
     const DrawerListLg = (
-        <Box sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' }, flexDirection: { lg: 'column' }, width: 320, color: 'white', bgcolor: '#2563EB' ,marginTop: { lg: '0' } }} role="presentation" onClick={toggleDrawer(false)}>
+        <Box sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' }, flexDirection: { lg: 'column' }, width: 320, color: 'white', bgcolor: '#2563EB', marginTop: { lg: '0' } }} role="presentation" onClick={toggleDrawer(false)}>
             <List>
                 <ListItem disablePadding>
                     <h1 className="text-3xl mx-auto my-5 sm:text-5xl font-bold gradient-text">Eventify</h1>
                 </ListItem>
             </List>
-            <Divider sx={{border:'1px solid white'}}/>
+            <Divider sx={{ border: '1px solid white' }} />
             <List>
                 {isAdmin && adminLinks.map((link, index) => (
                     <Link to={link.path} key={index}>
@@ -299,7 +299,7 @@ export default function Dashboard() {
                     </Link>
                 ))}
             </List>
-            <Divider sx={{border:'1px solid white'}}/>
+            <Divider sx={{ border: '1px solid white' }} />
             <List>
                 {navLinks.map((link, index) => (
                     <Link to={link.path} key={index}>
@@ -320,7 +320,7 @@ export default function Dashboard() {
 
     return (
         <div>
-            <Button sx={{ display: { md: 'flex', lg: 'none' } }} onClick={toggleDrawer(true)}><MenuIcon/></Button>
+            <Button sx={{ display: { md: 'flex', lg: 'none' } }} onClick={toggleDrawer(true)}><MenuIcon /></Button>
             <Drawer open={open} onClose={toggleDrawer(false)}>
                 {DrawerList}
             </Drawer>

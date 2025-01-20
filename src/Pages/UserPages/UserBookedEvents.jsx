@@ -8,7 +8,7 @@ const UserBookedEvents = () => {
   const { user } = useAuth();
   const [carts, setCarts] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log(carts);
+  // console.log(carts);
 
 
   useEffect(() => {
